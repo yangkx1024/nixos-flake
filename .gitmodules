@@ -1,0 +1,3 @@
+[submodule "modules/home/overview"]
+	path = modules/home/overview
+	url = https://github.com/Shanu-Kumawat/quickshell-overview
