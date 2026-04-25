@@ -4,6 +4,7 @@
   ...
 }: {
   home.file = {
+    "Pictures/Wallpapers/default.jpg".source = ../../wallpapers/default.jpg;
     ".local/share/fonts/MiSans".source = ../../fonts/MiSans;
   };
   home.pointerCursor = {
