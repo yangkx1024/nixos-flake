@@ -4,6 +4,7 @@
     enableCompletion = true;
     initExtra = ''
       # fastfetch
+      bindkey -e
     '';
     shellAliases = {
       sv = "sudo nvim";
