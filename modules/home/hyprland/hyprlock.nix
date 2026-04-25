@@ -9,13 +9,13 @@
       general = {
         hide_cursor = true;
       };
-      background = [
-        {
-          path = config.stylix.image;
-          blur_passes = 3;
-          blur_size = 8;
-        }
-      ];
+      #background = [
+      #  {
+      #    path = config.stylix.image;
+      #    blur_passes = 3;
+      #    blur_size = 8;
+      #  }
+      #];
       image = [
         {
           path = "/home/${username}/.face";
