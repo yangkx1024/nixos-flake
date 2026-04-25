@@ -6,6 +6,12 @@
   home.file = {
     ".local/share/fonts/MiSans".source = ../../fonts/MiSans;
   };
+  home.pointerCursor = {
+    gtk.enable = true;
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Ice";
+    size = 24;
+  };
   xdg = {
     enable = true;
     mime.enable = true;

@@ -27,6 +27,7 @@ in {
     clearDefaultKeybinds = true;
     settings = {
       custom-shader = shaderFile;
+      theme = "noctalia"
       custom-shader-animation = "always";
       confirm-close-surface = "false";
       font-family = "Maple Mono NF CN";
