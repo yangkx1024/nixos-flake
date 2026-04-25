@@ -14,12 +14,10 @@
     ./security.nix
     ./services.nix
     ./steam.nix
-    ./stylix.nix
     ./system.nix
     ./thunar.nix
     ./user.nix
     ./virtualisation.nix
     ./cachix.nix
-    inputs.stylix.nixosModules.stylix
   ];
 }

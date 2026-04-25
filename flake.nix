@@ -1,5 +1,6 @@
 {
   description = "Kexuan's NixOS";
+  inputs.self.submodules = true;
   inputs = {
     home-manager = {
       url = "github:nix-community/home-manager/master";

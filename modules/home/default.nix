@@ -8,7 +8,6 @@
     ./qt.nix
     ./scripts
     ./starship.nix
-    ./stylix.nix
     ./swappy.nix
     ./tealdeer.nix
     ./virtmanager.nix
