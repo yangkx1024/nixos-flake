@@ -9,16 +9,16 @@
       general = {
         hide_cursor = true;
       };
-      #background = [
-      #  {
-      #    path = config.stylix.image;
-      #    blur_passes = 3;
-      #    blur_size = 8;
-      #  }
-      #];
+      background = [
+        {
+          path = "/home/${username}/Pictures/Wallpapers/default.jpg";
+          blur_passes = 3;
+          blur_size = 8;
+        }
+      ];
       image = [
         {
-          path = "/home/${username}/.face";
+          path = "/home/${username}/.config/face.jpg";
           size = 150;
           border_size = 4;
           border_color = "rgb(0C96F9)";
