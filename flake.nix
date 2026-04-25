@@ -31,7 +31,7 @@
   } @ inputs: let
     system = "x86_64-linux";
     host = "nixos";
-    profile = "vm";
+    profile = "amd";
     username = "yangkx";
 
     # Deduplicate nixosConfigurations while preserving the top-level 'profile'
