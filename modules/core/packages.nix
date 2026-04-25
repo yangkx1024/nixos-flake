@@ -46,6 +46,7 @@
     lshw # Detailed Hardware Information
     mpv # Incredible Video Player
     papirus-icon-theme # icon theme
+    bibata-cursors # cursor theme
     pavucontrol # For Editing Audio Levels & Devices
     pciutils # Collection Of Tools For Inspecting PCI Devices
     pkg-config # Wrapper Script For Allowing Packages To Get Info On Others
