@@ -14,10 +14,9 @@
       logo = {
         source = ./nixos.png;
         type = "kitty-direct";
-        height = 20;
         width = 20;
         padding = {
-          top = 2;
+          top = 5;
           left = 2;
         };
       };
@@ -122,7 +121,8 @@
         "break"
         {
           type = "uptime";
-          key = "   Uptime   ";
+          key = "Uptime   ";
+          keyColor = "34";
         }
       ];
     };

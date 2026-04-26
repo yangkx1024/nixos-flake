@@ -1,6 +1,7 @@
 {
   host,
   pkgs,
+  username,
   ...
 }: let
   vars = import ../../../hosts/${host}/variables.nix;
@@ -172,6 +173,7 @@ in {
       monitor=,preferred,auto,auto
       monitor=Virtual-1,1920x1080@60,auto,1
       ${extraMonitorSettings}
+      source = /home/${username}/.config/hypr/noctalia/noctalia-colors.conf
     ";
   };
 }
