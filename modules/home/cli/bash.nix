@@ -4,7 +4,6 @@
     enableCompletion = true;
     initExtra = ''
       # fastfetch
-      bindkey -e
     '';
     shellAliases = {
       sv = "sudo nvim";
@@ -16,6 +15,7 @@
       ".." = "cd ..";
       gst = "git status";
       gd = "git diff";
+      zed = "zeditor";
     };
   };
 }

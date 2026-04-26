@@ -40,6 +40,7 @@
       man = "batman";
       gst = "git status";
       gd = "git diff";
+      zed = "zeditor";
     };
   };
 }
