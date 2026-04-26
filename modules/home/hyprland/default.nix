@@ -1,6 +1,6 @@
 {...}: {
   imports = [
-    ./animations-end4.nix
+    ./animations-ml4w-fast.nix
     ./binds.nix
     ./env.nix
     ./exec-once.nix
