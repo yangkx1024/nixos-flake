@@ -438,7 +438,16 @@ _: {
         center = on
         float = on
         opacity = 1.0 = 1.0
-        size = 70% = 70%
+        size = 80% = 80%
+      }
+
+      windowrule {
+        name = MissionCenter
+        match:initial_class = ^(io\.missioncenter\.MissionCenter)$
+        center = on
+        float = on
+        opacity = 1.0 = 1.0
+        size = 80% = 80%
       }
     '';
   };
