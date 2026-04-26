@@ -5,16 +5,14 @@
       animation = "matrix";
       bigclock = true;
       # --- Color Settings (0xAARRGGBB) ---
-      # Background color of dialog box (Black)
-      bg = "0x00000000";
-      # Foreground text color (Cyan: #00FFFF)
-      fg = "0x0000FFFF";
-      # Border color (Red: #FF0000)
-      border_fg = "0x00FF0000";
-      # Error message color (Red)
-      error_fg = "0x00FF0000";
-      # Clock color (Purple: #800080)
-      clock_color = "#800080";
+      # Background color
+      bg = "0x00131410";
+      # Foreground text color
+      fg = "0x00e4e2dc";
+      border_fg = "0x00c3c9b0";
+      error_fg = "0x00ffb4ab";
+      # Clock color
+      clock_color = "#e4e2dc";
       # Set bigclock to show the seconds.
       bigclock_seconds = true;
       # Title to show at the top of the main box
