@@ -2,12 +2,10 @@
   host,
   pkgs,
   ...
-}:
-let
+}: let
   vars = import ../../../hosts/${host}/variables.nix;
   extraMonitorSettings = vars.extraMonitorSettings or "";
-in
-{
+in {
   home.packages = with pkgs; [
     grim
     slurp
@@ -34,7 +32,7 @@ in
     systemd = {
       enable = true;
       enableXdgAutostart = true;
-      variables = [ "--all" ];
+      variables = ["--all"];
     };
     xwayland = {
       enable = true;
@@ -58,7 +56,7 @@ in
         };
       };
       gestures = {
-        gesture = [ "3, horizontal, workspace" ];
+        gesture = ["3, horizontal, workspace"];
         workspace_swipe_distance = 500;
         workspace_swipe_invert = true;
         workspace_swipe_min_speed_to_force = 30;
@@ -75,7 +73,7 @@ in
         follow_focus = true;
       };
 
-      monocle = { };
+      monocle = {};
 
       general = {
         layout = "dwindle";

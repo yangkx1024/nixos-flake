@@ -27,7 +27,6 @@
     gpu-screen-recorder # needed for nnoctalia-shell
     upower # noctalia shell battery
 
-    alejandra # nix formatter
     appimage-run # Needed For AppImage Support
     brightnessctl # For Screen Brightness Control
     cliphist # Clipboard manager using rofi menu
@@ -56,9 +55,11 @@
     unrar # Tool For Handling .rar Files
     unzip # Tool For Handling .zip Files
     usbutils # Good Tools For USB Devices
-    uwsm # Universal Wayland Session Manager (optional must be enabled)
+    # uwsm # Universal Wayland Session Manager (optional must be enabled)
     wget # Tool For Fetching Files With Links
     ytmdl # Tool For Downloading Audio From YouTube
-    nil # Nix lsp
+    
+    codex
+    claude-code
   ];
 }
