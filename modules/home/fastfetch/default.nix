@@ -121,7 +121,7 @@
         "break"
         {
           type = "uptime";
-          key = "Uptime   ";
+          key = "Up   ";
           keyColor = "34";
         }
       ];
