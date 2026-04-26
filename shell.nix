@@ -2,6 +2,7 @@
 pkgs.mkShell {
   buildInputs = with pkgs; [
     nixd # nix lsp
+    nil
     alejandra # nix formatter
   ];
 

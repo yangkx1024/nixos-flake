@@ -1,8 +1,4 @@
-{
-  config,
-  lib,
-  ...
-}: let
+{lib, ...}: let
   overviewSource = ./overview;
 in {
   # Quickshell-overview is a Qt6 QML app for Hyprland workspace overview

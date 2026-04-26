@@ -29,7 +29,6 @@
 
     appimage-run # Needed For AppImage Support
     brightnessctl # For Screen Brightness Control
-    cliphist # Clipboard manager using rofi menu
     cmatrix # Matrix Movie Effect In Terminal
     cowsay # Great Fun Terminal Program
     eza # Beautiful ls Replacement
@@ -58,7 +57,18 @@
     # uwsm # Universal Wayland Session Manager (optional must be enabled)
     wget # Tool For Fetching Files With Links
     ytmdl # Tool For Downloading Audio From YouTube
-    
+
+    zed-editor
+    gnome-disk-utility
+    google-chrome
+    loupe
+    wirelesstools
+    efibootmgr
+    nwg-look
+    mission-center
+    papers
+    #foliate
+    remmina
     codex
     claude-code
   ];
