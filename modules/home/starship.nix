@@ -24,9 +24,9 @@
       ];
 
       character = {
-        success_symbol = "[❯](green)";
-        error_symbol = "[❯](red)";
-        vimcmd_symbol = "[❮](cyan)";
+        success_symbol = "[➜](green)";
+        error_symbol = "[➜](red)";
+        vimcmd_symbol = "[↩](cyan)";
       };
 
       nix_shell = {

@@ -31,7 +31,10 @@ in {
       custom-shader-animation = "always";
       confirm-close-surface = "false";
       font-family = "Maple Mono NF CN";
-      font-size = 14;
+      font-size = 16;
+      window-padding-x = 4;
+      window-padding-y = 4;
+      window-padding-balance = true;
       adjust-cell-height = "10%";
       window-theme = "dark";
       window-height = "32";

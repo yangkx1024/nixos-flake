@@ -14,7 +14,7 @@
       logo = {
         source = ./nixos.png;
         type = "kitty-direct";
-        height = 10;
+        height = 20;
         width = 20;
         padding = {
           top = 2;
