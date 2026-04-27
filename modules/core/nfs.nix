@@ -1,4 +1,7 @@
 {
+  username,
+  ...
+}: {
   services = {
     rpcbind.enable = true;
     nfs.server.enable = true;
@@ -10,7 +13,7 @@
         Options = "noatime";
       };
       what = "192.168.1.9:/mnt/hdd/shared";
-      where = "/home/yangkx/nas";
+      where = "/home/${username}/nas";
     }
   ];
   systemd.automounts = [
@@ -19,7 +22,7 @@
       automountConfig = {
         TimeoutIdleSec = "600";
       };
-      where = "/home/yangkx/nas";
+      where = "/home/${username}/nas";
     }
   ];
 }

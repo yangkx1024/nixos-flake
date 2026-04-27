@@ -10,7 +10,10 @@ in {
     hostName = "${host}";
     hostId = hostId;
     networkmanager.enable = true;
-    timeServers = options.networking.timeServers.default ++ ["pool.ntp.org"];
+    timeServers = options.networking.timeServers.default ++ [
+      "sg.pool.ntp.org"
+      "pool.ntp.org"
+    ];
     firewall = {
       enable = true;
       allowedTCPPorts = [

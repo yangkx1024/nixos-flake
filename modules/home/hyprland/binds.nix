@@ -5,7 +5,6 @@
     browser
     terminal
     ;
-  # Noctalia-specific bindings (only included when barChoice == "noctalia")
   noctaliaBind = [
     "$modifier,SPACE, Noctalia Launcher, exec, noctalia-shell ipc call launcher toggle"
     "$modifier SHIFT,Return, Noctalia Launcher, exec, noctalia-shell ipc call launcher toggle"
@@ -13,11 +12,11 @@
     "$modifier,V, Noctalia Clipboard, exec,  noctalia-shell ipc call launcher clipboard"
     "$modifier ALT,P, Noctalia Settings, exec, noctalia-shell ipc call settings toggle"
     "$modifier SHIFT,comma, Noctalia Settings, exec, noctalia-shell ipc call settings toggle"
-    "$modifier CTRL,L, Noctalia Lock Screen, exec,  noctalia-shell ipc call sessionMenu lockscreen lock"
+    "$modifier CTRL,L, Noctalia Lock Screen, exec,  noctalia-shell ipc call lockscreen lock"
     "$modifier SHIFT,W, Noctalia Wallpaper, exec, noctalia-shell ipc call wallpaper toggle"
     "$modifier,X, Noctalia Power Menu, exec,  noctalia-shell ipc call sessionMenu toggle"
     "$modifier,C, Noctalia Control Center, exec,  noctalia-shell ipc call controlCenter toggle"
-    "$modifier CTRL,R, Noctalia Screen Recorder, exec,  noctalia-shell ipc call screenRecorder toggle"
+    "$modifier CTRL,R, Noctalia Screen Recorder, exec,  noctalia-shell ipc call plugin:screen-recorder toggle"
     "$modifier SHIFT,R, Restart Noctalia shell, exec,  restart.noctalia"
   ];
 in {
@@ -26,26 +25,22 @@ in {
       noctaliaBind
       ++ [
         # ============= WORKSPACE OVERVIEW =============
-        "$modifier CTRL,D, Toggle Dock, exec, dock"
         "$modifier, TAB, QS Overview, exec, qs ipc -c overview call overview toggle"
         # ============= TERMINALS =============
         "$modifier,Return, Terminal, exec, ${terminal}"
         # ============= APPLICATION LAUNCHERS =============
         "$modifier,B, Web Browser, exec, ${browser}"
-        "$modifier SHIFT,E, Emoji Picker, exec, emopicker9000"
         "$modifier,S, Screenshot, exec, screenshootin"
         # ============= SCREENSHOTS =============
         "$modifier CTRL,S, Screenshot Output, exec, hyprshot -m output -o $HOME/Pictures/ScreenShots"
         "$modifier SHIFT,S, Screenshot Window, exec, hyprshot -m window -o $HOME/Pictures/ScreenShots"
         "$modifier ALT,S, Screenshot Region, exec, hyprshot -m region -o $HOME/Pictures/ScreenShots"
         "$modifier ALT,C, Color Picker, exec, hyprpicker -a"
-        "$modifier SHIFT,T, Dropdown Terminal, exec, sh -lc 'DropTerminal'"
         "$modifier,T, Thunar, exec, thunar"
         "$modifier ALT,M, Audio Control, exec, pavucontrol"
         # ============= WINDOW MANAGEMENT =============
         "$modifier,Q, Kill Active Window, killactive,"
         "$modifier,P, Pseudo Tile, pseudo,"
-        "$modifier SHIFT,I, Toggle Split, layoutmsg, togglesplit"
         "$modifier,F, Maximize, fullscreen,"
         "$modifier SHIFT,F, Toggle Floating, togglefloating,"
         "$modifier ALT,F, Float All Windows, exec, hyprland-float-all"
