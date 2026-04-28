@@ -76,7 +76,7 @@ in {
       monocle = {};
 
       general = {
-        layout = "dwindle";
+        layout = "scrolling";
         gaps_in = 6;
         gaps_out = 8;
         border_size = 2;
