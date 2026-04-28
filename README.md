@@ -5,7 +5,8 @@ Inspired by [ZaneyOS](https://gitlab.com/Zaney/zaneyos), I simplified the config
 
 ## Preview
 
-<video src="recording/recording_20260428_100130_compressed.mp4" controls width="720"></video>
+<video src="https://github.com/user-attachments/assets/ec0d62e5-b740-4097-b62e-b8d20a39ac69" controls width="720"></video>
+
 
 If your viewer does not embed the video inline, open
 [`recording/recording_20260428_100130_compressed.mp4`](recording/recording_20260428_100130_compressed.mp4) directly.
