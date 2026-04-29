@@ -44,5 +44,10 @@
     NIXOS_OZONE_WL = "1";
   };
   console.keyMap = "us";
+  zramSwap = {
+    enable = true;
+    algorithm = "lz4";
+    memoryPercent = 50;
+  };
   system.stateVersion = "25.11";
 }
