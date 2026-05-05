@@ -72,5 +72,6 @@
     remmina
     codex
     claude-code
+    localsend
   ];
 }

@@ -11,6 +11,20 @@
       noto-fonts-cjk-serif
       noto-fonts-monochrome-emoji
       terminus_font
+      (pkgs.stdenvNoCC.mkDerivation {
+        pname = "misans-fonts";
+        version = "1.0";
+
+        src = ../../fonts/MiSans;
+
+        installPhase = ''
+          mkdir -p $out/share/fonts/truetype
+          cp -v *.ttf $out/share/fonts/truetype/ 2>/dev/null || true
+
+          mkdir -p $out/share/fonts/opentype
+          cp -v *.otf $out/share/fonts/opentype/ 2>/dev/null || true
+        '';
+      })
     ];
     fontconfig.defaultFonts = {
       serif = ["MiSans" "Noto Serif" "Noto Serif CJK SC"];
