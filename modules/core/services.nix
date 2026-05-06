@@ -1,6 +1,7 @@
 {profile, ...}: {
   # Services to start
   services = {
+    fwupd.enable = true;
     upower.enable = true; # noctalia shell battery
     libinput.enable = true; # Input Handling
     fstrim.enable = true; # SSD Optimizer
