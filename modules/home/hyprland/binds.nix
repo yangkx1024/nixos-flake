@@ -5,127 +5,130 @@
     browser
     terminal
     ;
-  noctaliaBind = [
-    "$modifier,SPACE, Noctalia Launcher, exec, noctalia-shell ipc call launcher toggle"
-    "$modifier SHIFT,Return, Noctalia Launcher, exec, noctalia-shell ipc call launcher toggle"
-    "$modifier,M, Noctalia Notifications, exec,  noctalia-shell ipc call notifications toggleHistory"
-    "$modifier,V, Noctalia Clipboard, exec,  noctalia-shell ipc call launcher clipboard"
-    "$modifier ALT,P, Noctalia Settings, exec, noctalia-shell ipc call settings toggle"
-    "$modifier SHIFT,comma, Noctalia Settings, exec, noctalia-shell ipc call settings toggle"
-    "$modifier CTRL,L, Noctalia Lock Screen, exec,  noctalia-shell ipc call lockscreen lock"
-    "$modifier SHIFT,W, Noctalia Wallpaper, exec, noctalia-shell ipc call wallpaper toggle"
-    "$modifier,X, Noctalia Power Menu, exec,  noctalia-shell ipc call sessionMenu toggle"
-    "$modifier,C, Noctalia Control Center, exec,  noctalia-shell ipc call controlCenter toggle"
-    "$modifier CTRL,R, Noctalia Screen Recorder, exec,  noctalia-shell ipc call plugin:screen-recorder toggle"
-    "$modifier SHIFT,R, Restart Noctalia shell, exec,  restart.noctalia"
-  ];
 in {
-  wayland.windowManager.hyprland.settings = {
-    bindd =
-      noctaliaBind
-      ++ [
-        # ============= WORKSPACE OVERVIEW =============
-        "$modifier, TAB, QS Overview, exec, qs ipc -c overview call overview toggle"
-        # ============= TERMINALS =============
-        "$modifier,Return, Terminal, exec, ${terminal}"
-        # ============= APPLICATION LAUNCHERS =============
-        "$modifier,B, Web Browser, exec, ${browser}"
-        "$modifier,S, Screenshot, exec, screenshootin"
-        # ============= SCREENSHOTS =============
-        "$modifier CTRL,S, Screenshot Output, exec, hyprshot -m output -o $HOME/Pictures/ScreenShots"
-        "$modifier SHIFT,S, Screenshot Window, exec, hyprshot -m window -o $HOME/Pictures/ScreenShots"
-        "$modifier ALT,S, Screenshot Region, exec, hyprshot -m region -o $HOME/Pictures/ScreenShots"
-        "$modifier ALT,C, Color Picker, exec, hyprpicker -a"
-        "$modifier,T, Thunar, exec, thunar"
-        "$modifier ALT,M, Audio Control, exec, pavucontrol"
-        # ============= WINDOW MANAGEMENT =============
-        "$modifier,Q, Kill Active Window, killactive,"
-        "$modifier,P, Pseudo Tile, pseudo,"
-        "$modifier,F, Maximize, fullscreen,"
-        "$modifier SHIFT,F, Toggle Floating, togglefloating,"
-        "$modifier ALT,F, Float All Windows, exec, hyprland-float-all"
-        # ============= LAYOUTS =============
-        "$modifier ALT,L, Toggle Layouts, exec, hyprland-change-layout toggle"
-        "$modifier ALT,1, Layout Dwindle, exec, hyprland-change-layout dwindle"
-        "$modifier ALT,2, Layout Master, exec, hyprland-change-layout master"
-        "$modifier ALT,3, Layout Scrolling, exec, hyprland-change-layout scrolling"
-        "$modifier ALT,4, Layout Monocle, exec, hyprland-change-layout monocle"
-        "$modifier SHIFT,C, Exit/Logout of Hyprland, exit,"
-        # ============= WINDOW MOVEMENT (ARROW KEYS) =============
-        "$modifier SHIFT,left, Move Left, movewindow, l"
-        "$modifier SHIFT,right, Move Right, movewindow, r"
-        "$modifier SHIFT,up, Move Up, movewindow, u"
-        "$modifier SHIFT,down, Move Down, movewindow, d"
-        # ============= WINDOW MOVEMENT (VI STYLE) =============
-        "$modifier SHIFT,h, Move Left (VI), movewindow, l"
-        "$modifier SHIFT,l, Move Right (VI), movewindow, r"
-        "$modifier SHIFT,k, Move Up (VI), movewindow, u"
-        "$modifier SHIFT,j, Move Down (VI), movewindow, d"
-        # ============= WINDOW SWAPPING (ARROW KEYS) =============
-        "$modifier ALT, left, Swap Left, swapwindow, l"
-        "$modifier ALT, right, Swap Right, swapwindow, r"
-        "$modifier ALT, up, Swap Up, swapwindow, u"
-        "$modifier ALT, down, Swap Down, swapwindow, d"
-        # ============= WINDOW SWAPPING (VI KEYCODES) =============
-        "$modifier ALT, 43, Swap Left (VI), swapwindow, l"
-        "$modifier ALT, 46, Swap Right (VI), swapwindow, r"
-        "$modifier ALT, 45, Swap Up (VI), swapwindow, u"
-        "$modifier ALT, 44, Swap Down (VI), swapwindow, d"
-        # ============= FOCUS MOVEMENT (ARROW KEYS) =============
-        "$modifier,left, Focus Left, movefocus, l"
-        "$modifier,right, Focus Right, movefocus, r"
-        "$modifier,up, Focus Up, movefocus, u"
-        "$modifier,down, Focus Down, movefocus, d"
-        # ============= FOCUS MOVEMENT (VI STYLE) =============
-        "$modifier,h, Focus Left (VI), movefocus, l"
-        "$modifier,l, Focus Right (VI), movefocus, r"
-        "$modifier,k, Focus Up (VI), movefocus, u"
-        "$modifier,j, Focus Down (VI), movefocus, d"
-        # ============= WORKSPACE SWITCHING (1-10) =============
-        "$modifier,1, Workspace 1, workspace, 1"
-        "$modifier,2, Workspace 2, workspace, 2"
-        "$modifier,3, Workspace 3, workspace, 3"
-        "$modifier,4, Workspace 4, workspace, 4"
-        "$modifier,5, Workspace 5, workspace, 5"
-        "$modifier,6, Workspace 6, workspace, 6"
-        "$modifier,7, Workspace 7, workspace, 7"
-        "$modifier,8, Workspace 8, workspace, 8"
-        "$modifier,9, Workspace 9, workspace, 9"
-        # ============= MOVE WINDOW TO WORKSPACE (1-10) =============
-        "$modifier SHIFT,0, Move to Special, movetoworkspace, special"
-        "$modifier,0, Toggle Special, togglespecialworkspace"
-        "$modifier SHIFT,1, Move to Workspace 1, movetoworkspace, 1"
-        "$modifier SHIFT,2, Move to Workspace 2, movetoworkspace, 2"
-        "$modifier SHIFT,3, Move to Workspace 3, movetoworkspace, 3"
-        "$modifier SHIFT,4, Move to Workspace 4, movetoworkspace, 4"
-        "$modifier SHIFT,5, Move to Workspace 5, movetoworkspace, 5"
-        "$modifier SHIFT,6, Move to Workspace 6, movetoworkspace, 6"
-        "$modifier SHIFT,7, Move to Workspace 7, movetoworkspace, 7"
-        "$modifier SHIFT,8, Move to Workspace 8, movetoworkspace, 8"
-        "$modifier SHIFT,9, Move to Workspace 9, movetoworkspace, 9"
-        # ============= WORKSPACE NAVIGATION =============
-        "$modifier CONTROL,right, Next Workspace, workspace, e+1"
-        "$modifier CONTROL,left, Previous Workspace, workspace, e-1"
-        "$modifier,mouse_down, Next Workspace Mouse, workspace, e+1"
-        "$modifier,mouse_up, Previous Workspace Mouse, workspace, e-1"
-        # ============= WINDOW CYCLING =============
-        "ALT,Tab, Cycle Next Window, cyclenext"
-        "ALT,Tab, Bring Active To Top, bringactivetotop"
-        # ============= MEDIA & HARDWARE CONTROLS =============
-        ",XF86AudioRaiseVolume, Volume Up, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-        ",XF86AudioLowerVolume, Volume Down, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-        " ,XF86AudioMute, Mute Toggle, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-        ",XF86AudioPlay, Play Pause, exec, playerctl play-pause"
-        ",XF86AudioPause, Play Pause, exec, playerctl play-pause"
-        ",XF86AudioNext, Next Track, exec, playerctl next"
-        ",XF86AudioPrev, Previous Track, exec, playerctl previous"
-        ",XF86MonBrightnessDown, Brightness Down, exec, brightnessctl set 5%-"
-        ",XF86MonBrightnessUp, Brightness Up, exec, brightnessctl set +5%"
-      ];
+  wayland.windowManager.hyprland.extraConfig = ''
+    do
+      local mainMod = "SUPER"
 
-    bindm = [
-      "$modifier, mouse:272, movewindow"
-      "$modifier, mouse:273, resizewindow"
-    ];
-  };
+      -- ============= NOCTALIA =============
+      hl.bind(mainMod .. " + SPACE",        hl.dsp.exec_cmd("noctalia-shell ipc call launcher toggle"))
+      hl.bind(mainMod .. " + SHIFT + Return", hl.dsp.exec_cmd("noctalia-shell ipc call launcher toggle"))
+      hl.bind(mainMod .. " + M",            hl.dsp.exec_cmd("noctalia-shell ipc call notifications toggleHistory"))
+      hl.bind(mainMod .. " + V",            hl.dsp.exec_cmd("noctalia-shell ipc call launcher clipboard"))
+      hl.bind(mainMod .. " + ALT + P",      hl.dsp.exec_cmd("noctalia-shell ipc call settings toggle"))
+      hl.bind(mainMod .. " + SHIFT + comma", hl.dsp.exec_cmd("noctalia-shell ipc call settings toggle"))
+      hl.bind(mainMod .. " + CTRL + L",     hl.dsp.exec_cmd("noctalia-shell ipc call lockscreen lock"))
+      hl.bind(mainMod .. " + SHIFT + W",    hl.dsp.exec_cmd("noctalia-shell ipc call wallpaper toggle"))
+      hl.bind(mainMod .. " + X",            hl.dsp.exec_cmd("noctalia-shell ipc call sessionMenu toggle"))
+      hl.bind(mainMod .. " + C",            hl.dsp.exec_cmd("noctalia-shell ipc call controlCenter toggle"))
+      hl.bind(mainMod .. " + CTRL + R",     hl.dsp.exec_cmd("noctalia-shell ipc call plugin:screen-recorder toggle"))
+      hl.bind(mainMod .. " + SHIFT + R",    hl.dsp.exec_cmd("restart.noctalia"))
+
+      -- ============= WORKSPACE OVERVIEW =============
+      hl.bind(mainMod .. " + TAB",          hl.dsp.exec_cmd("qs ipc -c overview call overview toggle"))
+
+      -- ============= TERMINALS =============
+      hl.bind(mainMod .. " + Return",       hl.dsp.exec_cmd("${terminal}"))
+
+      -- ============= APPLICATION LAUNCHERS =============
+      hl.bind(mainMod .. " + B",            hl.dsp.exec_cmd("${browser}"))
+      hl.bind(mainMod .. " + S",            hl.dsp.exec_cmd("screenshootin"))
+
+      -- ============= SCREENSHOTS =============
+      hl.bind(mainMod .. " + CTRL + S",     hl.dsp.exec_cmd("hyprshot -m output -o $HOME/Pictures/ScreenShots"))
+      hl.bind(mainMod .. " + SHIFT + S",    hl.dsp.exec_cmd("hyprshot -m window -o $HOME/Pictures/ScreenShots"))
+      hl.bind(mainMod .. " + ALT + S",      hl.dsp.exec_cmd("hyprshot -m region -o $HOME/Pictures/ScreenShots"))
+      hl.bind(mainMod .. " + ALT + C",      hl.dsp.exec_cmd("hyprpicker -a"))
+      hl.bind(mainMod .. " + T",            hl.dsp.exec_cmd("thunar"))
+      hl.bind(mainMod .. " + ALT + M",      hl.dsp.exec_cmd("pavucontrol"))
+
+      -- ============= WINDOW MANAGEMENT =============
+      hl.bind(mainMod .. " + Q",            hl.dsp.window.close())
+      hl.bind(mainMod .. " + P",            hl.dsp.window.pseudo())
+      hl.bind(mainMod .. " + F",            hl.dsp.window.fullscreen())
+      hl.bind(mainMod .. " + SHIFT + F",    hl.dsp.window.float({ action = "toggle" }))
+      hl.bind(mainMod .. " + ALT + F",      hl.dsp.exec_cmd("hyprland-float-all"))
+
+      -- ============= LAYOUTS =============
+      hl.bind(mainMod .. " + ALT + L",      hl.dsp.exec_cmd("hyprland-change-layout toggle"))
+      hl.bind(mainMod .. " + ALT + 1",      hl.dsp.exec_cmd("hyprland-change-layout dwindle"))
+      hl.bind(mainMod .. " + ALT + 2",      hl.dsp.exec_cmd("hyprland-change-layout master"))
+      hl.bind(mainMod .. " + ALT + 3",      hl.dsp.exec_cmd("hyprland-change-layout scrolling"))
+      hl.bind(mainMod .. " + ALT + 4",      hl.dsp.exec_cmd("hyprland-change-layout monocle"))
+      hl.bind(mainMod .. " + SHIFT + C",    hl.dsp.exit())
+
+      -- ============= WINDOW MOVEMENT (ARROW KEYS) =============
+      hl.bind(mainMod .. " + SHIFT + left", hl.dsp.window.move({ direction = "left" }))
+      hl.bind(mainMod .. " + SHIFT + right", hl.dsp.window.move({ direction = "right" }))
+      hl.bind(mainMod .. " + SHIFT + up",   hl.dsp.window.move({ direction = "up" }))
+      hl.bind(mainMod .. " + SHIFT + down", hl.dsp.window.move({ direction = "down" }))
+
+      -- ============= WINDOW MOVEMENT (VI STYLE) =============
+      hl.bind(mainMod .. " + SHIFT + h",    hl.dsp.window.move({ direction = "left" }))
+      hl.bind(mainMod .. " + SHIFT + l",    hl.dsp.window.move({ direction = "right" }))
+      hl.bind(mainMod .. " + SHIFT + k",    hl.dsp.window.move({ direction = "up" }))
+      hl.bind(mainMod .. " + SHIFT + j",    hl.dsp.window.move({ direction = "down" }))
+
+      -- ============= WINDOW SWAPPING (ARROW KEYS) =============
+      hl.bind(mainMod .. " + ALT + left",   hl.dsp.window.swap({ direction = "left" }))
+      hl.bind(mainMod .. " + ALT + right",  hl.dsp.window.swap({ direction = "right" }))
+      hl.bind(mainMod .. " + ALT + up",     hl.dsp.window.swap({ direction = "up" }))
+      hl.bind(mainMod .. " + ALT + down",   hl.dsp.window.swap({ direction = "down" }))
+
+      -- ============= WINDOW SWAPPING (VI KEYCODES) =============
+      hl.bind(mainMod .. " + ALT + code:43", hl.dsp.window.swap({ direction = "left" }))
+      hl.bind(mainMod .. " + ALT + code:46", hl.dsp.window.swap({ direction = "right" }))
+      hl.bind(mainMod .. " + ALT + code:45", hl.dsp.window.swap({ direction = "up" }))
+      hl.bind(mainMod .. " + ALT + code:44", hl.dsp.window.swap({ direction = "down" }))
+
+      -- ============= FOCUS MOVEMENT (ARROW KEYS) =============
+      hl.bind(mainMod .. " + left",         hl.dsp.focus({ direction = "left" }))
+      hl.bind(mainMod .. " + right",        hl.dsp.focus({ direction = "right" }))
+      hl.bind(mainMod .. " + up",           hl.dsp.focus({ direction = "up" }))
+      hl.bind(mainMod .. " + down",         hl.dsp.focus({ direction = "down" }))
+
+      -- ============= FOCUS MOVEMENT (VI STYLE) =============
+      hl.bind(mainMod .. " + h",            hl.dsp.focus({ direction = "left" }))
+      hl.bind(mainMod .. " + l",            hl.dsp.focus({ direction = "right" }))
+      hl.bind(mainMod .. " + k",            hl.dsp.focus({ direction = "up" }))
+      hl.bind(mainMod .. " + j",            hl.dsp.focus({ direction = "down" }))
+
+      -- ============= WORKSPACE SWITCHING (1-9) =============
+      for i = 1, 9 do
+        hl.bind(mainMod .. " + " .. i,         hl.dsp.focus({ workspace = i }))
+        hl.bind(mainMod .. " + SHIFT + " .. i, hl.dsp.window.move({ workspace = i }))
+      end
+
+      -- ============= SPECIAL WORKSPACE =============
+      hl.bind(mainMod .. " + SHIFT + 0",    hl.dsp.window.move({ workspace = "special" }))
+      hl.bind(mainMod .. " + 0",            hl.dsp.workspace.toggle_special(""))
+
+      -- ============= WORKSPACE NAVIGATION =============
+      hl.bind(mainMod .. " + CONTROL + right", hl.dsp.focus({ workspace = "e+1" }))
+      hl.bind(mainMod .. " + CONTROL + left",  hl.dsp.focus({ workspace = "e-1" }))
+      hl.bind(mainMod .. " + mouse_down",   hl.dsp.focus({ workspace = "e+1" }))
+      hl.bind(mainMod .. " + mouse_up",     hl.dsp.focus({ workspace = "e-1" }))
+
+      -- ============= WINDOW CYCLING =============
+      hl.bind("ALT + Tab", function()
+        hl.dispatch(hl.dsp.window.cycle_next())
+        hl.dispatch(hl.dsp.window.bring_to_top())
+      end)
+
+      -- ============= MEDIA & HARDWARE CONTROLS =============
+      hl.bind("XF86AudioRaiseVolume",       hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"))
+      hl.bind("XF86AudioLowerVolume",       hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"))
+      hl.bind("XF86AudioMute",              hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"))
+      hl.bind("XF86AudioPlay",              hl.dsp.exec_cmd("playerctl play-pause"))
+      hl.bind("XF86AudioPause",             hl.dsp.exec_cmd("playerctl play-pause"))
+      hl.bind("XF86AudioNext",              hl.dsp.exec_cmd("playerctl next"))
+      hl.bind("XF86AudioPrev",              hl.dsp.exec_cmd("playerctl previous"))
+      hl.bind("XF86MonBrightnessDown",      hl.dsp.exec_cmd("brightnessctl set 5%-"))
+      hl.bind("XF86MonBrightnessUp",        hl.dsp.exec_cmd("brightnessctl set +5%"))
+
+      -- ============= MOUSE BINDS =============
+      hl.bind(mainMod .. " + mouse:272",    hl.dsp.window.drag())
+      hl.bind(mainMod .. " + mouse:273",    hl.dsp.window.resize())
+    end
+  '';
 }

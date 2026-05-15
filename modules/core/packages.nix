@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   programs = {
     neovim = {
       enable = true;
@@ -7,6 +11,8 @@
     hyprland = {
       enable = true; # set this so desktop file is created
       withUWSM = false;
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     };
     dconf.enable = true;
     seahorse.enable = true;

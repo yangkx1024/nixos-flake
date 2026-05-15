@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   gtk = {
     gtk4.theme = null;
     iconTheme = {

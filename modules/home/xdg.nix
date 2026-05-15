@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }: {
   home.file = {
@@ -32,10 +33,10 @@
     portal = {
       enable = true;
       extraPortals = [
-        pkgs.xdg-desktop-portal-hyprland
+        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
         pkgs.xdg-desktop-portal-gtk
       ];
-      configPackages = [pkgs.hyprland];
+      configPackages = [inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland];
     };
     configFile."qt5ct/qt5ct.conf".text = ''
       [Appearance]

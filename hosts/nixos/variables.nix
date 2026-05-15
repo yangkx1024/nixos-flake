@@ -4,7 +4,7 @@
 
   browser = "google-chrome-stable";
   terminal = "ghostty";
-  extraMonitorSettings = "monitor = DP-1, highres, auto, auto, bitdepth, 10";
+  extraMonitorSettings = ''hl.monitor({ output = "DP-1", mode = "highres", position = "auto", scale = "auto", bitdepth = 10 })'';
 
   # Set network hostId if required (needed for zfs)
   # Otherwise leave as-is
