@@ -6,7 +6,7 @@
       hl.exec_cmd("systemctl --user start hyprpolkitagent")
       hl.exec_cmd("qs -c overview")
       hl.exec_cmd("hyprland-change-layout init")
-      hl.exec_cmd("noctalia-shell &")
+      hl.exec_cmd("noctalia")
     end)
   '';
 }

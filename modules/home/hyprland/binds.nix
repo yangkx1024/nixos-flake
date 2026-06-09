@@ -9,20 +9,19 @@ in {
   wayland.windowManager.hyprland.extraConfig = ''
     do
       local mainMod = "SUPER"
+      local ipc = "noctalia msg"
 
       -- ============= NOCTALIA =============
-      hl.bind(mainMod .. " + SPACE",        hl.dsp.exec_cmd("noctalia-shell ipc call launcher toggle"))
-      hl.bind(mainMod .. " + SHIFT + Return", hl.dsp.exec_cmd("noctalia-shell ipc call launcher toggle"))
-      hl.bind(mainMod .. " + M",            hl.dsp.exec_cmd("noctalia-shell ipc call notifications toggleHistory"))
-      hl.bind(mainMod .. " + V",            hl.dsp.exec_cmd("noctalia-shell ipc call launcher clipboard"))
-      hl.bind(mainMod .. " + ALT + P",      hl.dsp.exec_cmd("noctalia-shell ipc call settings toggle"))
-      hl.bind(mainMod .. " + SHIFT + comma", hl.dsp.exec_cmd("noctalia-shell ipc call settings toggle"))
-      hl.bind(mainMod .. " + CTRL + L",     hl.dsp.exec_cmd("noctalia-shell ipc call lockscreen lock"))
-      hl.bind(mainMod .. " + SHIFT + W",    hl.dsp.exec_cmd("noctalia-shell ipc call wallpaper toggle"))
-      hl.bind(mainMod .. " + X",            hl.dsp.exec_cmd("noctalia-shell ipc call sessionMenu toggle"))
-      hl.bind(mainMod .. " + C",            hl.dsp.exec_cmd("noctalia-shell ipc call controlCenter toggle"))
-      hl.bind(mainMod .. " + CTRL + R",     hl.dsp.exec_cmd("noctalia-shell ipc call plugin:screen-recorder toggle"))
-      hl.bind(mainMod .. " + SHIFT + R",    hl.dsp.exec_cmd("restart.noctalia"))
+      hl.bind(mainMod .. " + SPACE",        hl.dsp.exec_cmd(ipc .. " panel-toggle launcher"))
+      hl.bind(mainMod .. " + M",            hl.dsp.exec_cmd(ipc .. " panel-toggle control-center notifications"))
+      hl.bind(mainMod .. " + V",            hl.dsp.exec_cmd(ipc .. " panel-toggle clipboard"))
+      hl.bind(mainMod .. " + ALT + P",      hl.dsp.exec_cmd(ipc .. " settings-toggle"))
+      hl.bind(mainMod .. " + comma",        hl.dsp.exec_cmd(ipc .. " settings-toggle"))
+      hl.bind(mainMod .. " + CTRL + L",     hl.dsp.exec_cmd(ipc .. " session lock"))
+      hl.bind(mainMod .. " + SHIFT + W",    hl.dsp.exec_cmd(ipc .. " panel-toggle wallpaper"))
+      hl.bind(mainMod .. " + X",            hl.dsp.exec_cmd(ipc .. " panel-toggle session"))
+      hl.bind(mainMod .. " + C",            hl.dsp.exec_cmd(ipc .. " panel-toggle control-center"))
+      hl.bind(mainMod .. " + SHIFT + R",    hl.dsp.exec_cmd("bash -c 'pkill -x noctalia; sleep 0.3; noctalia'"))
 
       -- ============= WORKSPACE OVERVIEW =============
       hl.bind(mainMod .. " + TAB",          hl.dsp.exec_cmd("qs ipc -c overview call overview toggle"))
