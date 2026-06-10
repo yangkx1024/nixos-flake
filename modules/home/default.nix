@@ -1,7 +1,6 @@
 {...}: {
   imports = [
     ./cli
-    ./overview.nix
     ./fastfetch
     ./gtk.nix
     ./hyprland

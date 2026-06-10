@@ -23,9 +23,6 @@ in {
       hl.bind(mainMod .. " + C",            hl.dsp.exec_cmd(ipc .. " panel-toggle control-center"))
       hl.bind(mainMod .. " + SHIFT + R",    hl.dsp.exec_cmd("bash -c 'pkill -x noctalia; sleep 0.3; noctalia'"))
 
-      -- ============= WORKSPACE OVERVIEW =============
-      hl.bind(mainMod .. " + TAB",          hl.dsp.exec_cmd("qs ipc -c overview call overview toggle"))
-
       -- ============= TERMINALS =============
       hl.bind(mainMod .. " + Return",       hl.dsp.exec_cmd("${terminal}"))
 

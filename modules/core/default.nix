@@ -7,7 +7,7 @@
     ./network.nix
     ./nfs.nix
     ./nh.nix
-    ./quickshell.nix
+    ./qt.nix
     ./packages.nix
     ./printing.nix
     ./ly.nix

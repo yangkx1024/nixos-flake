@@ -1,11 +1,10 @@
 {
   pkgs,
-  inputs,
   ...
 }: {
+  # Qt6 runtime: packages and environment variables needed by the Qt/QML
+  # applications used on the desktop (e.g. noctalia).
   environment.systemPackages = with pkgs; [
-    quickshell
-
     # Qt6 related kits（for slove Qt5Compat problem）
     qt6.qt5compat
     qt6.qtbase
