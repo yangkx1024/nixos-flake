@@ -106,7 +106,7 @@ in {
 
       bar.main = {
         position = "top";
-        background_opacity = 1;
+        background_opacity = 0.75;
         contact_shadow = true;
         radius = 0;
         margin_ends = 0;
@@ -122,9 +122,9 @@ in {
 
       widget = {
         clock = {
-          format = "{:%b%d %a %H:%M}";
-          vertical_format = "{:%H %M - %d %m}";
-          tooltip_format = "{:%H:%M %a, %b %d}";
+          format = "{:%Y年%m月%d日 %A %H:%M}";
+          vertical_format = "{:%H %M - %m %d}";
+          tooltip_format = "{:%Y年%m月%d日 %A %H:%M:%S}";
         };
         launcher.glyph = "rocket";
         audio_visualizer = {
