@@ -11,15 +11,9 @@
 
     nix-flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
 
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    hyprland.url = "github:hyprwm/Hyprland";
 
-    noctalia = {
-      url = "github:noctalia-dev/noctalia";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    noctalia.url = "github:noctalia-dev/noctalia";
 
     alejandra = {
       url = "github:kamadorueda/alejandra";

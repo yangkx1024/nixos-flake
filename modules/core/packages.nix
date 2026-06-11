@@ -63,6 +63,7 @@
     # uwsm # Universal Wayland Session Manager (optional must be enabled)
     wget # Tool For Fetching Files With Links
     ytmdl # Tool For Downloading Audio From YouTube
+    jq # JSON Processing
 
     zed-editor
     gnome-disk-utility
