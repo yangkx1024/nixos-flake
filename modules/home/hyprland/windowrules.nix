@@ -12,6 +12,15 @@ _: {
         blur_popups = true,
       })
 
+      -- Float and center the Noctalia settings panel
+      hl.window_rule({
+        name = "Noctalia-Settings",
+        match = { class = [[^(dev\.noctalia\.Noctalia\.Settings)$]] },
+        center = true,
+        float = true,
+        size = { "70%", "70%" },
+      })
+
       -- Float and center modal dialog boxes
       hl.window_rule({
         match = { modal = true },
