@@ -24,6 +24,7 @@ in {
         avatar_path = "${config.xdg.configHome}/face.jpg";
         telemetry_enabled = true;
         clipboard_auto_paste = "off";
+        launch_apps_as_systemd_services = true;
         shadow.direction = "down_right";
         panel = {
           transparency_mode = "glass";
