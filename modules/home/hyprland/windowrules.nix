@@ -12,15 +12,6 @@ _: {
         blur_popups = true,
       })
 
-      -- Float and center the Noctalia settings panel
-      hl.window_rule({
-        name = "Noctalia-Settings",
-        match = { class = [[^(dev\.noctalia\.Noctalia\.Settings)$]] },
-        center = true,
-        float = true,
-        size = { "70%", "70%" },
-      })
-
       -- Float and center modal dialog boxes
       hl.window_rule({
         match = { modal = true },
@@ -146,16 +137,27 @@ _: {
       })
 
       hl.window_rule({
+        name = "Noctalia-Settings",
+        match = { class = [[^(dev\.noctalia\.Noctalia\.Settings)$]] },
+        tag = "+settings",
+      })
+
+      hl.window_rule({
+        name = "MissionCenter",
+        match = { initial_class = [[^(io\.missioncenter\.MissionCenter)$]] },
+        tag = "+settings",
+      })
+
+      hl.window_rule({
         name = "gnome-disks",
         match = { class = [[^(gnome-disks|wihotspot(-gui)?)$]] },
         tag = "+settings",
       })
 
       hl.window_rule({
-        name = "rofi",
-        match = { class = [[^([Rr]ofi)$]] },
+        name = "seahorse",
+        match = { class = [[^(seahorse)$]] },
         tag = "+settings",
-        no_blur = false,
       })
 
       hl.window_rule({
@@ -203,11 +205,16 @@ _: {
       })
 
       hl.window_rule({
+        name = "Fcitx-Configuration",
+        match = { title = [[^(Fcitx Configuration)$]] },
+        tag = "+settings",
+      })
+
+      hl.window_rule({
         name = "Picture-in-Picture",
         match = { title = [[^(Picture-in-Picture)$]] },
         float = true,
         move = { "72%", "7%" },
-        opacity = "0.95 0.75",
         pin = false,
         keep_aspect_ratio = true,
       })
@@ -224,6 +231,7 @@ _: {
         match = { title = [[^(Authentication Required)$]] },
         center = true,
         float = true,
+        opacity = "0.8 0.7",
       })
 
       hl.window_rule({
@@ -250,6 +258,8 @@ _: {
         float = true,
         opacity = "0.8 0.7",
         size = { "70%", "70%" },
+        -- 1792x1008 = 70% of the 2560x1440 logical screen (3840x2160 @ 1.5).
+        min_size = { 1792, 1008 },
         no_blur = false,
       })
 
@@ -313,19 +323,19 @@ _: {
       hl.window_rule({
         name = "Projects",
         match = { tag = "projects*" },
-        opacity = "0.9 0.8",
+        opacity = "0.8 0.7",
       })
 
       hl.window_rule({
         name = "Instant-Messaging",
         match = { tag = "im*" },
-        opacity = "0.94 0.86",
+        opacity = "0.8 0.7",
       })
 
       hl.window_rule({
         name = "File-Managers",
         match = { tag = "file-manager*" },
-        opacity = "0.9 0.8",
+        opacity = "0.8 0.7",
       })
 
       hl.window_rule({
@@ -342,12 +352,6 @@ _: {
       })
 
       hl.window_rule({
-        name = "windowrule-78",
-        match = { class = [[^(seahorse)$]] },
-        opacity = "0.9 0.8",
-      })
-
-      hl.window_rule({
         name = "windowrule-79",
         match = { tag = "games*" },
         no_blur = true,
@@ -360,102 +364,8 @@ _: {
       })
 
       hl.window_rule({
-        name = "qs-keybinds",
-        match = { title = [[^(Hyprland Keybinds|Emacs Leader Keybinds|Kitty Configuration|WezTerm Configuration|Ghostty Configuration|Yazi Configuration)$]] },
-        float = true,
-        center = true,
-        size = { "55%", "66%" },
-      })
-
-      hl.window_rule({
-        name = "qs-cheatsheets",
-        match = { title = [[^(Cheatsheets Viewer)$]] },
-        float = true,
-        center = true,
-        size = { "65%", "60%" },
-      })
-
-      hl.window_rule({
-        name = "qs-extended-viewers",
-        match = { title = [[^(Hyprland Keybinds|Niri Keybinds|BSPWM Keybinds|i3 Keybinds|Sway Keybinds|DWM Keybinds|Emacs Leader Keybinds|Kitty Configuration|WezTerm Configuration|Ghostty Configuration|Yazi Configuration|Cheatsheets Viewer|Documentation Viewer)$]] },
-        float = true,
-        center = true,
-        size = { "55%", "66%" },
-      })
-
-      hl.window_rule({
-        name = "QS-Wallpapers",
-        match = { class = [[^(org\.qt-project\.qml)$]], title = [[^(Wallpapers)$]] },
-        border_size = 0,
-        float = true,
-        no_blur = true,
-        no_shadow = true,
-        rounding = 12,
-      })
-
-      hl.window_rule({
-        name = "QA-Video-Wallpapers",
-        match = { class = [[^(org\.qt-project\.qml)$]], title = [[^(Video Wallpapers)$]] },
-        border_size = 0,
-        center = true,
-        float = true,
-        no_blur = true,
-        no_shadow = true,
-        rounding = 12,
-      })
-
-      hl.window_rule({
-        name = "QS-wlogout",
-        match = { class = [[^(org\.qt-project\.qml)$]], title = [[^(qs-wlogout)$]] },
-        border_size = 0,
-        center = true,
-        float = true,
-        opacity = "1.0 1.0",
-        rounding = 20,
-      })
-
-      hl.window_rule({
-        name = "QA-Panels",
-        match = { class = [[^(org\.qt-project\.qml)$]], title = [[^(Panels)$]] },
-        center = true,
-        float = true,
-        no_blur = true,
-        no_shadow = true,
-        rounding = 12,
-      })
-
-      hl.window_rule({
-        name = "QS-Cheatsheets",
-        match = { class = [[^(org\.qt-project\.qml)$]], title = [[^(Cheatsheets Viewer)$]] },
-        border_size = 0,
-        center = true,
-        float = true,
-        no_shadow = true,
-        rounding = 12,
-      })
-
-      hl.window_rule({
-        name = "QS-Documentation-Viewer",
-        match = { class = [[^(org\.qt-project\.qml)$]], title = [[^(Documentation Viewer)$]] },
-        border_size = 0,
-        center = true,
-        float = true,
-        no_shadow = true,
-        rounding = 12,
-      })
-
-      hl.window_rule({
         name = "Loupe",
         match = { class = [[^(org\.gnome\.Loupe)$]] },
-        center = true,
-        float = true,
-        opacity = "1.0 1.0",
-        size = { "80%", "80%" },
-      })
-
-      hl.window_rule({
-        name = "MissionCenter",
-        match = { initial_class = [[^(io\.missioncenter\.MissionCenter)$]] },
         center = true,
         float = true,
         opacity = "1.0 1.0",
