@@ -13,7 +13,6 @@ in {
     slurp
     swappy
     ydotool
-    hyprpolkitagent
     hyprshot
     hyprshutdown
     hyprpicker

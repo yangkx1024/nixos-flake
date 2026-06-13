@@ -25,6 +25,7 @@ in {
         telemetry_enabled = true;
         clipboard_auto_paste = "off";
         launch_apps_as_systemd_services = true;
+        polkit_agent = true;
         shadow.direction = "down_right";
         panel = {
           transparency_mode = "glass";

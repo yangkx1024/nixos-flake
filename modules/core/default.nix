@@ -10,7 +10,7 @@
     ./qt.nix
     ./packages.nix
     ./printing.nix
-    ./ly.nix
+    ./greetd.nix
     ./security.nix
     ./services.nix
     ./steam.nix

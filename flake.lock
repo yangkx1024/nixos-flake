@@ -656,6 +656,26 @@
         "type": "github"
       }
     },
+    "noctalia-greeter": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1781302139,
+        "narHash": "sha256-M+bFhneVdOlmD/dMPyPux/ksFX95pl8viv0foZ+fepk=",
+        "owner": "noctalia-dev",
+        "repo": "noctalia-greeter",
+        "rev": "1120c4e298590fc550cdd1d03a54fa0705a1e158",
+        "type": "github"
+      },
+      "original": {
+        "owner": "noctalia-dev",
+        "repo": "noctalia-greeter",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -688,7 +708,8 @@
         "hyprland": "hyprland",
         "nix-flatpak": "nix-flatpak",
         "nixpkgs": "nixpkgs_4",
-        "noctalia": "noctalia"
+        "noctalia": "noctalia",
+        "noctalia-greeter": "noctalia-greeter"
       }
     },
     "rust-analyzer-src": {

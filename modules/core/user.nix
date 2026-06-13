@@ -39,5 +39,6 @@ in {
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true;
   };
+  environment.shells = [pkgs.zsh];
   nix.settings.allowed-users = ["${username}"];
 }
