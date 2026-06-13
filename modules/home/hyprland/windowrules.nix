@@ -156,7 +156,7 @@ _: {
 
       hl.window_rule({
         name = "seahorse",
-        match = { class = [[^(seahorse)$]] },
+        match = { class = [[^(org\.gnome\.seahorse\.Application)$]] },
         tag = "+settings",
       })
 
