@@ -256,7 +256,7 @@ _: {
         name = "Settings-Tag",
         match = { tag = "settings*" },
         float = true,
-        opacity = "0.8 0.7",
+        opacity = "0.9 0.8",
         size = { "70%", "70%" },
         -- 1792x1008 = 70% of the 2560x1440 logical screen (3840x2160 @ 1.5).
         min_size = { 1792, 1008 },

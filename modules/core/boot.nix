@@ -5,6 +5,7 @@
 }: {
   boot = {
     kernelPackages = pkgs.linuxPackages_zen;
+    #kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
     kernelModules = ["v4l2loopback"];
     extraModulePackages = [config.boot.kernelPackages.v4l2loopback];
     kernel.sysctl = {"vm.max_map_count" = 2147483642;};

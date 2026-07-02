@@ -29,8 +29,8 @@ in {
         shadow.direction = "down_right";
         panel = {
           transparency_mode = "glass";
-          launcher_placement = "centered";
-          session_placement = "centered";
+          # launcher_placement = "centered";
+          # session_placement = "centered";
           control_center_placement = "attached";
           open_near_click_control_center = true;
         };
@@ -108,7 +108,7 @@ in {
 
       bar.main = {
         position = "top";
-        background_opacity = 0.75;
+        background_opacity = 0.8;
         contact_shadow = true;
         radius = 0;
         margin_ends = 0;

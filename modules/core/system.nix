@@ -13,21 +13,21 @@
   };
   time.timeZone = "Asia/Singapore";
   i18n = {
-    defaultLocale = "zh_CN.UTF-8";
-    supportedLocales = [
-      "en_US.UTF-8/UTF-8"
+    defaultLocale = "zh_SG.UTF-8";
+    extraLocales = [
       "zh_CN.UTF-8/UTF-8"
+      "en_US.UTF-8/UTF-8"
     ];
     extraLocaleSettings = {
-      LC_ADDRESS = "zh_CN.UTF-8";
-      LC_IDENTIFICATION = "zh_CN.UTF-8";
-      LC_MEASUREMENT = "zh_CN.UTF-8";
-      LC_MONETARY = "zh_CN.UTF-8";
-      LC_NAME = "zh_CN.UTF-8";
-      LC_NUMERIC = "zh_CN.UTF-8";
-      LC_PAPER = "zh_CN.UTF-8";
-      LC_TELEPHONE = "zh_CN.UTF-8";
-      LC_TIME = "zh_CN.UTF-8";
+      LC_ADDRESS = "zh_SG.UTF-8";
+      LC_IDENTIFICATION = "zh_SG.UTF-8";
+      LC_MEASUREMENT = "zh_SG.UTF-8";
+      LC_MONETARY = "zh_SG.UTF-8";
+      LC_NAME = "zh_SG.UTF-8";
+      LC_NUMERIC = "zh_SG.UTF-8";
+      LC_PAPER = "zh_SG.UTF-8";
+      LC_TELEPHONE = "zh_SG.UTF-8";
+      LC_TIME = "zh_SG.UTF-8";
     };
   };
   i18n.inputMethod = {
