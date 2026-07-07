@@ -138,7 +138,7 @@ _: {
 
       hl.window_rule({
         name = "Noctalia-Settings",
-        match = { class = [[^(dev\.noctalia\.Noctalia\.Settings)$]] },
+        match = { class = [[^(dev\.noctalia\.Noctalia)$]] },
         tag = "+settings",
       })
 
