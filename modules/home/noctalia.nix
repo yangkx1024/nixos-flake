@@ -18,8 +18,9 @@ in {
   programs.noctalia = {
     enable = true;
     settings = {
+      accessibility.ui_scale = 1.2;
+
       shell = {
-        ui_scale = 1.2;
         font_family = "MiSans";
         avatar_path = "${config.xdg.configHome}/face.jpg";
         telemetry_enabled = true;
@@ -113,7 +114,7 @@ in {
         radius = 0;
         margin_ends = 0;
         margin_edge = 0;
-        content_padding = 8;
+        padding = 8;
         scale = 1.2;
         capsule = true;
         capsule_opacity = 1;
