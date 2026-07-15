@@ -15,10 +15,7 @@
 
     noctalia.url = "github:noctalia-dev/noctalia";
 
-    noctalia-greeter = {
-      url = "github:noctalia-dev/noctalia-greeter";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    noctalia-greeter.url = "github:noctalia-dev/noctalia-greeter";
 
     alejandra = {
       url = "github:kamadorueda/alejandra";
