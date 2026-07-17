@@ -177,48 +177,8 @@ in {
       hl.monitor({ output = "Virtual-1", mode = "1920x1080@60", position = "auto", scale = 1 })
       ${extraMonitorSettings}
 
-      -- Apply noctalia-generated colors. The file is hyprlang ($vars + sections),
-      -- and Lua's require() can't load .conf, so parse it and feed hl.config().
-      do
-        local path = "/home/${username}/.config/hypr/noctalia/noctalia-colors.conf"
-        local f = io.open(path, "r")
-        if f then
-          local vars, root, stack = {}, {}, {}
-          local cur = root
-          for raw in f:lines() do
-            local trimmed = raw:gsub("^%s+", ""):gsub("%s+$", "")
-            if trimmed == "" or trimmed:sub(1, 1) == "#" then
-              -- skip blanks and comments
-            elseif trimmed:sub(1, 1) == "$" then
-              local k, v = trimmed:match("^%$([%w_]+)%s*=%s*(.+)$")
-              if k then vars[k] = v end
-            elseif trimmed:match("{$") then
-              local name = trimmed:match("^([%w_]+)")
-              if name then
-                cur[name] = cur[name] or {}
-                stack[#stack + 1] = cur
-                cur = cur[name]
-              end
-            elseif trimmed == "}" then
-              cur = table.remove(stack) or root
-            else
-              local k, v = trimmed:match("^([%w_%.]+)%s*=%s*(.+)$")
-              if k and v then
-                v = v:gsub("%$([%w_]+)", function(n) return vars[n] or "" end)
-                local target, parts = cur, {}
-                for p in k:gmatch("[^%.]+") do parts[#parts + 1] = p end
-                for i = 1, #parts - 1 do
-                  target[parts[i]] = target[parts[i]] or {}
-                  target = target[parts[i]]
-                end
-                target[parts[#parts]] = v
-              end
-            end
-          end
-          f:close()
-          hl.config(root)
-        end
-      end
+      package.loaded["noctalia"] = nil
+      pcall(function() require("noctalia").apply_theme() end)
     '';
   };
 }
