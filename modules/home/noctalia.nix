@@ -120,7 +120,7 @@ in {
         capsule_opacity = 1;
         start = ["launcher" "workspaces" "active_window" "media"];
         center = ["clock"];
-        end = ["audio_visualizer" "temp" "cpu" "ram" "disk" "tray" "volume" "notifications" "control-center"];
+        end = ["audio_visualizer" "temp" "cpu" "ram" "sysmon" "tray" "volume" "notifications" "control-center"];
       };
 
       widget = {
@@ -135,15 +135,12 @@ in {
           show_when_idle = false;
         };
         media.hide_when_no_media = true;
-        cpu.display = "text";
-        temp.display = "text";
-        ram.display = "text";
-        network_rx.display = "text";
-        network_tx.display = "text";
-        disk = {
-          type = "sysmon";
-          stat = "disk_pct";
-          display = "text";
+        cpu.visualization = "none";
+        temp.visualization = "none";
+        ram.visualization = "none";
+        sysmon = {
+          stat = "disk_used_pct";
+          visualization = "none";
         };
       };
 
