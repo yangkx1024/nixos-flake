@@ -1,8 +1,6 @@
 {username, ...}: {
-  services = {
-    rpcbind.enable = true;
-    nfs.server.enable = true;
-  };
+  boot.supportedFilesystems = ["nfs"];
+
   systemd.mounts = [
     {
       type = "nfs";

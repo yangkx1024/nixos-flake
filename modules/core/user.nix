@@ -30,6 +30,7 @@ in {
     extraGroups = [
       "adbusers"
       "docker" # Access to docker as non-root
+      "i2c" # DDC/CI monitor control
       "libvirtd" # Virt manager/QEMU access
       "lp" # Printer access
       "networkmanager"

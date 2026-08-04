@@ -22,6 +22,7 @@
       magicOrExtension = ''\x7fELF....AI\x02'';
     };
     plymouth.enable = true;
+    plymouth.extraConfig = "UseSimpledrm=1";
     kernelParams = ["quiet"];
     consoleLogLevel = 0;
     initrd.verbose = false;
