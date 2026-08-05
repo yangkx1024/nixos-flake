@@ -2,18 +2,22 @@
   host,
   pkgs,
   inputs,
+  config,
   username,
   ...
 }: let
   vars = import ../../../hosts/${host}/variables.nix;
   extraMonitorSettings = vars.extraMonitorSettings or "";
+  hyprlandPkgs = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system};
 in {
   home.packages = with pkgs; [
     grim
     slurp
     swappy
     ydotool
-    hyprshot
+    # hyprshot shells out to hyprctl, so wrap it against the compositor's own
+    # build rather than nixpkgs' separate one
+    (hyprshot.override {hyprland = config.wayland.windowManager.hyprland.finalPackage;})
     hyprshutdown
     hyprpicker
     hyprland-qtutils # needed for banners and ANR messages
@@ -28,8 +32,8 @@ in {
   };
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    package = hyprlandPkgs.hyprland;
+    portalPackage = hyprlandPkgs.xdg-desktop-portal-hyprland;
     systemd = {
       enable = true;
       enableXdgAutostart = true;
