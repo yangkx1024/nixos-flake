@@ -12,6 +12,8 @@
     loader.systemd-boot.enable = true;
     loader.systemd-boot.consoleMode = "max";
     loader.efi.canTouchEfiVariables = true;
+    # Skip the menu wait; hold Space during firmware handoff to get it back.
+    loader.timeout = 0;
     # Appimage Support
     binfmt.registrations.appimage = {
       wrapInterpreterInShell = false;
