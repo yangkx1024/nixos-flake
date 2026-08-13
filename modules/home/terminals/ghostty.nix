@@ -43,6 +43,8 @@ in {
       background-blur-radius = "60";
       selection-background = "#2d3f76";
       selection-foreground = "#c8d3f5";
+      # copy selected text to both the selection and system clipboards
+      copy-on-select = "clipboard";
       cursor-style = "bar";
       mouse-hide-while-typing = "true";
       wait-after-command = "false";
