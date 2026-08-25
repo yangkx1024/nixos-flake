@@ -80,6 +80,7 @@
     remmina
     codex
     claude-code
+    herdr # Agent multiplexer for the terminal
     localsend
   ];
 }

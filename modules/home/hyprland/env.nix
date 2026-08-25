@@ -16,7 +16,6 @@ in {
     (envPair "MOZ_ENABLE_WAYLAND" "1")
     # This is to make electron apps start in wayland
     (envPair "ELECTRON_OZONE_PLATFORM_HINT" "wayland")
-    (envPair "GDK_SCALE" "1.5")
     (envPair "QT_SCALE_FACTOR" "1.5")
     (envPair "EDITOR" "nvim")
     (envPair "TERMINAL" "wezterm")

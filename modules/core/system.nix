@@ -3,6 +3,7 @@
     settings = {
       download-buffer-size = 200000000;
       auto-optimise-store = true;
+      flake-registry = "";
       experimental-features = [
         "nix-command"
         "flakes"

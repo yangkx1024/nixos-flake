@@ -3,7 +3,6 @@
   pkgs,
   inputs,
   config,
-  username,
   ...
 }: let
   vars = import ../../../hosts/${host}/variables.nix;
@@ -160,7 +159,9 @@ in {
           always_keep_position = false;
         };
 
-        # Ensure Xwayland windows render at integer scale; compositor scales them
+        # Xwayland clients are told scale 1 and render at native resolution. The
+        # compositor does NOT upscale them, so each app must scale itself (see
+        # QT_SCALE_FACTOR in env.nix). Keeps Xwayland sharp instead of blurry.
         xwayland = {
           force_zero_scaling = true;
         };

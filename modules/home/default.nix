@@ -3,6 +3,7 @@
     ./cli
     ./fastfetch
     ./gtk.nix
+    ./herdr.nix
     ./hyprland
     ./qt.nix
     ./scripts

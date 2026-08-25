@@ -12,6 +12,18 @@ _: {
         blur_popups = true,
       })
 
+      -- Thunar (xfconf last-window-maximized) and Chrome (Preferences
+      -- browser.window_placement.maximized) ask to be maximized on startup.
+      -- Hyprland honours that as FSMODE_MAXIMIZED, which pins the window over
+      -- the whole workspace and makes hl.dsp.focus({direction=...}) a no-op
+      -- until it is toggled off. Upstream's stock hyprland.lua ships this same
+      -- rule; our generated config replaces it, so re-add it here.
+      hl.window_rule({
+        name = "suppress-maximize-events",
+        match = { class = ".*" },
+        suppress_event = "maximize",
+      })
+
       -- Float and center modal dialog boxes
       hl.window_rule({
         match = { modal = true },
