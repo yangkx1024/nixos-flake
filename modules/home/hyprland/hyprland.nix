@@ -49,6 +49,11 @@ in {
           numlock_by_default = true;
           repeat_delay = 300;
           follow_mouse = 1;
+          # Without this, opening a noctalia panel by keybind while the cursor
+          # rests on the focused window makes Hyprland re-run its follow-mouse
+          # refocus and hand the keyboard to the bar surface (the focus grab's
+          # fallback), so the launcher's search field never sees a keystroke.
+          mouse_refocus = false;
           float_switch_override_focus = 0;
           sensitivity = 0;
           touchpad = {

@@ -7,7 +7,7 @@
     enable = true;
     clean = {
       enable = true;
-      extraArgs = "--keep-since 7d --keep 5";
+      extraArgs = "--keep 3";
     };
     flake = "/home/${username}/flake";
   };
