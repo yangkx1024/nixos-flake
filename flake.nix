@@ -17,10 +17,7 @@
 
     noctalia-greeter.url = "github:noctalia-dev/noctalia-greeter";
 
-    openlogi = {
-      url = "github:AprilNEA/OpenLogi";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    openlogi.url = "github:yangkx1024/OpenLogi";
 
     alejandra = {
       url = "github:kamadorueda/alejandra";
