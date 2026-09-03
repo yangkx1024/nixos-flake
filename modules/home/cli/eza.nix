@@ -1,5 +1,5 @@
 # Eza is a ls replacement
-{
+_: {
   programs.eza = {
     enable = true;
     icons = "auto";

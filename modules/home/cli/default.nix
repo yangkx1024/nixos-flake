@@ -1,5 +1,6 @@
 {...}: {
   imports = [
+    ./shell.nix
     ./bash.nix
     ./zsh.nix
     ./bat.nix
@@ -8,6 +9,7 @@
     ./fzf.nix
     ./gh.nix
     ./git.nix
+    ./uv.nix
     ./zoxide.nix
   ];
 }

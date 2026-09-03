@@ -1,9 +1,5 @@
 # Fzf is a general-purpose command-line fuzzy finder.
-{
-  config,
-  lib,
-  ...
-}: {
+_: {
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;

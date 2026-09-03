@@ -7,6 +7,7 @@
     ./network.nix
     ./nfs.nix
     ./nh.nix
+    ./nix-ld.nix
     ./openlogi.nix
     ./qt.nix
     ./packages.nix

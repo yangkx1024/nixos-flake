@@ -62,6 +62,7 @@ in {
         # Copy/Paste
         "ctrl+shift+c=copy_to_clipboard"
         "ctrl+shift+v=paste_from_clipboard"
+        "ctrl+shift+a=select_all"
 
         # Font size control
         "ctrl+shift+plus=increase_font_size:1"
