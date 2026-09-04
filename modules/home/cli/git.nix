@@ -33,4 +33,10 @@ in {
       };
     };
   };
+  programs.lazygit = {
+    enable = true;
+    settings = {
+      git.commit.signOff = true; # Sign off commits by default (git commit -s)
+    };
+  };
 }
