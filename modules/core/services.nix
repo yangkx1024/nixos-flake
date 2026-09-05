@@ -60,10 +60,38 @@
       enable = true;
       keyboards = {
         default = {
-          ids = ["*"];
+          ids = [
+            "*"
+            "-514b:4d03"
+          ];
           settings = {
             main = {
               capslock = "layer(control)";
+            };
+          };
+        };
+        qk65-mk3 = {
+          ids = ["k:514b:4d03"];
+          settings = {
+            global = {
+              # Firmware-generated chords arrive within the same USB frame.
+              chord_timeout = 5;
+            };
+            main = {
+              capslock = "layer(control)";
+
+              brightnessdown = "f1";
+              brightnessup = "f2";
+              "leftcontrol+up" = "f3";
+              "leftmeta+space" = "f4";
+              voicecommand = "f5";
+              "leftshift+leftmeta+4" = "f6";
+              previoussong = "f7";
+              playpause = "f8";
+              nextsong = "f9";
+              mute = "f10";
+              volumedown = "f11";
+              volumeup = "f12";
             };
           };
         };

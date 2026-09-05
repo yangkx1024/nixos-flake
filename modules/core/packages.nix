@@ -66,6 +66,7 @@
     ytmdl # Tool For Downloading Audio From YouTube
     jq # JSON Processing
 
+    python3
     zed-editor
     gnome-disk-utility
     google-chrome
