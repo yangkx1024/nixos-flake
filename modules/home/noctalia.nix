@@ -18,8 +18,6 @@ in {
   programs.noctalia = {
     enable = true;
     settings = {
-      accessibility.ui_scale = 1.2;
-
       shell = {
         font_family = "MiSans";
         avatar_path = "${config.xdg.configHome}/face.jpg";
@@ -115,7 +113,6 @@ in {
         margin_ends = 0;
         margin_edge = 0;
         padding = 8;
-        scale = 1.2;
         capsule = true;
         capsule_opacity = 1;
         start = ["launcher" "workspaces" "active_window" "media"];

@@ -36,7 +36,8 @@
 
      config.window_background_opacity = 1
      config.color_scheme = "Noctalia"
-     config.font_size = 14
+     -- 12pt here == 16pt on macOS: at 2x WezTerm uses 192 DPI on Wayland, 144 on macOS
+     config.font_size = 12
      config.font = wezterm.font_with_fallback {
        'Maple Mono NF CN',
        'JetBrainsMono NF',

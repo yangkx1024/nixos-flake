@@ -20,7 +20,15 @@ in {
     hyprshutdown
     hyprpicker
     hyprland-qtutils # needed for banners and ANR messages
+    xrdb # loads Xft.dpi into Xwayland, see exec-once.nix
   ];
+
+  # Xwayland has no DPI of its own (see the xwayland block below); X11 clients
+  # read Xft.dpi to pick their scale. 192 = 2 x 96, matching DP-1's scale = 2 in
+  # hosts/${host}/variables.nix — keep the two in step if that scale changes.
+  xresources.properties = {
+    "Xft.dpi" = 192;
+  };
   systemd.user.targets.hyprland-session.Unit.Wants = [
     "xdg-desktop-autostart.target"
   ];
@@ -164,9 +172,21 @@ in {
           always_keep_position = false;
         };
 
-        # Xwayland clients are told scale 1 and render at native resolution. The
-        # compositor does NOT upscale them, so each app must scale itself (see
-        # QT_SCALE_FACTOR in env.nix). Keeps Xwayland sharp instead of blurry.
+        # Xwayland clients are told scale 1 and render at native resolution.
+        # The compositor does NOT upscale them, so each app must scale itself.
+        # Keeps Xwayland sharp instead of blurry.
+        #
+        # Xwayland invents a screen sized to land on exactly 96 DPI, so nothing
+        # in the protocol tells X11 clients about DP-1's scale. Left alone they
+        # render 1x next to a 2x desktop, i.e. half size. Xft.dpi below is what
+        # tells them, applied by xrdb in exec-once.nix.
+        #
+        # Qt reads Xft.dpi and scales its whole UI; GTK only scales text from
+        # it. That asymmetry is tolerable because QT_QPA_PLATFORM and
+        # GDK_BACKEND both prefer Wayland, so toolkit apps rarely land here at
+        # all. Apps that ignore Xft.dpi outright (games, Steam) stay small; the
+        # fix for those is force_zero_scaling = false, which hands scaling back
+        # to the compositor for every X11 client at the cost of blurriness.
         xwayland = {
           force_zero_scaling = true;
         };

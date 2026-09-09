@@ -46,8 +46,8 @@
       icon_theme=Papirus-Dark
 
       [Fonts]
-      fixed="Maple Mono NF CN,12,-1,5,50,0,0,0,0,0,Regular"
-      general="MiSans,12,-1,5,50,0,0,0,0,0"
+      fixed="Maple Mono NF CN,10,-1,5,50,0,0,0,0,0,Regular"
+      general="MiSans,10,-1,5,50,0,0,0,0,0"
     '';
     configFile."qt6ct/qt6ct.conf".text = ''
       [Appearance]
@@ -56,14 +56,14 @@
       icon_theme=Papirus-Dark
 
       [Fonts]
-      fixed="Maple Mono NF CN,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular"
-      general="MiSans,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1"
+      fixed="Maple Mono NF CN,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular"
+      general="MiSans,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1"
     '';
     configFile."gtk-3.0/settings.ini".text = ''
       [Settings]
       gtk-theme-name=Adwaita
       gtk-icon-theme-name=Papirus-Dark
-      gtk-font-name=MiSans 12
+      gtk-font-name=MiSans 10
       gtk-cursor-theme-name=Bibata-Modern-Ice
       gtk-cursor-theme-size=24
       gtk-application-prefer-dark-theme=1
@@ -72,7 +72,7 @@
       [Settings]
       gtk-theme-name=Adwaita
       gtk-icon-theme-name=Papirus-Dark
-      gtk-font-name=MiSans 12
+      gtk-font-name=MiSans 10
       gtk-cursor-theme-name=Bibata-Modern-Ice
       gtk-cursor-theme-size=24
       gtk-application-prefer-dark-theme=1

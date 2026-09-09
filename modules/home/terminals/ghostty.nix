@@ -31,7 +31,7 @@ in {
       custom-shader-animation = "always";
       confirm-close-surface = "false";
       font-family = "Maple Mono NF CN";
-      font-size = 16;
+      font-size = 12; # 12pt here == 16pt on macOS: Linux points are 96 DPI, macOS 72
       window-padding-x = 4;
       window-padding-y = 4;
       window-padding-balance = true;

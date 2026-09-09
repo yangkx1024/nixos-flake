@@ -5,6 +5,7 @@
   dconf.settings."org/gnome/desktop/interface".gtk-enable-primary-paste = true;
 
   gtk = {
+    enable = true;
     gtk4.theme = null;
     iconTheme = {
       name = "Papirus-Dark";
