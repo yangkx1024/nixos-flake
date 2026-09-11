@@ -14,6 +14,7 @@
     nix-fmt-all = "nix fmt ./";
     sv = "sudo nvim";
     v = "nvim";
+    vim = "nvim";
     zed = "zeditor";
   };
 

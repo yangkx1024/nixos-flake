@@ -16,7 +16,7 @@ _: {
       "--icons=always"
       # "--time-style=long-iso" # ISO 8601 extended format for time
       "--classify" # append indicator (/, *, =, @, |)
-      "--hyperlink" # make paths clickable in some terminals
+      "--hyperlink=auto" # make paths clickable in some terminals
     ];
   };
   # Aliases to make `ls`, `ll`, `la` use eza
