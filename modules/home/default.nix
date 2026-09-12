@@ -2,6 +2,7 @@
   imports = [
     ./cli
     ./fastfetch
+    ./fcitx5.nix
     ./gtk.nix
     ./herdr.nix
     ./hyprland

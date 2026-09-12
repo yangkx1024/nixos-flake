@@ -1,6 +1,7 @@
 {...}: {
   imports = [
     ./boot.nix
+    ./fcitx5.nix
     ./flatpak.nix
     ./fonts.nix
     ./hardware.nix

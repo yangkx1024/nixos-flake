@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{...}: {
   nix = {
     settings = {
       download-buffer-size = 200000000;
@@ -30,16 +30,6 @@
       LC_TELEPHONE = "zh_SG.UTF-8";
       LC_TIME = "zh_SG.UTF-8";
     };
-  };
-  i18n.inputMethod = {
-    type = "fcitx5";
-    enable = true;
-    fcitx5.waylandFrontend = true;
-    fcitx5.addons = with pkgs; [
-      fcitx5-gtk
-      qt6Packages.fcitx5-chinese-addons
-      fcitx5-nord
-    ];
   };
   environment.variables = {
     NIXOS_OZONE_WL = "1";
