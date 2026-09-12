@@ -59,23 +59,5 @@
       fixed="Maple Mono NF CN,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular"
       general="MiSans,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1"
     '';
-    configFile."gtk-3.0/settings.ini".text = ''
-      [Settings]
-      gtk-theme-name=Adwaita
-      gtk-icon-theme-name=Papirus-Dark
-      gtk-font-name=MiSans 10
-      gtk-cursor-theme-name=Bibata-Modern-Ice
-      gtk-cursor-theme-size=24
-      gtk-application-prefer-dark-theme=1
-    '';
-    configFile."gtk-4.0/settings.ini".text = ''
-      [Settings]
-      gtk-theme-name=Adwaita
-      gtk-icon-theme-name=Papirus-Dark
-      gtk-font-name=MiSans 10
-      gtk-cursor-theme-name=Bibata-Modern-Ice
-      gtk-cursor-theme-size=24
-      gtk-application-prefer-dark-theme=1
-    '';
   };
 }

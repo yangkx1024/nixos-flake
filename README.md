@@ -61,6 +61,11 @@ User-level configuration is delivered through Home Manager, wired up in
    To add a new profile, drop a `profiles/<name>/default.nix` that imports the host and toggles
    the driver flags in `modules/drivers/`.
 
+   The two hybrid profiles (`nvidia-laptop`, `amd-nvidia-hybrid`) optionally read `intelID`,
+   `amdgpuID` and `nvidiaID` from `hosts/<host>/variables.nix` — uncomment and set them to your
+   machine's values from `lspci | grep -E "VGA|3D"`. If the host doesn't declare them, the
+   defaults in `modules/drivers/` are used.
+
 4. **Adjust user / hostname** — defaults live at the top of `flake.nix`:
 
    ```nix

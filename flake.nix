@@ -44,10 +44,13 @@
   } @ inputs: let
     system = "x86_64-linux";
     host = "nixos";
-    profile = "amd";
     username = "yangkx";
 
-    # Deduplicate nixosConfigurations while preserving the top-level 'profile'
+    # One nixosConfiguration per GPU profile. gpuProfile names both the
+    # profiles/ directory to import and the configuration itself, and is passed
+    # through as the 'profile' specialArg so modules can branch on it
+    # (modules/core/services.nix) and the fr/fu aliases rebuild the config they
+    # were built from (modules/home/cli/shell.nix).
     mkNixosConfig = gpuProfile:
       nixpkgs.lib.nixosSystem {
         inherit system;
@@ -55,7 +58,7 @@
           inherit inputs;
           inherit username;
           inherit host;
-          inherit profile; # keep using the let-bound profile for modules/scripts
+          profile = gpuProfile;
         };
         modules = [
           ./modules/core/overlays.nix

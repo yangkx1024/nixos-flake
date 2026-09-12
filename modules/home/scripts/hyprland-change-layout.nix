@@ -13,7 +13,13 @@ in
     set -euo pipefail
     export PATH=${binPath}:$PATH
 
-    notif="''${XDG_CONFIG_HOME:-$HOME/.config}/swaync/images/catppuccin-macchiato.png"
+    # Hyprland 0.56 removed `hyprctl keyword` along with the hyprlang config.
+    # The replacement is `hyprctl eval`, which runs Lua against the live config,
+    # so setting a layout is hl.config({general = {layout = ...}}). general:layout
+    # is declared with .refresh = REFRESH_LAYOUTS in Hyprland's
+    # src/config/values/ConfigValues.cpp, which makes the prop refresher re-run
+    # updateWorkspaceLayouts() and re-tile every workspace on its own — `hyprctl -r`
+    # is not needed.
     layouts=(dwindle master scrolling monocle)
 
     get_layout() {
@@ -33,62 +39,51 @@ in
     }
 
     set_layout() {
-      local target="$1"
+      local target="''${1:-}"
 
-      hyprctl keyword general:layout "$target"
-      hyprctl keyword unbind SUPER,J || true
-      hyprctl keyword unbind SUPER,K || true
-      hyprctl keyword unbind SUPER,O || true
-      hyprctl keyword unbind SUPER_SHIFT,M || true
-
-      case "$target" in
-      "dwindle")
-        hyprctl keyword bind SUPER,J,cyclenext
-        hyprctl keyword bind SUPER,K,cyclenext,prev
-        hyprctl keyword bind SUPER,O,layoutmsg,togglesplit
-        notify-send -e -u low -i "$notif" " Dwindle Layout"
-        ;;
-      "master")
-        hyprctl keyword bind SUPER,J,layoutmsg,cyclenext
-        hyprctl keyword bind SUPER,K,layoutmsg,cycleprev
-        notify-send -e -u low -i "$notif" " Master Layout"
-        ;;
-      "scrolling")
-        hyprctl keyword bind SUPER,J,cyclenext
-        hyprctl keyword bind SUPER,K,cyclenext,prev
-        notify-send -e -u low -i "$notif" " Scrolling Layout"
-        ;;
-      "monocle")
-        hyprctl keyword bind SUPER,J,layoutmsg,cyclenext
-        hyprctl keyword bind SUPER,K,layoutmsg,cycleprev
-        hyprctl keyword bind SUPER_SHIFT,M,layoutmsg,swapnext
-        notify-send -e -u low -i "$notif" " Monocle Layout"
-        ;;
-      *)
-        echo "Unknown layout: $target" >&2
+      # Validate before handing the name to the compositor. hl.config accepts any
+      # string for general:layout without complaint (exit 0, "ok"), stores the
+      # garbage, and silently falls back to tiling with dwindle — so an unchecked
+      # typo here would quietly change the layout to the wrong one.
+      local known=0 l
+      for l in "''${layouts[@]}"; do
+        [[ "$l" == "$target" ]] && known=1 && break
+      done
+      if ((known == 0)); then
+        echo "Unknown layout: ''${target:-<none>} (expected one of: ''${layouts[*]})" >&2
         return 1
-        ;;
-      esac
+      fi
+
+      hyprctl eval "hl.config({ general = { layout = \"$target\" } })" >/dev/null
+
+      # Read back rather than trusting the call. hyprctl exits 0 for requests the
+      # compositor does not understand, which is exactly how the previous
+      # `hyprctl keyword` implementation of this script kept reporting success
+      # while doing nothing for an entire Hyprland release.
+      local now
+      now="$(get_layout)"
+      if [[ "$now" != "$target" ]]; then
+        echo "Failed to set layout to $target (still $now)" >&2
+        return 1
+      fi
+
+      notify-send -e -u low "Layout: $target"
     }
 
-    current="$(get_layout)"
     arg="''${1:-toggle}"
 
     case "$arg" in
-    init)
-      set_layout "$current"
-      ;;
-    toggle|next)
-      set_layout "$(next_layout "$current")"
+    toggle | next)
+      set_layout "$(next_layout "$(get_layout)")"
       ;;
     set)
       set_layout "''${2:-}"
       ;;
-    master|dwindle|scrolling|monocle)
+    dwindle | master | scrolling | monocle)
       set_layout "$arg"
       ;;
     *)
-      echo "Usage: $(basename "$0") [toggle|next|init|set <layout>|master|dwindle|scrolling|monocle]" >&2
+      echo "Usage: $(basename "$0") [toggle|next|set <layout>|dwindle|master|scrolling|monocle]" >&2
       exit 1
       ;;
     esac

@@ -91,7 +91,32 @@ in {
       hl.bind(mainMod .. " + P",            hl.dsp.window.pseudo())
       hl.bind(mainMod .. " + F",            hl.dsp.window.fullscreen())
       hl.bind(mainMod .. " + SHIFT + F",    hl.dsp.window.float({ action = "toggle" }))
-      hl.bind(mainMod .. " + ALT + F",      hl.dsp.exec_cmd("hyprland-float-all"))
+      -- Float or tile every window on the active workspace, always leaving a
+      -- uniform state: if anything is still tiled, float all of it, otherwise
+      -- tile all of it. Toggling each window individually (what the
+      -- hyprland-float-all script this replaces did) just inverts an already
+      -- mixed workspace instead of squaring it up. Inline rather than a script
+      -- because binds run Lua in-process now - no subprocess, no PATH lookup.
+      hl.bind(mainMod .. " + ALT + F", function()
+        local ws = hl.get_active_workspace()
+        if not ws then
+          return
+        end
+
+        local wins = hl.get_workspace_windows(ws.id)
+
+        local action = "off"
+        for _, w in ipairs(wins) do
+          if not w.floating then
+            action = "on"
+            break
+          end
+        end
+
+        for _, w in ipairs(wins) do
+          hl.dispatch(hl.dsp.window.float({ action = action, window = w }))
+        end
+      end)
 
       -- ============= LAYOUTS =============
       hl.bind(mainMod .. " + ALT + L",      hl.dsp.exec_cmd("hyprland-change-layout toggle"))
