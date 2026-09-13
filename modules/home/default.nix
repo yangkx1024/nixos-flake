@@ -11,6 +11,7 @@
     ./scripts
     ./starship.nix
     ./swappy.nix
+    ./tailscale.nix
     ./tealdeer.nix
     ./virtmanager.nix
     ./noctalia.nix
