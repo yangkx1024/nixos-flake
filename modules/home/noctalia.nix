@@ -10,6 +10,11 @@ in {
   # Install the Noctalia package
   home.packages = [
     noctaliaPkg
+    # Template hooks run with the session PATH. The ghostty hook reloads a
+    # directly launched Ghostty over D-Bus with gdbus; its pgrep -x ghostty
+    # fallback never matches the nixpkgs-wrapped .ghostty-wrapped process, so
+    # without gdbus open terminals keep the old palette after a mode switch.
+    pkgs.glib
   ];
   imports = [
     inputs.noctalia.homeModules.default

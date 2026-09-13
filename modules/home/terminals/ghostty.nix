@@ -41,8 +41,6 @@ in {
       window-width = "110";
       background-opacity = "1.00";
       background-blur-radius = "60";
-      selection-background = "#2d3f76";
-      selection-foreground = "#c8d3f5";
       # copy selected text to both the selection and system clipboards
       copy-on-select = "clipboard";
       cursor-style = "bar";
