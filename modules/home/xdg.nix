@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   home.file = {
     "Pictures/Wallpapers/default.jpg".source = ../../wallpapers/default.jpg;
   };
@@ -30,25 +26,5 @@
         "application/pdf" = ["org.gnome.Papers.desktop"];
       };
     };
-    configFile."qt5ct/qt5ct.conf".text = ''
-      [Appearance]
-      color_scheme_path=${config.xdg.configHome}/qt5ct/colors/noctalia.conf
-      custom_palette=true
-      icon_theme=Papirus-Dark
-
-      [Fonts]
-      fixed="Maple Mono NF CN,10,-1,5,50,0,0,0,0,0,Regular"
-      general="MiSans,10,-1,5,50,0,0,0,0,0"
-    '';
-    configFile."qt6ct/qt6ct.conf".text = ''
-      [Appearance]
-      color_scheme_path=${config.xdg.configHome}/qt6ct/colors/noctalia.conf
-      custom_palette=true
-      icon_theme=Papirus-Dark
-
-      [Fonts]
-      fixed="Maple Mono NF CN,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular"
-      general="MiSans,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1"
-    '';
   };
 }

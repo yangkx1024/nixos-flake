@@ -10,27 +10,23 @@
   # it, which is how the deployed file ended up with two [Settings] groups.
   # Colours are noctalia's job — it writes gtk.css/noctalia.css next to this and
   # never touches settings.ini.
+
+  # noctalia's gtk hook only switches to adw-gtk3/adw-gtk3-dark when installed.
+  home.packages = [pkgs.adw-gtk3];
+
   gtk = {
     enable = true;
-
-    # gtk-application-prefer-dark-theme on both, plus gtk-interface-color-scheme
-    # on GTK4, instead of hand-writing the key per version.
-    colorScheme = "dark";
 
     font = {
       name = "MiSans";
       size = 10;
     };
 
-    theme.name = "Adwaita";
-    # GTK4 takes its theme from libadwaita, not gtk-theme-name, so leave the key
-    # out there rather than writing one nothing reads.
-    gtk4.theme = null;
-
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
-    };
+    # colorScheme, theme and iconTheme are deliberately not set: they follow
+    # noctalia's light/dark mode, which sets color-scheme, gtk-theme (GTK3 has
+    # no colour-scheme of its own) and, via icon-theme.nix, icon-theme in dconf.
+    # HM would reload fixed values into dconf on every switch, and colorScheme
+    # also writes gtk-application-prefer-dark-theme, which GTK3 always obeys.
 
     # cursorTheme is deliberately not set here: home.pointerCursor in xdg.nix
     # already feeds gtk.cursorTheme (name, package and size) via mkDefault, and

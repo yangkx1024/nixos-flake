@@ -36,7 +36,7 @@ in {
       };
 
       theme = {
-        mode = "dark";
+        mode = "auto";
         source = "builtin";
         builtin = "Ayu";
 

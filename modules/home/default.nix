@@ -6,6 +6,7 @@
     ./gtk.nix
     ./herdr.nix
     ./hyprland
+    ./icon-theme.nix
     ./qt.nix
     ./scripts
     ./starship.nix

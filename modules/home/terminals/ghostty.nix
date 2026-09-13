@@ -36,7 +36,7 @@ in {
       window-padding-y = 4;
       window-padding-balance = true;
       adjust-cell-height = "10%";
-      window-theme = "dark";
+      window-theme = "system";
       window-height = "32";
       window-width = "110";
       background-opacity = "1.00";
