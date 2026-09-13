@@ -1,6 +1,5 @@
 {
   description = "Kexuan's NixOS";
-  inputs.self.submodules = true;
   inputs = {
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -44,10 +43,15 @@
   } @ inputs: let
     system = "x86_64-linux";
     host = "nixos";
-    profile = "amd";
     username = "yangkx";
+    # Host settings, passed to every NixOS and home-manager module as `vars`.
+    vars = import ./hosts/${host}/variables.nix;
 
-    # Deduplicate nixosConfigurations while preserving the top-level 'profile'
+    # One nixosConfiguration per GPU profile. gpuProfile names both the
+    # profiles/ directory to import and the configuration itself, and is passed
+    # through as the 'profile' specialArg so modules can branch on it
+    # (modules/core/services.nix) and the fr/fu aliases rebuild the config they
+    # were built from (modules/home/cli/shell.nix).
     mkNixosConfig = gpuProfile:
       nixpkgs.lib.nixosSystem {
         inherit system;
@@ -55,7 +59,8 @@
           inherit inputs;
           inherit username;
           inherit host;
-          inherit profile; # keep using the let-bound profile for modules/scripts
+          inherit vars;
+          profile = gpuProfile;
         };
         modules = [
           ./modules/core/overlays.nix
@@ -74,5 +79,8 @@
     };
 
     formatter.x86_64-linux = inputs.alejandra.packages.x86_64-linux.default;
+
+    # `nix develop`; shell.nix stays usable on its own through `nix-shell`.
+    devShells.x86_64-linux.default = import ./shell.nix {pkgs = nixpkgs.legacyPackages.x86_64-linux;};
   };
 }

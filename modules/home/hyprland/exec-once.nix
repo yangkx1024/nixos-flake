@@ -12,7 +12,6 @@
       -- not have claimed its socket yet at this point, so wait for it rather
       -- than racing it.
       hl.exec_cmd("bash -c 'for i in $(seq 1 50); do ${pkgs.xrdb}/bin/xrdb -merge ${config.xresources.path} && break; sleep 0.2; done'")
-      hl.exec_cmd("hyprland-change-layout init")
       hl.exec_cmd("noctalia")
     end)
   '';

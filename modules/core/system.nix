@@ -1,15 +1,15 @@
 {...}: {
   nix = {
+    # Dedup the store on a timer (Persistent, idle IO) instead of hashing every
+    # file inline on each store write, which made writes ~50% slower.
+    optimise.automatic = true;
     settings = {
       download-buffer-size = 200000000;
-      auto-optimise-store = true;
       flake-registry = "";
       experimental-features = [
         "nix-command"
         "flakes"
       ];
-      substituters = ["https://hyprland.cachix.org"];
-      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
     };
   };
   time.timeZone = "Asia/Singapore";
@@ -30,9 +30,6 @@
       LC_TELEPHONE = "zh_SG.UTF-8";
       LC_TIME = "zh_SG.UTF-8";
     };
-  };
-  environment.variables = {
-    NIXOS_OZONE_WL = "1";
   };
   console.keyMap = "us";
   zramSwap = {

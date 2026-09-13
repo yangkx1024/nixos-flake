@@ -7,6 +7,18 @@
     neovim = {
       enable = true;
       defaultEditor = true;
+      # noctalia's community "neovim" template renders ~/.config/nvim/lua/matugen.lua,
+      # which drives base16-nvim and reloads itself on the SIGUSR1 its hook sends.
+      # This is the same init its apply.sh appends when lazy.nvim isn't in use.
+      # Note a non-empty `configure` makes the wrapper set VIMINIT, so a
+      # ~/.config/nvim/init.lua would no longer be read.
+      configure = {
+        packages.noctalia.start = [pkgs.vimPlugins.base16-nvim];
+        customLuaRC = ''
+          local ok, matugen = pcall(require, 'matugen')
+          if ok then matugen.setup() end
+        '';
+      };
     };
     hyprland = {
       enable = true; # set this so desktop file is created
@@ -30,21 +42,17 @@
   environment.systemPackages = with pkgs; [
     matugen # color palette generator needed for noctalia-shell
     app2unit # launcher for noctalia-shell
-    gpu-screen-recorder # needed for nnoctalia-shell screen-recorder plugin
-    upower # noctalia shell battery
+    gpu-screen-recorder # needed for noctalia-shell screen-recorder plugin
 
     appimage-run # Needed For AppImage Support
     brightnessctl # For Screen Brightness Control
     cmatrix # Matrix Movie Effect In Terminal
     cowsay # Great Fun Terminal Program
     ddcutil # Monitor Control Over DDC/CI
-    eza # Beautiful ls Replacement
     ffmpeg # Terminal Video / Audio Editing
     file-roller # Archive Manager
     gearlever # Manage / run Appimages
     icu # dep for gearlever
-    gpu-screen-recorder # needed for nnoctalia-shell
-    power-profiles-daemon # needed for noctalia-shell power cycle
     killall # For Killing All Instances Of Programs
     libnotify # For Notifications
     lm_sensors # Used For Getting Hardware Temps

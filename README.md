@@ -49,7 +49,7 @@ User-level configuration is delivered through Home Manager, wired up in
      gitEmail = "you@example.com";
      browser = "google-chrome-stable";
      terminal = "ghostty";
-     extraMonitorSettings = "monitor = DP-1, highres, auto, auto, bitdepth, 10";
+     extraMonitorSettings = ''hl.monitor({ output = "DP-1", mode = "highres", position = "auto", scale = "auto", bitdepth = 10 })'';
      hostId = "xxxxxxxx";   # required for ZFS
    }
    ```
@@ -60,6 +60,11 @@ User-level configuration is delivered through Home Manager, wired up in
 3. **Pick a GPU profile** — `amd`, `nvidia`, `nvidia-laptop`, `amd-nvidia-hybrid`, `intel`, or `vm`.
    To add a new profile, drop a `profiles/<name>/default.nix` that imports the host and toggles
    the driver flags in `modules/drivers/`.
+
+   The two hybrid profiles (`nvidia-laptop`, `amd-nvidia-hybrid`) optionally read `intelID`,
+   `amdgpuID` and `nvidiaID` from `hosts/<host>/variables.nix` — uncomment and set them to your
+   machine's values from `lspci | grep -E "VGA|3D"`. If the host doesn't declare them, the
+   defaults in `modules/drivers/` are used.
 
 4. **Adjust user / hostname** — defaults live at the top of `flake.nix`:
 

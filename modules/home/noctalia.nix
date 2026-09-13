@@ -42,7 +42,7 @@ in {
 
         templates = {
           builtin_ids = ["gtk3" "gtk4" "kcolorscheme" "qt" "wezterm" "hyprland" "btop" "ghostty"];
-          community_ids = ["hyprtoolkit" "zed"];
+          community_ids = ["bat" "fcitx5" "fzf" "hyprtoolkit" "lazygit" "neovim" "zed"];
         };
       };
 

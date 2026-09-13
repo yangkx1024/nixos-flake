@@ -1,11 +1,10 @@
 {
-  host,
+  vars,
   pkgs,
   inputs,
   config,
   ...
 }: let
-  vars = import ../../../hosts/${host}/variables.nix;
   extraMonitorSettings = vars.extraMonitorSettings or "";
   hyprlandPkgs = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system};
 in {
@@ -40,7 +39,9 @@ in {
   wayland.windowManager.hyprland = {
     enable = true;
     package = hyprlandPkgs.hyprland;
-    portalPackage = hyprlandPkgs.xdg-desktop-portal-hyprland;
+    # null: the NixOS module (programs.hyprland) owns the portal; a non-null
+    # value makes home-manager enable a duplicate xdg.portal of its own.
+    portalPackage = null;
     systemd = {
       enable = true;
       enableXdgAutostart = true;
@@ -107,16 +108,6 @@ in {
           anr_missed_pings = 15;
         };
 
-        dwindle = {
-          preserve_split = true;
-          smart_resizing = true;
-          use_active_for_splits = true;
-          smart_split = false;
-          default_split_ratio = 1.0;
-          split_bias = 0;
-          precise_mouse_move = false;
-        };
-
         decoration = {
           rounding = 10;
           blur = {
@@ -152,19 +143,6 @@ in {
           #explicit_sync = 1; # Change to 1 to disable
           #explicit_sync_kms = 1;
           direct_scanout = 0;
-        };
-
-        master = {
-          new_status = "slave";
-          new_on_top = false;
-          new_on_active = "none";
-          orientation = "left";
-          mfact = 0.55;
-          slave_count_for_center_master = 2;
-          center_master_fallback = "left";
-          smart_resizing = true;
-          drop_at_cursor = true;
-          always_keep_position = false;
         };
 
         # Xwayland clients are told scale 1 and render at native resolution.

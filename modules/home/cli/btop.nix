@@ -6,6 +6,10 @@
       cudaSupport = true;
     };
     settings = {
+      # Rendered to btop/themes/noctalia.theme by noctalia's builtin template.
+      # Its apply hook can't write btop.conf (a store symlink), but once this is
+      # set it skips the write and just signals running btops to reload.
+      color_theme = "noctalia";
       vim_keys = true;
       rounded_corners = true;
       proc_tree = true;
