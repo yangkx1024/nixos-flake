@@ -1,5 +1,21 @@
-{vars, ...}: let
+{
+  config,
+  vars,
+  ...
+}: let
   inherit (vars) gitUsername gitEmail;
+
+  # noctalia's community "lazygit" template renders a gui.theme block here. Its
+  # apply hook splices that into config.yml, which can't work with a read-only
+  # store symlink, so layer the file on top with LG_CONFIG_FILE instead (later
+  # files override earlier ones). lazygit refuses to start if a listed file is
+  # missing, hence the guard for the window before noctalia's first render.
+  lazygitDir = "${config.xdg.configHome}/lazygit";
+  loadLazygitTheme = ''
+    if [ -r "${lazygitDir}/themes/noctalia.yml" ]; then
+      export LG_CONFIG_FILE="${lazygitDir}/config.yml,${lazygitDir}/themes/noctalia.yml"
+    fi
+  '';
 in {
   programs.git = {
     enable = true;
@@ -39,4 +55,6 @@ in {
       git.commit.signOff = true; # Sign off commits by default (git commit -s)
     };
   };
+  programs.zsh.initContent = loadLazygitTheme;
+  programs.bash.initExtra = loadLazygitTheme;
 }

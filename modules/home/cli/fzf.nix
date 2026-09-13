@@ -1,5 +1,9 @@
 # Fzf is a general-purpose command-line fuzzy finder.
-{...}: let
+{
+  config,
+  lib,
+  ...
+}: let
   # Ctrl-T's walker yields directories as well as files, so the preview has to
   # cope with both - bat on a directory just prints an error into the pane.
   # Kept in one place because the `fe` alias below previews the same way.
@@ -8,6 +12,19 @@
   # any value containing a space needs its own quotes inside the Nix string.
   preview = "'[ -d {} ] && eza --tree --level=2 --colour=always {} || bat --style=numbers --color=always --line-range :500 {}'";
   previewWindow = "right:60%:wrap";
+
+  # Rendered by noctalia's community "fzf" template (modules/home/noctalia.nix).
+  # It is a shell snippet that appends --color options to FZF_DEFAULT_OPTS, so
+  # it has to be sourced rather than pointed at. Reset to the options below
+  # first: nested shells inherit the already-themed variable and would
+  # otherwise stack another copy of the palette on top each time.
+  themeFile = "${config.xdg.configHome}/fzf/themes/noctalia.sh";
+  loadTheme = ''
+    if [ -r "${themeFile}" ]; then
+      export FZF_DEFAULT_OPTS=${lib.escapeShellArg (lib.concatStringsSep " " config.programs.fzf.defaultOptions)}
+      . "${themeFile}"
+    fi
+  '';
 in {
   programs.fzf = {
     enable = true;
@@ -51,6 +68,9 @@ in {
       "--preview-window=${previewWindow}"
     ];
   };
+
+  programs.zsh.initContent = loadTheme;
+  programs.bash.initExtra = loadTheme;
 
   # The "fuzzy-pick a file and open it in nvim" flow that the global enter
   # binding was reaching for, as its own command instead of a side effect on

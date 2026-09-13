@@ -7,6 +7,18 @@
     neovim = {
       enable = true;
       defaultEditor = true;
+      # noctalia's community "neovim" template renders ~/.config/nvim/lua/matugen.lua,
+      # which drives base16-nvim and reloads itself on the SIGUSR1 its hook sends.
+      # This is the same init its apply.sh appends when lazy.nvim isn't in use.
+      # Note a non-empty `configure` makes the wrapper set VIMINIT, so a
+      # ~/.config/nvim/init.lua would no longer be read.
+      configure = {
+        packages.noctalia.start = [pkgs.vimPlugins.base16-nvim];
+        customLuaRC = ''
+          local ok, matugen = pcall(require, 'matugen')
+          if ok then matugen.setup() end
+        '';
+      };
     };
     hyprland = {
       enable = true; # set this so desktop file is created

@@ -22,9 +22,12 @@
     Vertical Candidate List=True
     # 候选栏字体，与 gtk/qt 的 MiSans 10 保持一致
     Font="MiSans 10"
-    # 主题（由 fcitx5-nord 提供）
-    Theme=Nord-Light
-    DarkTheme=Nord-Dark
+    # 主题由 noctalia 的 fcitx5 社区模板渲染到
+    # ~/.local/share/fcitx5/themes/noctalia/。模板只渲染当前明暗模式的配色，
+    # 所以不需要 DarkTheme（UseDarkTheme 默认关闭，本来也不会用到它）。
+    # 模板的 apply 钩子发现这里已是 noctalia 就不会去写这个只读文件，
+    # 只通过 D-Bus 让 classicui 重载配色。
+    Theme=noctalia
   '';
 
   # Rime user directory for fcitx5. The schemas and dictionaries themselves come
