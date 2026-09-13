@@ -30,6 +30,9 @@ in {
         clipboard_auto_paste = "off";
         launch_apps_as_systemd_services = true;
         polkit_agent = true;
+        # Push wallpaper/palette/mode/font to noctalia-greeter on change; no
+        # prompt thanks to passwordless-sync-users in modules/core/greetd.nix.
+        greeter_sync.auto_sync = true;
         shadow.direction = "down_right";
         panel = {
           transparency_mode = "glass";

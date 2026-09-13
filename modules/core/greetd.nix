@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  username,
   ...
 }: {
   imports = [inputs.noctalia-greeter.nixosModules.default];
@@ -8,6 +9,11 @@
   services.displayManager.noctalia-greeter = {
     enable = true;
     # greeter-args left at default "" → session picker, remembers last choice.
+
+    # Polkit rule letting this user run Noctalia's Greeter Sync without a
+    # password. Scoped to `apply-appearance --sync` from this exact package
+    # (the patched override below), in an active local session.
+    passwordless-sync-users = [username];
 
     # Upstream decodes the avatar at its logical size (~64px), so it is upscaled
     # and blurry on HiDPI outputs; the patch decodes at buffer resolution.
