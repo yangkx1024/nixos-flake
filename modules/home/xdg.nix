@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  inputs,
   ...
 }: {
   home.file = {
@@ -30,14 +29,6 @@
         "x-scheme-handler/about" = ["com.google.Chrome.desktop"];
         "application/pdf" = ["org.gnome.Papers.desktop"];
       };
-    };
-    portal = {
-      enable = true;
-      extraPortals = [
-        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
-        pkgs.xdg-desktop-portal-gtk
-      ];
-      configPackages = [inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland];
     };
     configFile."qt5ct/qt5ct.conf".text = ''
       [Appearance]

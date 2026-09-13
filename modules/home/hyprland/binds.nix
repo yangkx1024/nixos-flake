@@ -1,5 +1,4 @@
-{host, ...}: let
-  vars = import ../../../hosts/${host}/variables.nix;
+{vars, ...}: let
   inherit
     (vars)
     browser
@@ -124,6 +123,9 @@ in {
       hl.bind(mainMod .. " + ALT + 2",      hl.dsp.exec_cmd("hyprland-change-layout master"))
       hl.bind(mainMod .. " + ALT + 3",      hl.dsp.exec_cmd("hyprland-change-layout scrolling"))
       hl.bind(mainMod .. " + ALT + 4",      hl.dsp.exec_cmd("hyprland-change-layout monocle"))
+      -- Layout messages; each is a no-op in layouts that don't handle it
+      hl.bind(mainMod .. " + O",            hl.dsp.layout("togglesplit")) -- dwindle
+      hl.bind(mainMod .. " + SHIFT + M",    hl.dsp.layout("swapnext"))    -- master
       hl.bind(mainMod .. " + SHIFT + C",    hl.dsp.exit())
 
       -- ============= WINDOW MOVEMENT (ARROW KEYS) =============

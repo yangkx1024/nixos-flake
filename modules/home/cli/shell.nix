@@ -28,6 +28,5 @@
   # Prepended to PATH, in this order.
   home.sessionPath = [
     "$HOME/.local/bin" # `uv tool` links its executables here
-    "/usr/local/bin"
   ];
 }

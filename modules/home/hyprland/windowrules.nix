@@ -32,12 +32,6 @@ _: {
       })
 
       hl.window_rule({
-        name = "Resolve",
-        match = { class = [[^(\bresolve\b)$]], xwayland = true },
-        no_blur = true,
-      })
-
-      hl.window_rule({
         name = "Thunar",
         match = { class = [[^([Tt]hunar|org.gnome.Nautilus|[Pp]cmanfm-qt)$]] },
         tag = "+file-manager",
@@ -50,78 +44,9 @@ _: {
       })
 
       hl.window_rule({
-        name = "Brave-browser",
-        match = { class = [[^(Brave-browser(-beta|-dev|-unstable)?)$]] },
-        tag = "+browser",
-      })
-
-      hl.window_rule({
-        name = "Firefox",
-        match = { class = [[^([Ff]irefox|org.mozilla.firefox|[Ff]irefox-esr)$]] },
-        tag = "+browser",
-      })
-
-      hl.window_rule({
         name = "Google-chrome",
         match = { class = [[^([Gg]oogle-chrome(-beta|-dev|-unstable)?)$]] },
         tag = "+browser",
-      })
-
-      hl.window_rule({
-        name = "Thorium-browser",
-        match = { class = [[^([Tt]horium-browser|[Cc]achy-browser)$]] },
-        tag = "+browser",
-      })
-
-      hl.window_rule({
-        name = "vscodium",
-        match = { class = [[^(codium|codium-url-handler|VSCodium)$]] },
-        tag = "+projects",
-      })
-
-      hl.window_rule({
-        name = "vscode",
-        match = { class = [[^(VSCode|code-url-handler)$]] },
-        tag = "+projects",
-      })
-
-      hl.window_rule({
-        name = "Discord",
-        match = { class = [[^([Dd]iscord|[Ww]ebCord|[Vv]esktop)$]] },
-        tag = "+im",
-      })
-
-      hl.window_rule({
-        name = "Ferdium",
-        match = { class = [[^([Ff]erdium)$]] },
-        center = true,
-        float = true,
-        size = { "monitor_w*0.6", "monitor_h*0.7" },
-        tag = "+im",
-      })
-
-      hl.window_rule({
-        name = "Whatsapp",
-        match = { class = [[^([Ww]hatsapp-for-linux)$]] },
-        tag = "+im",
-      })
-
-      hl.window_rule({
-        name = "Telegram-desktop",
-        match = { class = [[^(org.telegram.desktop|io.github.tdesktop_x64.TDesktop)$]] },
-        tag = "+im",
-      })
-
-      hl.window_rule({
-        name = "teams-for-linux",
-        match = { class = [[^(teams-for-linux)$]] },
-        tag = "+im",
-      })
-
-      hl.window_rule({
-        name = "gamescope",
-        match = { class = [[^(gamescope)$]] },
-        tag = "+games",
       })
 
       hl.window_rule({
@@ -133,18 +58,6 @@ _: {
       hl.window_rule({
         name = "Steam",
         match = { class = [[^([Ss]team)$]] },
-        tag = "+gamestore",
-      })
-
-      hl.window_rule({
-        name = "Lutris",
-        match = { title = [[^([Ll]utris)$]] },
-        tag = "+gamestore",
-      })
-
-      hl.window_rule({
-        name = "heroicgameslauncher",
-        match = { class = [[^(com.heroicgameslauncher.hgl)$]] },
         tag = "+gamestore",
       })
 
@@ -211,12 +124,6 @@ _: {
       })
 
       hl.window_rule({
-        name = "nwg-displays",
-        match = { class = [[(nwg-displays)]] },
-        tag = "+settings",
-      })
-
-      hl.window_rule({
         name = "Fcitx-Configuration",
         match = { title = [[^(Fcitx Configuration)$]] },
         tag = "+settings",
@@ -247,18 +154,6 @@ _: {
       })
 
       hl.window_rule({
-        name = "IdleInhibit-fullscreen-1",
-        match = { class = [[^(*)$]] },
-        idle_inhibit = "fullscreen",
-      })
-
-      hl.window_rule({
-        name = "IdleInhibit-fullscreen-2",
-        match = { title = [[^(*)$]] },
-        idle_inhibit = "fullscreen",
-      })
-
-      hl.window_rule({
         name = "IdleInhibit-fullscreen-3",
         match = { fullscreen = true },
         idle_inhibit = "fullscreen",
@@ -276,27 +171,8 @@ _: {
       })
 
       hl.window_rule({
-        name = "WayPaper",
-        match = { class = [[^([Ww]aypaper)$]] },
-        float = true,
-        no_blur = false,
-      })
-
-      hl.window_rule({
         name = "mpv-or-clapper",
         match = { class = [[^(mpv|com.github.rafostar.Clapper)$]] },
-        float = true,
-      })
-
-      hl.window_rule({
-        name = "codium-url-handler",
-        match = { class = [[(codium|codium-url-handler|VSCodium)]], title = [[negative:(.*codium.*|.*VSCodium.*)]] },
-        float = true,
-      })
-
-      hl.window_rule({
-        name = "heroicgameslauncher-1",
-        match = { class = [[^(com.heroicgameslauncher.hgl)$]], title = [[negative:(Heroic Games Launcher)]] },
         float = true,
       })
 
@@ -333,18 +209,6 @@ _: {
       })
 
       hl.window_rule({
-        name = "Projects",
-        match = { tag = "projects*" },
-        opacity = "0.8 0.7",
-      })
-
-      hl.window_rule({
-        name = "Instant-Messaging",
-        match = { tag = "im*" },
-        opacity = "0.8 0.7",
-      })
-
-      hl.window_rule({
         name = "File-Managers",
         match = { tag = "file-manager*" },
         opacity = "0.8 0.7",
@@ -355,12 +219,6 @@ _: {
         match = { tag = "terminal*" },
         opacity = "0.8 0.7",
         no_blur = false,
-      })
-
-      hl.window_rule({
-        name = "windowrule-77",
-        match = { class = [[^(gedit|org.gnome.TextEditor|mousepad)$]] },
-        opacity = "0.8 0.7",
       })
 
       hl.window_rule({

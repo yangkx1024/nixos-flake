@@ -1,14 +1,13 @@
 {
   pkgs,
   host,
+  vars,
   options,
   ...
-}: let
-  inherit (import ../../hosts/${host}/variables.nix) hostId;
-in {
+}: {
   networking = {
     hostName = "${host}";
-    hostId = hostId;
+    inherit (vars) hostId;
     networkmanager.enable = true;
     timeServers =
       options.networking.timeServers.default

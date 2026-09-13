@@ -1,10 +1,9 @@
 {
   host,
   lib,
+  vars,
   ...
-}: let
-  vars = import ../../hosts/${host}/variables.nix;
-in {
+}: {
   imports = [
     ../../hosts/${host}
     ../../modules/drivers

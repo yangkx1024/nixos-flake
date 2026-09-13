@@ -1009,63 +1009,165 @@ fix. Tick the box when done; keep the evidence line so a regression is recognisa
 
 ## Cruft (low risk, easy wins)
 
-- [ ] **23.** `modules/core/ly.nix` is not imported anywhere — greetd +
-      noctalia-greeter is what's actually used. Delete it.
-- [ ] **24.** 10 of the 11 `modules/home/hyprland/animations-*.nix` files are
+Items 23–37 were done together on 2026-09-13. Decisions that were the owner's
+call (25, 26, 28, 31, 34, 37) were asked first. Shared evidence: all six
+`nixosConfigurations` still evaluate; `nix flake check` passes; `alejandra --check .`
+is clean repo-wide. The amd system builds, and its generated `hyprland.lua` passes
+`Hyprland --verify-config`, `luac 5.4 -p` and `luajit -bl`. Closure is
+unchanged (15.889 GiB): `restart.noctalia` is the only name that disappears, and
+37 paths rehash. Pure refactors (23, 24, 29, 34) were proven by keeping all six
+toplevel drvs byte-identical. Deletions are left unstaged in the working tree.
+
+- [x] **23.** `modules/core/ly.nix` is not imported anywhere — greetd +
+      noctalia-greeter is what's actually used. Delete it. — **DONE**: deleted;
+      nothing referenced it. All six toplevel drvs identical.
+- [x] **24.** 10 of the 11 `modules/home/hyprland/animations-*.nix` files are
       unimported (~300 lines). Only `animations-ml4w-fast.nix` is in
-      `modules/home/hyprland/default.nix`.
-- [ ] **25.** `security.pam.services.swaylock` (`modules/core/security.nix:18`) —
+      `modules/home/hyprland/default.nix`. — **DONE**: deleted the 10
+      (def, dynamic, end4, end4-slide, hyde-optimized, mahaveer-me-1/-2,
+      ml4w-classic, ml4w-high, moving). All six drvs identical.
+- [x] **25.** `security.pam.services.swaylock` (`modules/core/security.nix:18`) —
       swaylock isn't installed. `programs.hyprlock.enable = true`
       (`modules/core/packages.nix:21`) is also vestigial now that noctalia owns
-      lock and idle.
-- [ ] **26.** ~~The `dwindle` and `master` blocks are inert~~ — **superseded by
+      lock and idle. — **DONE (partly, by choice)**. Noctalia's lock screen
+      authenticates against PAM **`login`** (`src/shell/lockscreen/lock_screen.cpp:872`),
+      and idle locking is `noctalia:session lock`, so neither service is used by
+      it. Owner chose to **keep hyprlock as a fallback locker**, so only the
+      `swaylock` block was removed; `programs.hyprlock` and the commented-out
+      `hypridle.nix`/`hyprlock.nix` stay. Note: `/etc/pam.d/swaylock` still
+      exists, because nixpkgs' `programs/wayland/wayland-session.nix` (pulled
+      in by `programs.hyprland`) declares `pam.services.swaylock = { }`. The flake's
+      block only overrode its text (`auth include login` → nixpkgs' generated
+      `pam_unix` stack). Irrelevant while swaylock isn't installed.
+- [x] **26.** ~~The `dwindle` and `master` blocks are inert~~ — **superseded by
       item 3**: layout switching works again, so
       `modules/home/hyprland/hyprland.nix:110-168` is now live config whenever
       SUPER+ALT+1/2/4 is used. Re-read those values and check they're still what
-      you want, rather than deleting them.
-- [ ] **27.** Duplicate `systemPackages`: `gpu-screen-recorder` at
+      you want, rather than deleting them. — **DONE: reset to defaults** (owner's
+      choice). Compared all 17 values with Hyprland 0.56's
+      `src/config/values/ConfigValues.cpp`: **16 already were the defaults**
+      (`master` entirely: `new_status = "slave"`, `new_on_active = "none"`,
+      `orientation = "left"`, `mfact = 0.55`, `slave_count_for_center_master = 2`, …).
+      The only non-default was **`dwindle.preserve_split = true`** (default
+      `false`), so deleting both blocks changes exactly that: dwindle may now flip a
+      container's split direction on resize. To bring it back, re-add
+      `dwindle.preserve_split = true`. The generated Lua has no `["dwindle"]` or
+      `["master"]` table.
+- [x] **27.** Duplicate `systemPackages`: `gpu-screen-recorder` at
       `modules/core/packages.nix:33` and `:46`; `power-profiles-daemon` at `:47`
       and as a service; `upower` at `:34` and as a service; `eza` at `:37` plus
-      `programs.eza`.
-- [ ] **28.** ~40 window rules in `modules/home/hyprland/windowrules.nix` target
+      `programs.eza`. — **DONE**. Confirmed from `definitionsWithLocations`:
+      `power-profiles-daemon` and `upower` are also added by their NixOS service
+      modules, and `eza` is in HM `home.packages` via `programs.eza`. Removed the
+      second `gpu-screen-recorder` (also fixed the "nnoctalia" typo on the kept
+      one), `upower`, `power-profiles-daemon` and system `eza`. In the new system
+      `powerprofilesctl`, `upower` and `gpu-screen-recorder` are still in
+      `/run/current-system/sw/bin`, and `eza` is in the user profile. Root shells
+      no longer get `eza`, which is fine since the aliases are per-user anyway.
+- [x] **28.** ~40 window rules in `modules/home/hyprland/windowrules.nix` target
       apps that aren't installed (Brave, Firefox, Discord, Telegram, Ferdium,
       WhatsApp, Teams, Lutris, Heroic, VSCodium, Waypaper). The two
       `match = { class = [[^(*)$]] }` idle-inhibit rules (`:249-259`) are
       hyprlang-era leftovers — no regex error appears in the Hyprland log, and the
-      third rule (`fullscreen = true`) is the one doing the work.
-- [ ] **29.** `inputs.self.submodules = true` (`flake.nix:3`) with no
-      `.gitmodules` in the repo.
-- [ ] **30.** `fonts/MiSans/.uuid` is committed and `.DS_Store` sits in the font
+      third rule (`fullscreen = true`) is the one doing the work. — **DONE, dead
+      rules only** (owner's choice). Checked every rule's targets against
+      `/run/current-system/sw/{bin,share/applications}`, the user profile and
+      flatpak exports. Deleted **23** rules: Resolve, Brave-browser, Firefox,
+      Thorium-browser, vscodium, vscode, codium-url-handler, Discord, Ferdium,
+      Whatsapp, Telegram-desktop, teams-for-linux, gamescope, Lutris,
+      heroicgameslauncher (both), WayPaper, nwg-displays, gedit/TextEditor/mousepad
+      (`windowrule-77`), the `projects*` and `im*` opacity rules (only the deleted
+      rules set those tags), and IdleInhibit-fullscreen-1/-2. **57 → 34** rules.
+      Kept: every rule with an installed target, including their uninstalled
+      alternates (Nautilus, kitty, pwvucontrol, Clapper, …), and the generic title
+      rules (Open Files, Add Folder, "wants to save"). The `^(*)$` rules were proven
+      dead **live**, not just from the log. Probe rules with `class = [[^(*)$]]` and
+      `title = [[^(*)$]]` each adding a tag, plus a `^(.*)$` control, on a probe
+      window: only the control's tag appeared, and nothing was logged. RE2 rejects
+      `(*)` and the rule silently never matches.
+- [x] **29.** `inputs.self.submodules = true` (`flake.nix:3`) with no
+      `.gitmodules` in the repo. — **DONE**: removed. All six toplevel drvs
+      byte-identical; `nix flake metadata` shows no submodules.
+- [x] **30.** `fonts/MiSans/.uuid` is committed and `.DS_Store` sits in the font
       source dir — both land in the derivation's `src`. (`misans` is genuinely not
       in nixpkgs, so bundling the TTFs is justified; only the junk files need to
       go. For reference: 77 MB fonts + 8.6 MB recording is 86 of the repo's
-      189 MB.)
-- [ ] **31.** `modules/home/scripts/restart.noctalia.nix` writes its script to
+      189 MB.) — **DONE**: deleted both. Correction: only `.uuid` was tracked;
+      `.DS_Store` was already in `.gitignore`, so it never reached the flake
+      source. The `installPhase` copies only `*.ttf`/`*.otf`, so `.uuid` only
+      perturbed the src hash. `misans-fonts` rehashes (`jrwya425…` → `27q5cna7…`)
+      with an identical 10-file output list.
+- [x] **31.** `modules/home/scripts/restart.noctalia.nix` writes its script to
       `mktemp` and execs it — `writeShellApplication` does this directly. It is
       also redundant with the SUPER+SHIFT+R bind, which already does
-      `pkill -x noctalia; sleep 0.3; noctalia`.
-- [ ] **32.** `/usr/local/bin` in `home.sessionPath`
-      (`modules/home/cli/shell.nix:24`) does not exist on NixOS.
-- [ ] **33.** HM's `xdg.portal` (`modules/home/xdg.nix:34-41`) duplicates the
+      `pkill -x noctalia; sleep 0.3; noctalia`. — **DONE: deleted** (owner's
+      choice), along with its import. It was worse than redundant: it was
+      **broken on noctalia 5**. It only matched `noctalia-shell` /
+      `qs -c noctalia-shell` processes (Quickshell era), so it killed nothing, then
+      exited 1 with `noctalia-shell/quickshell/qs not found`. Use SUPER+SHIFT+R.
+- [x] **32.** `/usr/local/bin` in `home.sessionPath`
+      (`modules/home/cli/shell.nix:24`) does not exist on NixOS. — **DONE**:
+      removed. `hm-session-vars.sh` now prepends only `$HOME/.local/bin`.
+- [x] **33.** HM's `xdg.portal` (`modules/home/xdg.nix:34-41`) duplicates the
       system one in `modules/core/flatpak.nix:6-10`. Verified to contribute
       nothing: `~/.config/xdg-desktop-portal/` doesn't exist and the running
-      portals are the system's.
-- [ ] **34.** `hosts/nixos/variables.nix` is `import`ed directly by five modules.
+      portals are the system's. — **DONE, but the original evidence was wrong.**
+      The running `xdg-desktop-portal` *did* have
+      `NIX_XDG_DESKTOP_PORTAL_DIR=/etc/profiles/per-user/yangkx/share/…/portals`,
+      set by HM. Deleting it is still safe, for a different reason: xdp 1.22 has no
+      `NIX_` patch any more (nixpkgs dropped it) and reads only upstream's
+      `XDG_DESKTOP_PORTAL_DIR` (`src/xdp-portal-config.c:359`). Otherwise it
+      **unions** every `XDG_DATA_DIRS/xdg-desktop-portal/portals`
+      (`load_installed_portals`, one hash table), so the HM variable was dead.
+      Removing `xdg.nix`'s block wasn't enough: HM's Hyprland module
+      (`services/window-managers/hyprland/default.nix:689`) enables its own
+      `xdg.portal` whenever `portalPackage` is non-null. So
+      `wayland.windowManager.hyprland.portalPackage = null` too, as that module's
+      docs recommend when NixOS owns the portal; `programs.hyprland.portalPackage`
+      is the same store path (`zjhcpsq2…`). Result: HM `xdg.portal.enable = false`,
+      the variable is unset, and the HM profile has no portal defs. The system side
+      is byte-for-byte the same before and after: portal defs hyprland + gtk +
+      gnome-keyring, 7 portal D-Bus services, 4 `xdg-desktop-portal*` user units,
+      and `hyprland-portals.conf` `default=hyprland;gtk`. Takes effect at next login.
+- [x] **34.** `hosts/nixos/variables.nix` is `import`ed directly by five modules.
       Passing it once through `specialArgs` (or exposing it as a module option)
       would make the values overridable per-profile instead of being a file-path
-      convention.
-- [ ] **35.** README drift: the `extraMonitorSettings` example (`README.md:52`)
+      convention. — **DONE via `specialArgs`** (owner's choice). It was actually
+      **seven** importers: core `network.nix` and `user.nix`; home `git.nix`,
+      `binds.nix` and `hyprland.nix`; `profiles/nvidia-laptop` and
+      `profiles/amd-nvidia-hybrid`. `flake.nix` now does
+      `vars = import ./hosts/${host}/variables.nix` once and passes `vars` in
+      `specialArgs`, and `user.nix` forwards it in HM `extraSpecialArgs`. Every
+      module takes `vars` as an argument. The only remaining `import` of the file
+      is in `flake.nix`. **All six toplevel drvs byte-identical.**
+- [x] **35.** README drift: the `extraMonitorSettings` example (`README.md:52`)
       uses the old hyprlang `monitor = DP-1, ...` syntax while the real config
-      uses `hl.monitor({...})`.
-- [ ] **36.** Two files are not alejandra-clean: `modules/core/qt.nix` (arg set
+      uses `hl.monitor({...})`. — **DONE**: example is now
+      `''hl.monitor({ output = "DP-1", mode = "highres", position = "auto", scale = "auto", bitdepth = 10 })''`,
+      the same shape as `hosts/nixos/variables.nix`.
+- [x] **36.** Two files are not alejandra-clean: `modules/core/qt.nix` (arg set
       should collapse to one line) and `modules/core/flatpak.nix:20` (comment
       spacing). Found while running `nix fmt ./` during item 1 and reverted to
-      keep that change focused — `nix fmt ./` fixes both in one go.
-- [ ] **37.** `togglesplit` (dwindle) and `swapnext` (master/monocle) are not
+      keep that change focused — `nix fmt ./` fixes both in one go. — **DONE**:
+      `qt.nix` was cleaned in item 18 and deleted in item 20; formatted
+      `flatpak.nix` (the single spacing change). `alejandra --check .`:
+      "Congratulations! Your code complies with the Alejandra style."
+- [x] **37.** `togglesplit` (dwindle) and `swapnext` (master/monocle) are not
       bound to any key. They were only ever reachable through item 3's dead
       rebinding code, so they have never worked. Both still exist as layout
       messages in 0.56; `SUPER+O` and `SUPER+SHIFT+M` are free if wanted:
-      `hl.bind(mainMod .. " + O", hl.dsp.layout("togglesplit"))`.
+      `hl.bind(mainMod .. " + O", hl.dsp.layout("togglesplit"))`. — **DONE**
+      (owner's choice): `SUPER+O` → `hl.dsp.layout("togglesplit")` and
+      `SUPER+SHIFT+M` → `hl.dsp.layout("swapnext")`, next to the other layout binds.
+      Correction: `swapnext` is **master only**. Monocle handles just
+      `cyclenext`/`cycleprev` (`MonocleAlgorithm.cpp:192-195`); dwindle handles
+      `togglesplit` (`DwindleAlgorithm.cpp:681`), master handles `swapnext`
+      (`MasterAlgorithm.cpp:655`). Keys confirmed free in the live bind table (only
+      SUPER+M = modmask 64 and SUPER+ALT+M = 72 exist on M; nothing on O). `hl.dsp.layout`
+      is `hlLayout` → `dsp_layoutMsg`, and both dispatchers construct live. **Not
+      press-tested**: that needs a focused dwindle/master workspace, and the live
+      workspaces are on `scrolling`. After switching, try SUPER+ALT+1 then SUPER+O
+      with two windows.
 
 ---
 

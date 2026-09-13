@@ -17,7 +17,7 @@
       # Examples:
       packages = [
         "com.github.tchx84.Flatseal" #Manage flatpak permissions - should always have this
-        "io.github.flattool.Warehouse"   # Manage flatpaks, clean data, remove flatpaks and deps
+        "io.github.flattool.Warehouse" # Manage flatpaks, clean data, remove flatpaks and deps
         # Add other Flatpak IDs here, e.g., "org.mozilla.firefox"
       ];
 

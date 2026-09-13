@@ -1,6 +1,5 @@
 {
   description = "Kexuan's NixOS";
-  inputs.self.submodules = true;
   inputs = {
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -45,6 +44,8 @@
     system = "x86_64-linux";
     host = "nixos";
     username = "yangkx";
+    # Host settings, passed to every NixOS and home-manager module as `vars`.
+    vars = import ./hosts/${host}/variables.nix;
 
     # One nixosConfiguration per GPU profile. gpuProfile names both the
     # profiles/ directory to import and the configuration itself, and is passed
@@ -58,6 +59,7 @@
           inherit inputs;
           inherit username;
           inherit host;
+          inherit vars;
           profile = gpuProfile;
         };
         modules = [
