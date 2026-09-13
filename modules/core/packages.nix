@@ -31,6 +31,7 @@
     fuse.userAllowOther = true;
     mtr.enable = true;
     hyprlock.enable = true;
+    localsend.enable = true; # also opens TCP/UDP 53317 so phones can send to this machine
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
@@ -90,6 +91,5 @@
     codex
     claude-code
     herdr # Agent multiplexer for the terminal
-    localsend
   ];
 }
