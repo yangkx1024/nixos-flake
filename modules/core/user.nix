@@ -1,4 +1,6 @@
 {
+  config,
+  lib,
   pkgs,
   inputs,
   username,
@@ -11,9 +13,9 @@ in {
   imports = [inputs.home-manager.nixosModules.home-manager];
   home-manager = {
     useUserPackages = true;
-    useGlobalPkgs = false;
+    useGlobalPkgs = true;
     backupFileExtension = "backup";
-    extraSpecialArgs = {inherit inputs username host profile pkgs;};
+    extraSpecialArgs = {inherit inputs username host profile;};
     users.${username} = {
       imports = [./../home];
       home = {
@@ -27,15 +29,21 @@ in {
   users.users.${username} = {
     isNormalUser = true;
     description = "${gitUsername}";
-    extraGroups = [
-      "adbusers"
-      "docker" # Access to docker as non-root
-      "i2c" # DDC/CI monitor control
-      "libvirtd" # Virt manager/QEMU access
-      "lp" # Printer access
-      "networkmanager"
-      "scanner"
-      "wheel" # Access sudo
+    # No adbusers: programs.adb is gone, systemd >= 258 grants adb/fastboot
+    # devices to the seat user via uaccess.
+    extraGroups =
+      [
+        "i2c" # DDC/CI monitor control
+        "libvirtd" # Virt manager/QEMU access
+        "lp" # Printer access
+        "networkmanager"
+        "scanner"
+        "wheel" # Access sudo
+      ]
+      # Access to docker as non-root; the group only exists when docker is enabled
+      ++ lib.optional config.virtualisation.docker.enable "docker";
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB9+FrsApB3pPYWu0hiFoPSup+F9g7WxQNQonYqyQmrs kexuan.yang@yangkx.net"
     ];
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true;

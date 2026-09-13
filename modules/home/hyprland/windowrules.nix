@@ -96,7 +96,7 @@ _: {
         match = { class = [[^([Ff]erdium)$]] },
         center = true,
         float = true,
-        size = { "60%", "70%" },
+        size = { "monitor_w*0.6", "monitor_h*0.7" },
         tag = "+im",
       })
 
@@ -226,7 +226,7 @@ _: {
         name = "Picture-in-Picture",
         match = { title = [[^(Picture-in-Picture)$]] },
         float = true,
-        move = { "72%", "7%" },
+        move = { "monitor_w*0.72", "monitor_h*0.07" },
         pin = false,
         keep_aspect_ratio = true,
       })
@@ -269,9 +269,9 @@ _: {
         match = { tag = "settings*" },
         float = true,
         opacity = "0.9 0.8",
-        size = { "70%", "70%" },
-        -- 1792x1008 = 70% of the 2560x1440 logical screen (3840x2160 @ 1.5).
-        min_size = { 1792, 1008 },
+        -- Window-rule sizes are muparser expressions: "80%" is silently
+        -- ignored, so use monitor_w/monitor_h (logical px) to stay scale-proof.
+        size = { "monitor_w*0.8", "monitor_h*0.8" },
         no_blur = false,
       })
 
@@ -310,14 +310,14 @@ _: {
         name = "Add-Folder",
         match = { initial_title = [[(Add Folder to Workspace)]] },
         float = true,
-        size = { "70%", "60%" },
+        size = { "monitor_w*0.7", "monitor_h*0.6" },
       })
 
       hl.window_rule({
         name = "Open-File",
         match = { initial_title = [[(Open Files)]] },
         float = true,
-        size = { "70%", "60%" },
+        size = { "monitor_w*0.7", "monitor_h*0.6" },
       })
 
       hl.window_rule({
@@ -381,7 +381,7 @@ _: {
         center = true,
         float = true,
         opacity = "1.0 1.0",
-        size = { "80%", "80%" },
+        size = { "monitor_w*0.8", "monitor_h*0.8" },
       })
     '';
   };

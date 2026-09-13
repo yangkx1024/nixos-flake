@@ -18,11 +18,8 @@ in {
       ];
     firewall = {
       enable = true;
-      allowedTCPPorts = [
-        22
-        80
-        443
-      ];
+      # sshd opens its own port via services.openssh.openFirewall
+      allowedTCPPorts = [];
       allowedUDPPorts = [];
     };
   };

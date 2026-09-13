@@ -11,10 +11,11 @@
       enable = true; # Enable SSH
       settings = {
         PermitRootLogin = "no"; # Prevent root from SSH login
-        PasswordAuthentication = true; #Users can SSH using kb and password
-        KbdInteractiveAuthentication = true;
+        # Keys only; authorized keys live in modules/core/user.nix
+        PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
       };
-      ports = [22];
+      ports = [22]; # Opened in the firewall by openFirewall (default true)
     };
     blueman.enable = true; # Bluetooth Support
     tumbler.enable = true; # Image/video preview

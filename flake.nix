@@ -77,5 +77,8 @@
     };
 
     formatter.x86_64-linux = inputs.alejandra.packages.x86_64-linux.default;
+
+    # `nix develop`; shell.nix stays usable on its own through `nix-shell`.
+    devShells.x86_64-linux.default = import ./shell.nix {pkgs = nixpkgs.legacyPackages.x86_64-linux;};
   };
 }

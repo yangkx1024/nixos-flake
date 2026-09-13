@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   programs.bat = {
     enable = true;
     config = {
@@ -12,7 +8,7 @@
       style = "full";
       # Bat has other thems as well
       # ansi,Catppuccin,base16,base16-256,GitHub,Nord,etc
-      theme = lib.mkForce "Dracula";
+      theme = "Dracula";
     };
     extraPackages = with pkgs.bat-extras; [
       batman

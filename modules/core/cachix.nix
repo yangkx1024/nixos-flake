@@ -1,7 +1,8 @@
 {lib, ...}: {
+  # cache.nixos.org and its key are already added by the NixOS nix module; a
+  # second spelling ("…org" vs "…org/") would count as a separate substituter.
   nix.settings = {
     substituters = lib.mkAfter [
-      "https://cache.nixos.org"
       "https://hyprland.cachix.org"
       "https://noctalia.cachix.org"
       "https://claude-code.cachix.org"

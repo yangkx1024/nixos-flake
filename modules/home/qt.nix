@@ -1,6 +1,6 @@
-{lib, ...}: {
+_: {
   qt = {
     enable = true;
-    platformTheme.name = lib.mkForce "qtct";
+    platformTheme.name = "qtct";
   };
 }

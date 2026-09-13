@@ -10,7 +10,6 @@
     ./nh.nix
     ./nix-ld.nix
     ./openlogi.nix
-    ./qt.nix
     ./packages.nix
     ./printing.nix
     ./greetd.nix
