@@ -30,7 +30,6 @@
     seahorse.enable = true;
     fuse.userAllowOther = true;
     mtr.enable = true;
-    hyprlock.enable = true;
     localsend.enable = true; # also opens TCP/UDP 53317 so phones can send to this machine
     gnupg.agent = {
       enable = true;

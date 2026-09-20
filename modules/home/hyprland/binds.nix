@@ -70,11 +70,14 @@ in {
       hl.bind(mainMod .. " + Z",            editKey("Z"))
       hl.bind(mainMod .. " + S",            editKey("S"))
 
+      -- app2unit starts each app in its own scope under app.slice, as noctalia's
+      -- launcher does, instead of inside Hyprland's login session scope.
+
       -- ============= TERMINALS =============
-      hl.bind(mainMod .. " + Return",       hl.dsp.exec_cmd("${terminal}"))
+      hl.bind(mainMod .. " + Return",       hl.dsp.exec_cmd("app2unit -- ${terminal}"))
 
       -- ============= APPLICATION LAUNCHERS =============
-      hl.bind(mainMod .. " + B",            hl.dsp.exec_cmd("${browser}"))
+      hl.bind(mainMod .. " + B",            hl.dsp.exec_cmd("app2unit -- ${browser}"))
 
       -- ============= SCREENSHOTS =============
       hl.bind(mainMod .. " + G",            hl.dsp.exec_cmd("screenshootin"))
@@ -82,7 +85,7 @@ in {
       hl.bind(mainMod .. " + SHIFT + G",    hl.dsp.exec_cmd("hyprshot -m window -o $HOME/Pictures/Screenshots"))
       hl.bind(mainMod .. " + ALT + G",      hl.dsp.exec_cmd("hyprshot -m region -o $HOME/Pictures/Screenshots"))
       hl.bind(mainMod .. " + ALT + C",      hl.dsp.exec_cmd("hyprpicker -a"))
-      hl.bind(mainMod .. " + T",            hl.dsp.exec_cmd("thunar"))
+      hl.bind(mainMod .. " + T",            hl.dsp.exec_cmd("app2unit -- thunar"))
       hl.bind(mainMod .. " + ALT + M",      hl.dsp.exec_cmd("pavucontrol"))
 
       -- ============= WINDOW MANAGEMENT =============
