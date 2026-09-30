@@ -8,6 +8,7 @@
     ./eza.nix
     ./fzf.nix
     ./gh.nix
+    ./gpg.nix
     ./git.nix
     ./uv.nix
     ./zoxide.nix
