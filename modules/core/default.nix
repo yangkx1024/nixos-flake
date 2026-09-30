@@ -22,5 +22,6 @@
     ./user.nix
     ./virtualisation.nix
     ./cachix.nix
+    ./yubikey.nix
   ];
 }
