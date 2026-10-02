@@ -1,27 +1,35 @@
 {
   config,
   pkgs,
-  inputs,
   ...
-}: let
-  system = pkgs.stdenv.hostPlatform.system;
-  noctaliaPkg = inputs.noctalia.packages.${system}.default;
-in {
-  # Install the Noctalia package
+}: {
   home.packages = [
-    noctaliaPkg
     # Template hooks run with the session PATH. The ghostty hook reloads a
     # directly launched Ghostty over D-Bus with gdbus; its pgrep -x ghostty
     # fallback never matches the nixpkgs-wrapped .ghostty-wrapped process, so
     # without gdbus open terminals keep the old palette after a mode switch.
     pkgs.glib
   ];
-  imports = [
-    inputs.noctalia.homeModules.default
-  ];
-
   programs.noctalia = {
     enable = true;
+    # noctalia reads the icon theme (and writes color-scheme) through the
+    # org.gnome.desktop.interface GSettings schema. Without
+    # gsettings-desktop-schemas on XDG_DATA_DIRS the lookup fails ("No schemas
+    # installed") and the bar/tray fall back to hicolor's generic glyphs.
+    # Upstream fixed this in its own flake's wrapper (noctalia-dev/noctalia#4061);
+    # nixpkgs' package (as of 5.2.1) never adopted it. Drop this once
+    # pkgs/by-name/no/noctalia/package.nix prefixes the schemas itself.
+    # A symlinkJoin keeps the cache.nixos.org binary.
+    package = pkgs.symlinkJoin {
+      name = "noctalia-${pkgs.noctalia.version}";
+      paths = [pkgs.noctalia];
+      nativeBuildInputs = [pkgs.makeWrapper];
+      postBuild = ''
+        wrapProgram $out/bin/noctalia \
+          --prefix XDG_DATA_DIRS : ${pkgs.glib.getSchemaDataDirPath pkgs.gsettings-desktop-schemas}
+      '';
+      inherit (pkgs.noctalia) meta version;
+    };
     settings = {
       shell = {
         font_family = "MiSans";

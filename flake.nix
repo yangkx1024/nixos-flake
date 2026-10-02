@@ -10,12 +10,6 @@
 
     nix-flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
 
-    hyprland.url = "github:hyprwm/Hyprland";
-
-    noctalia.url = "github:noctalia-dev/noctalia";
-
-    noctalia-greeter.url = "github:noctalia-dev/noctalia-greeter";
-
     openlogi.url = "github:yangkx1024/OpenLogi";
 
     alejandra = {

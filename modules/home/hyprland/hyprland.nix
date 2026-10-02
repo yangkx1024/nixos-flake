@@ -1,12 +1,10 @@
 {
   vars,
   pkgs,
-  inputs,
   config,
   ...
 }: let
   extraMonitorSettings = vars.extraMonitorSettings or "";
-  hyprlandPkgs = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system};
 in {
   home.packages = with pkgs; [
     grim
@@ -38,7 +36,7 @@ in {
   };
   wayland.windowManager.hyprland = {
     enable = true;
-    package = hyprlandPkgs.hyprland;
+    package = pkgs.hyprland;
     # null: the NixOS module (programs.hyprland) owns the portal; a non-null
     # value makes home-manager enable a duplicate xdg.portal of its own.
     portalPackage = null;
