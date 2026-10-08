@@ -1,4 +1,4 @@
-{...}: let
+{vars, ...}: let
   envPair = name: value: {_args = [name value];};
 in {
   # Single owner for session toolkit hints: don't repeat these in NixOS
@@ -20,8 +20,8 @@ in {
     # This is to make electron apps start in wayland
     (envPair "ELECTRON_OZONE_PLATFORM_HINT" "wayland")
     (envPair "EDITOR" "nvim")
-    (envPair "TERMINAL" "ghostty")
-    (envPair "XDG_TERMINAL_EMULATOR" "ghostty")
+    (envPair "TERMINAL" vars.terminal)
+    (envPair "XDG_TERMINAL_EMULATOR" vars.terminal)
     (envPair "HYPRCURSOR_THEME" "Bibata-Modern-Ice")
     (envPair "HYPRCURSOR_SIZE" "24")
     (envPair "XCURSOR_THEME" "Bibata-Modern-Ice")

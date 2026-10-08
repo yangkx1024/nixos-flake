@@ -3,7 +3,7 @@
   gitEmail = "kexuan.yang@gmail.com";
 
   browser = "google-chrome-stable";
-  terminal = "ghostty";
+  terminal = "wezterm";
   extraMonitorSettings = ''hl.monitor({ output = "DP-1", mode = "highres", position = "auto", scale = "2", bitdepth = 10 })'';
 
   # GPU PCI bus IDs. Only the hybrid profiles read these
