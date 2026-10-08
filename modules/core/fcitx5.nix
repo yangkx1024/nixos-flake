@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  inputs,
+  ...
+}: let
   # fcitx5-rime bakes RIME_DATA_DIR in at compile time and defaults it to
   # rime-data; override it to rime-ice (雾凇拼音) so the schemas and dictionaries
   # come from the store instead of being copied into ~/.local/share by hand.
@@ -10,6 +14,10 @@
     rimeDataPkgs = [pkgs.rime-ice];
   };
 in {
+  # msime: Fcitx5 addon, msime-linux-setup on PATH and the provider user units.
+  imports = [inputs.msime.nixosModules.default];
+  programs.msime.enable = true;
+
   i18n.inputMethod = {
     type = "fcitx5";
     enable = true;

@@ -9,6 +9,7 @@
     ./icon-theme.nix
     ./qt.nix
     ./scripts
+    ./ssh.nix
     ./starship.nix
     ./swappy.nix
     ./tailscale.nix

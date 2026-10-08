@@ -78,7 +78,6 @@
     nwg-look
     mission-center
     papers
-    geary # Mail Client
     #foliate
     remmina
     codex

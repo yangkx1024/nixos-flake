@@ -129,6 +129,14 @@ _: {
         tag = "+settings",
       })
 
+      -- msime-linux-desktop also opens the handwriting/keyboard/emoji/... panels
+      -- as their own windows; only the main window carries the settings title.
+      hl.window_rule({
+        name = "MSIME-Settings",
+        match = { initial_class = [[^(msime-linux-desktop)$]], initial_title = [[^(水杉输入法 · 设置)$]] },
+        tag = "+settings",
+      })
+
       hl.window_rule({
         name = "Picture-in-Picture",
         match = { title = [[^(Picture-in-Picture)$]] },
@@ -136,6 +144,16 @@ _: {
         move = { "monitor_w*0.72", "monitor_h*0.07" },
         pin = false,
         keep_aspect_ratio = true,
+      })
+
+      -- Bitwarden extension's "pop out" window: Chrome opens it as an app
+      -- window whose class carries the extension ID (and profile suffix).
+      hl.window_rule({
+        name = "Bitwarden-popout",
+        match = { class = [[^chrome-nngceckbapebfimnlniiiahkandclblb-.*$]] },
+        float = true,
+        center = true,
+        size = { "420", "680" },
       })
 
       hl.window_rule({

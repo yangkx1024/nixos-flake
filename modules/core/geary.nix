@@ -1,5 +1,0 @@
-{...}: {
-  programs.geary = {
-    enable = true;
-  };
-}
