@@ -8,6 +8,9 @@
         HostName = "ssh.github.com";
         Port = 443;
         User = "git";
+        # YubiKey-backed key; don't fall back to other keys.
+        IdentityFile = "~/.ssh/id_ed25519_sk";
+        IdentitiesOnly = "yes";
       };
     };
   };
