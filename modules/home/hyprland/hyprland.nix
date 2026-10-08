@@ -2,6 +2,7 @@
   vars,
   pkgs,
   config,
+  lib,
   ...
 }: let
   extraMonitorSettings = vars.extraMonitorSettings or "";
@@ -61,7 +62,9 @@ in {
           touchpad = {
             natural_scroll = true;
             disable_while_typing = true;
-            scroll_factor = 0.8;
+            scroll_factor = 0.5;
+            tap_to_click = true;
+            clickfinger_behavior = true;
           };
         };
 
@@ -163,11 +166,38 @@ in {
         };
       };
 
-      gesture = [
+      # macOS trackpad gestures. The layout is scrolling with near-full-width
+      # columns, so each column plays the part of a macOS full-screen app:
+      # three fingers sideways move between columns, four switch workspaces
+      # (Spaces). Noctalia's window switcher stands in for Mission Control and
+      # its launcher for Launchpad.
+      gesture = let
+        exec = cmd: lib.generators.mkLuaInline "function() hl.exec_cmd(${builtins.toJSON cmd}) end";
+      in [
         {
           fingers = 3;
           direction = "horizontal";
+          action = "scroll_move";
+        }
+        {
+          fingers = 4;
+          direction = "horizontal";
           action = "workspace";
+        }
+        {
+          fingers = 3;
+          direction = "up";
+          action = exec "noctalia msg window-switcher";
+        }
+        {
+          fingers = 3;
+          direction = "down";
+          action = exec "noctalia msg window-switcher close";
+        }
+        {
+          fingers = 4;
+          direction = "pinchin";
+          action = exec "noctalia msg panel-toggle launcher";
         }
       ];
     };
