@@ -10,7 +10,7 @@
 
     nix-flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
 
-    openlogi.url = "github:yangkx1024/OpenLogi";
+    openlogi.url = "github:yangkx1024/OpenLogi/nix-cachix";
 
     alejandra = {
       url = "github:kamadorueda/alejandra";
@@ -28,7 +28,7 @@
     };
 
     msime = {
-      url = "github:metasequoiaime/msime/main";
+      url = "github:yangkx1024/msime/nix-cachix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
