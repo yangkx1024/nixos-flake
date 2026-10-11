@@ -31,6 +31,11 @@
       url = "github:yangkx1024/msime/nix-cachix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    usbeehive = {
+      url = "github:yangkx1024/usbeehive/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

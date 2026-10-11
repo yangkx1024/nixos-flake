@@ -18,6 +18,7 @@
     ./steam.nix
     ./system.nix
     ./thunar.nix
+    ./usbeehive.nix
     ./user.nix
     ./virtualisation.nix
     ./cachix.nix

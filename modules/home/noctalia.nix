@@ -9,6 +9,8 @@
     # fallback never matches the nixpkgs-wrapped .ghostty-wrapped process, so
     # without gdbus open terminals keep the old palette after a mode switch.
     pkgs.glib
+    # The usbeehive plugin pipes `usbeehive --watch --json` through jq.
+    pkgs.jq
   ];
   programs.noctalia = {
     enable = true;
@@ -133,7 +135,12 @@
         capsule_opacity = 1;
         start = ["launcher" "workspaces" "active_window" "media"];
         center = ["clock"];
-        end = ["audio_visualizer" "temp" "cpu" "ram" "sysmon" "tray" "volume" "notifications" "control-center"];
+        end = ["audio_visualizer" "cat" "temp" "ram" "sysmon" "usb" "tray" "volume" "notifications" "control-center"];
+      };
+
+      plugins = {
+        # All from the built-in official and community sources.
+        enabled = ["noctalia/translator" "dotnetrob/cat" "yangkx/usbeehive"];
       };
 
       widget = {
@@ -155,6 +162,10 @@
           stat = "disk_used_pct";
           visualization = "none";
         };
+        # USB devices / USB-C charging wattage (plugins.enabled above); needs
+        # usbeehive (modules/core/usbeehive.nix) and jq on PATH.
+        usb.type = "yangkx/usbeehive:usb";
+        cat.type = "dotnetrob/cat:cat";
       };
 
       control_center.shortcuts = [
