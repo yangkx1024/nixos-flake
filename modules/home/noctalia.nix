@@ -11,6 +11,10 @@
     pkgs.glib
     # The usbeehive plugin pipes `usbeehive --watch --json` through jq.
     pkgs.jq
+    # The mpvpaper plugin's service spawns mpvpaper from PATH; its other deps
+    # (mpv for thumbnails, ffmpeg for still frames, socat for slideshow IPC)
+    # come from modules/core/packages.nix.
+    pkgs.mpvpaper
   ];
   programs.noctalia = {
     enable = true;
@@ -135,13 +139,17 @@
         capsule_opacity = 1;
         start = ["launcher" "workspaces" "active_window" "media"];
         center = ["clock"];
-        end = ["audio_visualizer" "cat" "temp" "ram" "sysmon" "usb" "tray" "volume" "notifications" "control-center"];
+        end = ["audio_visualizer" "temp" "ram" "sysmon" "usb" "video_wallpaper" "tray" "volume" "notifications" "control-center"];
       };
 
       plugins = {
         # All from the built-in official and community sources.
-        enabled = ["noctalia/translator" "dotnetrob/cat" "yangkx/usbeehive"];
+        enabled = ["noctalia/translator" "yangkx/usbeehive" "noctalia/mpvpaper"];
       };
+
+      # Pause the video wallpaper when a window is maximized, not only
+      # fullscreen (mpvpaper --auto-mode MAX).
+      plugin_settings."noctalia/mpvpaper".auto_pause = "max";
 
       widget = {
         clock = {
@@ -158,14 +166,11 @@
         cpu.visualization = "none";
         temp.visualization = "none";
         ram.visualization = "none";
-        sysmon = {
-          stat = "disk_used_pct";
-          visualization = "none";
-        };
         # USB devices / USB-C charging wattage (plugins.enabled above); needs
         # usbeehive (modules/core/usbeehive.nix) and jq on PATH.
         usb.type = "yangkx/usbeehive:usb";
-        cat.type = "dotnetrob/cat:cat";
+        # Opens the mpvpaper plugin's video picker (plugins.enabled above).
+        video_wallpaper.type = "noctalia/mpvpaper:mpvpaper";
       };
 
       control_center.shortcuts = [
