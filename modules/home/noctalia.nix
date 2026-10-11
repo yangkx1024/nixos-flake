@@ -3,18 +3,20 @@
   pkgs,
   ...
 }: {
-  home.packages = [
+  home.packages = with pkgs; [
     # Template hooks run with the session PATH. The ghostty hook reloads a
     # directly launched Ghostty over D-Bus with gdbus; its pgrep -x ghostty
     # fallback never matches the nixpkgs-wrapped .ghostty-wrapped process, so
     # without gdbus open terminals keep the old palette after a mode switch.
-    pkgs.glib
+    glib
+    # needed for noctalia-shell screen-recorder plugin
+    gpu-screen-recorder
     # The usbeehive plugin pipes `usbeehive --watch --json` through jq.
-    pkgs.jq
+    jq
     # The mpvpaper plugin's service spawns mpvpaper from PATH; its other deps
     # (mpv for thumbnails, ffmpeg for still frames, socat for slideshow IPC)
     # come from modules/core/packages.nix.
-    pkgs.mpvpaper
+    mpvpaper
   ];
   programs.noctalia = {
     enable = true;
@@ -139,12 +141,12 @@
         capsule_opacity = 1;
         start = ["launcher" "workspaces" "active_window" "media"];
         center = ["clock"];
-        end = ["audio_visualizer" "temp" "ram" "sysmon" "usb" "video_wallpaper" "tray" "volume" "notifications" "control-center"];
+        end = ["audio_visualizer" "temp" "ram" "sysmon" "usb" "tray" "volume" "notifications" "control-center"];
       };
 
       plugins = {
         # All from the built-in official and community sources.
-        enabled = ["noctalia/translator" "yangkx/usbeehive" "noctalia/mpvpaper"];
+        enabled = ["noctalia/translator" "noctalia/screen_recorder" "yangkx/usbeehive" "noctalia/mpvpaper"];
       };
 
       # Pause the video wallpaper when a window is maximized, not only
@@ -166,22 +168,23 @@
         cpu.visualization = "none";
         temp.visualization = "none";
         ram.visualization = "none";
+        sysmon = {
+          stat = "disk_used_pct";
+          visualization = "none";
+        };
         # USB devices / USB-C charging wattage (plugins.enabled above); needs
         # usbeehive (modules/core/usbeehive.nix) and jq on PATH.
         usb.type = "yangkx/usbeehive:usb";
-        # Opens the mpvpaper plugin's video picker (plugins.enabled above).
-        video_wallpaper.type = "noctalia/mpvpaper:mpvpaper";
       };
 
       control_center.shortcuts = [
-        {type = "wifi";}
-        {type = "bluetooth";}
-        {type = "wallpaper";}
+        # Opens the mpvpaper plugin's video picker (plugins.enabled above).
+        {type = "noctalia/mpvpaper:shortcut";}
         {type = "dark_mode";}
         {type = "notification";}
         {type = "power_profile";}
         {type = "caffeine";}
-        {type = "screen_recorder";}
+        {type = "noctalia/screen_recorder:toggle";}
       ];
     };
   };

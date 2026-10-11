@@ -36,7 +36,6 @@
   environment.systemPackages = with pkgs; [
     matugen # color palette generator needed for noctalia-shell
     app2unit # launcher for noctalia-shell
-    gpu-screen-recorder # needed for noctalia-shell screen-recorder plugin
 
     appimage-run # Needed For AppImage Support
     brightnessctl # For Screen Brightness Control
