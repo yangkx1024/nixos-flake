@@ -13,10 +13,6 @@
     gpu-screen-recorder
     # The usbeehive plugin pipes `usbeehive --watch --json` through jq.
     jq
-    # The mpvpaper plugin's service spawns mpvpaper from PATH; its other deps
-    # (mpv for thumbnails, ffmpeg for still frames, socat for slideshow IPC)
-    # come from modules/core/packages.nix.
-    mpvpaper
   ];
   programs.noctalia = {
     enable = true;
@@ -146,12 +142,8 @@
 
       plugins = {
         # All from the built-in official and community sources.
-        enabled = ["noctalia/translator" "noctalia/screen_recorder" "yangkx/usbeehive" "noctalia/mpvpaper"];
+        enabled = ["noctalia/translator" "noctalia/screen_recorder" "yangkx/usbeehive"];
       };
-
-      # Pause the video wallpaper when a window is maximized, not only
-      # fullscreen (mpvpaper --auto-mode MAX).
-      plugin_settings."noctalia/mpvpaper".auto_pause = "max";
 
       widget = {
         clock = {
@@ -178,8 +170,7 @@
       };
 
       control_center.shortcuts = [
-        # Opens the mpvpaper plugin's video picker (plugins.enabled above).
-        {type = "noctalia/mpvpaper:shortcut";}
+        {type = "bluetooth";}
         {type = "dark_mode";}
         {type = "notification";}
         {type = "power_profile";}
