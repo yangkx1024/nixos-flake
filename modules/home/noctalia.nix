@@ -145,6 +145,9 @@
         enabled = ["noctalia/translator" "noctalia/screen_recorder" "yangkx/usbeehive"];
       };
 
+      # Keys may contain '/', so per-plugin settings live in a top-level table.
+      plugin_settings."yangkx/usbeehive".notify_hotplug = false;
+
       widget = {
         clock = {
           format = "{:%Y年%m月%d日 %A %H:%M}";

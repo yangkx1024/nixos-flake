@@ -10,9 +10,15 @@
   # fcitx5-configtool can no longer save: it writes its own copy over the store
   # symlink, and the next rebuild moves that aside as *.backup. Edit these
   # settings here, not in the GUI.
+  #
+  # ShareInputState=All makes the active input method global; the default (No)
+  # keeps one per window, so it jumps back on every focus change.
   xdg.configFile."fcitx5/config".text = ''
     [Hotkey/AltTriggerKeys]
     0=
+
+    [Behavior]
+    ShareInputState=All
   '';
 
   # 候选栏外观。只列真正要改的四项，其余留空回落到 fcitx5 的内置默认
