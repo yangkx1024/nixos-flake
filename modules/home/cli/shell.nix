@@ -10,7 +10,9 @@
     ".." = "cd ..";
     c = "clear";
     fr = "nh os switch --hostname ${profile}";
-    fu = "nh os switch --hostname ${profile} --update";
+    # Authenticate the flake update's GitHub API calls with gh's current token,
+    # read fresh on each run so it never goes stale and never enters the store.
+    fu = "NIX_CONFIG=\"access-tokens = github.com=$(gh auth token)\" nh os switch --hostname ${profile} --update";
     gd = "git diff";
     gst = "git status";
     man = "batman";
