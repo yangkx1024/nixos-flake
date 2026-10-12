@@ -8,6 +8,13 @@
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    # Source only: built by nixpkgs' hyprlandPlugins.hyprspace against
+    # pkgs.hyprland, so the plugin ABI always matches the running compositor.
+    hyprspace = {
+      url = "github:KZDKM/Hyprspace";
+      flake = false;
+    };
+
     nix-flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
 
     openlogi.url = "github:yangkx1024/OpenLogi/nix-cachix";

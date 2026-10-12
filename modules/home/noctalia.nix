@@ -53,6 +53,10 @@
           control_center_placement = "attached";
           open_near_click_control_center = true;
         };
+        window_switcher = {
+          stype = "compact";
+          show_all_outputs = true;
+        };
       };
 
       theme = {

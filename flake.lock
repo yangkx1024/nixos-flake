@@ -156,6 +156,22 @@
         "type": "github"
       }
     },
+    "hyprspace": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1790920592,
+        "narHash": "sha256-P27tvgpduDsMjk9mSti4We+a3kzYWYWznZKizvnyS+Q=",
+        "owner": "KZDKM",
+        "repo": "Hyprspace",
+        "rev": "cf08bed82621c1fb943ef4934ff0ba36540fea77",
+        "type": "github"
+      },
+      "original": {
+        "owner": "KZDKM",
+        "repo": "Hyprspace",
+        "type": "github"
+      }
+    },
     "msime": {
       "inputs": {
         "crane": "crane",
@@ -253,6 +269,7 @@
         "claude-code": "claude-code",
         "codex-cli-nix": "codex-cli-nix",
         "home-manager": "home-manager",
+        "hyprspace": "hyprspace",
         "msime": "msime",
         "nix-flatpak": "nix-flatpak",
         "nixpkgs": "nixpkgs",
