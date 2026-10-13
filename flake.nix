@@ -8,6 +8,11 @@
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    zen-browser = {
+      url = "github:youwen5/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Source only: built by nixpkgs' hyprlandPlugins.hyprspace against
     # pkgs.hyprland, so the plugin ABI always matches the running compositor.
     hyprspace = {
@@ -36,6 +41,14 @@
 
     msime = {
       url = "github:yangkx1024/msime/nix-cachix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Native GPUI client for the herdr daemon. Upstream publishes no binary
+    # cache, so this builds from source; following our nixpkgs links it
+    # against the same mesa/vulkan-loader/wayland as the rest of the desktop.
+    herdr-gpui = {
+      url = "github:penso/herdr-gpui";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

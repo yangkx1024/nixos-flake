@@ -50,6 +50,12 @@ _: {
       })
 
       hl.window_rule({
+        name = "Zen",
+        match = { class = [[^(zen)$]] },
+        tag = "+browser",
+      })
+
+      hl.window_rule({
         name = "steam-app",
         match = { class = [[^(steam_app\d+)$]] },
         tag = "+games",
@@ -155,6 +161,29 @@ _: {
         center = true,
         size = { "420", "680" },
       })
+
+      -- Same popout in Zen: Firefox gives it the browser's own class and only
+      -- sets the extension title after mapping (initial_title is "Zen Browser"),
+      -- so a title-matched window rule would never apply float/size/center.
+      -- Do it on the title change instead, once per window so a manual retile
+      -- sticks. (Page popups like OIDC logins don't need this: the Zen profile
+      -- sets browser.link.open_newwindow.restriction = 0, so they open as tabs.)
+      local zenBitwardenSeen = {}
+      hl.on("window.title", function(w)
+        if w.class ~= "zen" or zenBitwardenSeen[w.address] then
+          return
+        end
+        if not w.title:find("(Bitwarden Password Manager)", 1, true) then
+          return
+        end
+        zenBitwardenSeen[w.address] = true
+        hl.dispatch(hl.dsp.window.float({ action = "on", window = w }))
+        hl.dispatch(hl.dsp.window.resize({ x = 420, y = 680, window = w }))
+        hl.dispatch(hl.dsp.window.center({ window = w }))
+      end)
+      hl.on("window.close", function(w)
+        zenBitwardenSeen[w.address] = nil
+      end)
 
       hl.window_rule({
         name = "ThunarFileMgr",

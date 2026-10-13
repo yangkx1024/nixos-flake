@@ -19,10 +19,10 @@
         "image/png" = ["org.gnome.Loupe.desktop"];
         "image/gif" = ["org.gnome.Loupe.desktop"];
         "image/webp" = ["org.gnome.Loupe.desktop"];
-        "text/html" = ["com.google.Chrome.desktop"];
-        "x-scheme-handler/http" = ["com.google.Chrome.desktop"];
-        "x-scheme-handler/https" = ["com.google.Chrome.desktop"];
-        "x-scheme-handler/about" = ["com.google.Chrome.desktop"];
+        "text/html" = ["zen.desktop"];
+        "x-scheme-handler/http" = ["zen.desktop"];
+        "x-scheme-handler/https" = ["zen.desktop"];
+        "x-scheme-handler/about" = ["zen.desktop"];
         "application/pdf" = ["org.gnome.Papers.desktop"];
       };
     };

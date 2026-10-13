@@ -82,5 +82,7 @@
     codex
     claude-code
     herdr # Agent multiplexer for the terminal
+    herdr-gpui # Native GUI client for the herdr daemon
+    zen-browser
   ];
 }
