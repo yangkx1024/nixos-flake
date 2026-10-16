@@ -17,6 +17,7 @@
     ./virtmanager.nix
     ./noctalia.nix
     ./xdg.nix
+    ./zen-browser.nix
     ./terminals/wezterm.nix
     ./terminals/ghostty.nix
   ];

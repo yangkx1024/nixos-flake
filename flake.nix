@@ -8,9 +8,13 @@
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    # beta branch: only moves on beta releases, not the daily twilight bumps.
     zen-browser = {
-      url = "github:youwen5/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:0xc000022070/zen-browser-flake/beta";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
     };
 
     # Source only: built by nixpkgs' hyprlandPlugins.hyprspace against

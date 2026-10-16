@@ -2,7 +2,7 @@
   gitUsername = "Kexuan Yang";
   gitEmail = "kexuan.yang@gmail.com";
 
-  browser = "zen";
+  browser = "zen-beta";
   terminal = "wezterm";
   extraMonitorSettings = ''hl.monitor({ output = "DP-1", mode = "highres", position = "auto", scale = "2", bitdepth = 10 })'';
 

@@ -51,7 +51,7 @@ _: {
 
       hl.window_rule({
         name = "Zen",
-        match = { class = [[^(zen)$]] },
+        match = { class = [[^(zen-beta)$]] },
         tag = "+browser",
       })
 
@@ -170,7 +170,7 @@ _: {
       -- sets browser.link.open_newwindow.restriction = 0, so they open as tabs.)
       local zenBitwardenSeen = {}
       hl.on("window.title", function(w)
-        if w.class ~= "zen" or zenBitwardenSeen[w.address] then
+        if w.class ~= "zen-beta" or zenBitwardenSeen[w.address] then
           return
         end
         if not w.title:find("(Bitwarden Password Manager)", 1, true) then
