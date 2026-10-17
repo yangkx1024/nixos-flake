@@ -1,12 +1,14 @@
 {...}: {
   imports = [
     ./cli
+    ./desktop.nix
     ./fastfetch
     ./fcitx5.nix
     ./gtk.nix
     ./herdr.nix
     ./hyprland
     ./icon-theme.nix
+    ./niri
     ./qt.nix
     ./scripts
     ./ssh.nix

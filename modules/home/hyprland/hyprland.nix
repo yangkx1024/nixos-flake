@@ -9,15 +9,10 @@
   extraMonitorSettings = vars.extraMonitorSettings or "";
 in {
   home.packages = with pkgs; [
-    grim
-    slurp
-    swappy
-    ydotool
     # hyprshot shells out to hyprctl, so wrap it against the compositor's own
     # build rather than nixpkgs' separate one
     (hyprshot.override {hyprland = config.wayland.windowManager.hyprland.finalPackage;})
     hyprshutdown
-    hyprpicker
     hyprland-qtutils # needed for banners and ANR messages
     xrdb # loads Xft.dpi into Xwayland, see exec-once.nix
   ];
@@ -31,11 +26,6 @@ in {
   systemd.user.targets.hyprland-session.Unit.Wants = [
     "xdg-desktop-autostart.target"
   ];
-  # Place Files Inside Home Directory
-  home.file = {
-    ".face.icon".source = ./face.jpg;
-    ".config/face.jpg".source = ./face.jpg;
-  };
   wayland.windowManager.hyprland = {
     enable = true;
     package = pkgs.hyprland;

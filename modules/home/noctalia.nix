@@ -65,7 +65,7 @@
         builtin = "Ayu";
 
         templates = {
-          builtin_ids = ["gtk3" "gtk4" "kcolorscheme" "qt" "wezterm" "hyprland" "btop" "ghostty"];
+          builtin_ids = ["gtk3" "gtk4" "kcolorscheme" "qt" "wezterm" "hyprland" "niri" "btop" "ghostty"];
           community_ids = ["bat" "fcitx5" "fzf" "herdr" "hyprtoolkit" "lazygit" "neovim" "zed"];
         };
       };
@@ -139,7 +139,7 @@
         padding = 8;
         capsule = true;
         capsule_opacity = 1;
-        start = ["launcher" "workspaces" "active_window" "media"];
+        start = ["workspaces" "active_window" "media"];
         center = ["clock"];
         end = ["audio_visualizer" "temp" "ram" "sysmon" "usb" "tray" "volume" "notifications" "control-center"];
       };
@@ -158,7 +158,6 @@
           vertical_format = "{:%H %M - %m %d}";
           tooltip_format = "{:%Y年%m月%d日 %A %H:%M:%S}";
         };
-        launcher.glyph = "rocket";
         audio_visualizer = {
           width = 100;
           show_when_idle = false;

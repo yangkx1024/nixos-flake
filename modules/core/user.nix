@@ -59,7 +59,7 @@ in {
   # (accounts-daemon only rereads it on restart or user reload); a new face.jpg
   # just retargets the symlink.
   systemd.tmpfiles.settings."10-accountsservice-icon" = lib.mkIf config.services.accounts-daemon.enable {
-    ${accountIcon}."L+".argument = "${../home/hyprland/face.jpg}";
+    ${accountIcon}."L+".argument = "${../home/face.jpg}";
     # Owns the whole keyfile: accounts-daemon rewrites the full [User] group
     # anyway, and this user has no other keys set (checked over D-Bus).
     "${accountsDir}/users/${username}"."f+" = {

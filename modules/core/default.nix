@@ -8,6 +8,7 @@
     ./network.nix
     ./nfs.nix
     ./nh.nix
+    ./niri.nix
     ./nix-ld.nix
     ./openlogi.nix
     ./packages.nix
