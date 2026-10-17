@@ -28,8 +28,9 @@
   # inactive rule repeats each matcher with is-active=false. is-active rather
   # than is-focused, so that opening a Noctalia panel doesn't dim the window
   # behind it. Blur is xray (it shows the wallpaper), niri's default and
-  # cheap; the border would otherwise be drawn as a solid rectangle showing
-  # through the window.
+  # cheap, except on floating windows (last rule below). Without
+  # draw-border-with-background false the border would be drawn as a solid
+  # rectangle showing through the window.
   translucent = matchers: active: inactive: body: ''
     window-rule {
     ${matches "" matchers}${lib.concatMapStrings (l: lib.optionalString (l != "") "    ${l}\n") (lib.splitString "\n" body)}    opacity ${active}
@@ -43,7 +44,7 @@
     }
   '';
 
-  terminals = [''app-id=r#"^(com\.mitchellh\.ghostty|org\.wezfurlong\.wezterm|Alacritty|kitty|kitty-dropterm|dropterminal)$"#''];
+  terminals = [''app-id=r#"^(com\.mitchellh\.ghostty|org\.wezfurlong\.wezterm|Alacritty|kitty|kitty-dropterm|dropterminal|so\.pen\.herdr-gpui)$"#''];
   fileManagers = [''app-id=r#"^([Tt]hunar|org\.gnome\.Nautilus|[Pp]cmanfm-qt)$"#''];
   settings = [
     ''app-id=r#"^dev\.noctalia\.Noctalia$"#''
@@ -115,7 +116,7 @@ in {
       }
     ''
 
-    (translucent [''title="^Authentication Required$"''] "0.8" "0.7" ''
+    (translucent [''title="^Authentication Required$"''] "0.9" "0.8" ''
       open-floating true
     '')
 
@@ -151,8 +152,8 @@ in {
       }
     ''
 
-    (translucent fileManagers "0.8" "0.7" "")
-    (translucent terminals "0.8" "0.7" "")
+    (translucent fileManagers "0.9" "0.8" "")
+    (translucent terminals "0.9" "0.8" "")
 
     # Hyprland's vrr = 2 (fullscreen only) becomes on-demand VRR on the
     # output (niriOutputSettings in hosts/<host>/variables.nix), turned on
@@ -169,6 +170,29 @@ in {
           open-floating true
           default-column-width { proportion 0.8; }
           default-window-height { proportion 0.8; }
+      }
+
+      // Floating windows sit over other windows, so blur what's actually
+      // behind them, as Hyprland does, rather than xray's wallpaper. Tiled
+      // windows never overlap and keep the cheap xray blur. Non-xray blur is
+      // experimental in 26.04: it drops out during open/close animations.
+      // Merges per field, so this only flips xray on windows that have blur.
+      window-rule {
+          match is-floating=true
+          background-effect {
+              xray false
+          }
+      }
+
+      // Same for Noctalia's surfaces that open over windows: panels (the
+      // launcher, control center, ...), notifications and OSDs. Noctalia
+      // requests the blur itself; this only turns off xray. The bar keeps
+      // xray: its exclusive zone means only wallpaper is ever behind it.
+      layer-rule {
+          match namespace="^noctalia-(panel|attached-panel|notification|osd)$"
+          background-effect {
+              xray false
+          }
       }
     ''
   ];

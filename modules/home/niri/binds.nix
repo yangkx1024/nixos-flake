@@ -29,7 +29,6 @@ in {
         Mod+Shift+W     { ${noctalia ''"panel-toggle" "wallpaper"''}; }
         Mod+Shift+X     { ${noctalia ''"panel-toggle" "session"''}; }
         Mod+N           { ${noctalia ''"panel-toggle" "control-center"''}; }
-        Mod+Tab         { ${noctalia ''"window-switcher"''}; }
         Mod+Shift+R     { spawn-sh "pkill -x noctalia; sleep 0.3; noctalia"; }
 
         // ============= APPS =============

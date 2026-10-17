@@ -39,7 +39,7 @@ _: {
 
       hl.window_rule({
         name = "Terminals",
-        match = { class = [[^(com.mitchellh.ghostty|org.wezfurlong.wezterm|Alacritty|kitty|kitty-dropterm|dropterminal)$]] },
+        match = { class = [[^(com.mitchellh.ghostty|org.wezfurlong.wezterm|Alacritty|kitty|kitty-dropterm|dropterminal|so.pen.herdr-gpui)$]] },
         tag = "+terminal",
       })
 
@@ -197,7 +197,7 @@ _: {
         match = { title = [[^(Authentication Required)$]] },
         center = true,
         float = true,
-        opacity = "0.8 0.7",
+        opacity = "0.9 0.8",
       })
 
       hl.window_rule({
@@ -258,13 +258,13 @@ _: {
       hl.window_rule({
         name = "File-Managers",
         match = { tag = "file-manager*" },
-        opacity = "0.8 0.7",
+        opacity = "0.9 0.8",
       })
 
       hl.window_rule({
         name = "Terminals-opacity",
         match = { tag = "terminal*" },
-        opacity = "0.8 0.7",
+        opacity = "0.9 0.8",
         no_blur = false,
       })
 

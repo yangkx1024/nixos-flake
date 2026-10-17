@@ -81,6 +81,14 @@ in {
         // Ask apps for server-side decorations, as they get on Hyprland.
         prefer-no-csd
 
+        // Hyprland's blur { size = 5; passes = 3; }. Both are dual kawase, and
+        // Hyprland's size is the per-pass sample offset. If it shows banding
+        // or blocky artifacts, raise passes rather than lowering offset.
+        blur {
+            passes 3
+            offset 5
+        }
+
         cursor {
             xcursor-theme "${cursor.name}"
             xcursor-size ${toString cursor.size}
@@ -94,11 +102,13 @@ in {
 
         screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
-        // niri's own Alt-Tab switcher, to compare with noctalia's on Mod+Tab
-        // (binds.nix). A binds {} section replaces all the defaults, which would
-        // otherwise also claim Mod+Tab.
+        // niri's own switcher, also on Mod+Tab in place of noctalia's. A binds {}
+        // section replaces all the defaults; Mod+Shift+Tab is left out because
+        // it's the overview (binds.nix). Inside the switcher, arrows or H/L
+        // move the selection and Enter confirms, without releasing the modifier.
         recent-windows {
             binds {
+                Mod+Tab         { next-window; }
                 Alt+Tab         { next-window; }
                 Alt+Shift+Tab   { previous-window; }
                 Alt+grave       { next-window     filter="app-id"; }

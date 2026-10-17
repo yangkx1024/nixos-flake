@@ -1,4 +1,11 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: let
+  # Rendered by noctalia's gtk3 template on every light/dark switch.
+  gtk3Colors = "${config.xdg.configHome}/gtk-3.0/noctalia.css";
+in {
   # middle-click paste. GTK apps (ghostty, chrome) read this from gsettings,
   # and the org.gnome.desktop.interface schema defaults it to false, which
   # disables middle-click paste for every GTK app on the system.
@@ -32,5 +39,24 @@
     # already feeds gtk.cursorTheme (name, package and size) via mkDefault, and
     # is also what drives HYPRCURSOR_*/XCURSOR_*. Declaring the cursor twice is
     # how the two halves drift apart.
+  };
+
+  # GTK3 reads the user gtk.css (and so noctalia.css) once per process
+  # (settings_init_style in gtk/gtksettings.c), so a running app keeps the old
+  # palette after a mode switch even though gtk-theme itself changes live.
+  # Apps pick it up when reopened; the file chooser portal lives for the whole
+  # session, so restart it whenever noctalia rewrites the colours. try-restart
+  # leaves it alone if it isn't running; D-Bus activation starts it fresh.
+  systemd.user.paths.gtk3-portal-noctalia-colors = {
+    Unit.Description = "Watch noctalia's GTK3 colours";
+    Path.PathChanged = gtk3Colors;
+    Install.WantedBy = ["default.target"];
+  };
+  systemd.user.services.gtk3-portal-noctalia-colors = {
+    Unit.Description = "Restart the GTK file chooser portal after noctalia changes GTK3 colours";
+    Service = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.systemd}/bin/systemctl --user try-restart xdg-desktop-portal-gtk.service";
+    };
   };
 }
