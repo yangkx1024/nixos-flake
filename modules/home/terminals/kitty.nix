@@ -22,9 +22,10 @@
       # The compositor draws borders and decorations.
       hide_window_decorations = true;
     };
-    # Written by noctalia's kitty template. kitty.conf is a store symlink;
-    # with the line already present, assets/templates/kitty/apply.sh finds
-    # nothing to change and never writes through it.
+    # Rendered by noctalia's kitty template. Its post_hook, which would add
+    # this include and SIGUSR1 kitty, dies touching the read-only kitty.conf
+    # symlink; harmless, since the include is here and kitty's
+    # auto_reload_config (on by default) picks up the new theme file.
     extraConfig = ''
       include themes/noctalia.conf
     '';

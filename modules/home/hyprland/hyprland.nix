@@ -23,9 +23,6 @@ in {
   xresources.properties = {
     "Xft.dpi" = 192;
   };
-  systemd.user.targets.hyprland-session.Unit.Wants = [
-    "xdg-desktop-autostart.target"
-  ];
   wayland.windowManager.hyprland = {
     enable = true;
     package = pkgs.hyprland;
