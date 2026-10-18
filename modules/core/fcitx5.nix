@@ -18,6 +18,20 @@ in {
   imports = [inputs.msime.nixosModules.default];
   programs.msime.enable = true;
 
+  # fcitx5-with-addons bundles fcitx5-configtool by default, and configtool's
+  # KCM support drags libplasma and plasma-activities into the closure. It
+  # cannot save here anyway (config files are store symlinks, see
+  # modules/home/fcitx5.nix), so drop it. This has to be an overlay: the fcitx5
+  # module builds its own copy of the package for QT_PLUGIN_PATH, so overriding
+  # i18n.inputMethod.package alone leaves the configtool build in the closure.
+  nixpkgs.overlays = [
+    (final: prev: {
+      qt6Packages = prev.qt6Packages.overrideScope (qfinal: qprev: {
+        fcitx5-with-addons = qprev.fcitx5-with-addons.override {withConfigtool = false;};
+      });
+    })
+  ];
+
   i18n.inputMethod = {
     type = "fcitx5";
     enable = true;
