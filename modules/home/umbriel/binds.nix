@@ -1,6 +1,8 @@
 {
   vars,
+  config,
   lib,
+  pkgs,
   ...
 }: let
   inherit
@@ -9,10 +11,9 @@
     terminal
     ;
   # Same keys as modules/home/niri/binds.nix, plus Hyprland's special
-  # workspace (as the default scratchpad) and layout switcher, which niri
-  # lacks. Not ported: the SUPER+C/V/X/A/Z/S edit keys (no send-shortcut
-  # action) and the window screenshot (no screenshot UI; grim can't pick a
-  # window here).
+  # workspace (as the default scratchpad), layout switcher and edit keys,
+  # which niri lacks. Not ported: the window screenshot (no screenshot UI;
+  # grim can't pick a window here).
   # Setting keybinds replaces every built-in bind. Umbriel's built-in
   # touchpad gestures and Mod+drag move/resize work without one.
   noctalia = args: "spawn:noctalia msg ${args}";
@@ -24,6 +25,32 @@
   locked = action: {
     inherit action;
     allow_when_locked = true;
+  };
+
+  # Hyprland's macOS-style edit keys (hyprland/binds.nix). Umbriel has no
+  # send-shortcut action, so wtype types the shortcut through a virtual
+  # keyboard; Umbriel keeps each keyboard's modifiers apart, so the app sees
+  # CTRL alone even with SUPER still held. Terminals get CTRL+SHIFT for copy,
+  # paste and select-all, and nothing for cut, undo and save, whose CTRL forms
+  # are SIGINT-like there (readline prefix, SIGTSTP, XOFF).
+  editKey = pkgs.writeShellApplication {
+    name = "umbriel-edit-key";
+    runtimeInputs = [pkgs.socat pkgs.jq pkgs.wtype];
+    # The IPC socket directly: `umbriel windows` loads the whole compositor
+    # binary first, about 11ms of this script's 20ms.
+    text = ''
+      key=$1
+      sock=''${UMBRIEL_SOCKET:-$XDG_RUNTIME_DIR/umbriel-$WAYLAND_DISPLAY.sock}
+      if echo '{"cmd":"windows"}' | socat -t 1 STDIO "UNIX-CONNECT:$sock" \
+        | jq -e --arg re ${lib.escapeShellArg (import ./terminals.nix)} \
+          'any(.ok[]; .focused and (.app_id | test($re)))' >/dev/null; then
+        case $key in
+          c | v | a) exec wtype -M ctrl -M shift -k "$key" -m shift -m ctrl ;;
+          *) exit 0 ;;
+        esac
+      fi
+      exec wtype -M ctrl -k "$key" -m ctrl
+    '';
   };
 in {
   programs.umbriel.settings.keybinds =
@@ -58,6 +85,14 @@ in {
       "Mod+Ctrl+G" = ''spawn:grim "${shots}"'';
       "Mod+Alt+G" = ''spawn:grim -g "$(slurp)" "${shots}"'';
       "Mod+Alt+C" = "spawn:hyprpicker -a";
+
+      # ============= MACOS-STYLE EDIT KEYS =============
+      "Mod+C" = once "spawn:${lib.getExe editKey} c";
+      "Mod+V" = once "spawn:${lib.getExe editKey} v";
+      "Mod+X" = once "spawn:${lib.getExe editKey} x";
+      "Mod+A" = once "spawn:${lib.getExe editKey} a";
+      "Mod+Z" = once "spawn:${lib.getExe editKey} z";
+      "Mod+S" = once "spawn:${lib.getExe editKey} s";
 
       # ============= WINDOWS =============
       "Mod+Q" = once "window-close";

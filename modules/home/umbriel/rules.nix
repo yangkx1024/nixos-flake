@@ -25,7 +25,7 @@
     ])
     matches;
 
-  terminals = [{app_id = ''^(com\.mitchellh\.ghostty|org\.wezfurlong\.wezterm|Alacritty|kitty|kitty-dropterm|dropterminal|so\.pen\.herdr-gpui)$'';}];
+  terminals = [{app_id = import ./terminals.nix;}];
   fileManagers = [{app_id = ''^([Tt]hunar|org\.gnome\.Nautilus|[Pp]cmanfm-qt)$'';}];
   settings = [
     {
