@@ -1,5 +1,5 @@
 # Toolkit hints shared by every compositor session. Not a module: hyprland/env.nix
-# puts them in Hyprland's env, niri/config.nix in systemd.user.sessionVariables.
+# puts them in Hyprland's env, desktop.nix in systemd.user.sessionVariables.
 # Don't repeat these in NixOS environment.{variables,sessionVariables} or
 # home.sessionVariables. cursor is config.home.pointerCursor.
 {

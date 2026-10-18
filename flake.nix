@@ -24,6 +24,13 @@
       flake = false;
     };
 
+    # Main branch rather than nixpkgs' snapshot while Umbriel is young. Built
+    # locally against this nixpkgs (no binary cache), as is its portal.
+    umbriel = {
+      url = "github:noctalia-dev/umbriel";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
 
     openlogi.url = "github:yangkx1024/OpenLogi/nix-cachix";

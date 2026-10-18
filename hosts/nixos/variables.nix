@@ -3,9 +3,10 @@
   gitEmail = "kexuan.yang@gmail.com";
 
   browser = "zen-beta";
-  terminal = "wezterm";
-  # Hyprland's view of the monitor; niriOutputSettings below is the same one
-  # for niri, so keep the two in step.
+  terminal = "kitty";
+  # Hyprland's view of the monitor; niriOutputSettings and
+  # umbrielOutputSettings below are the same one for niri and Umbriel, so keep
+  # the three in step.
   extraMonitorSettings = ''hl.monitor({ output = "DP-1", mode = "highres", position = "auto", scale = "2", bitdepth = 10 })'';
   # The same monitor for niri (modules/home/niri/config.nix), as KDL.
   niriOutputSettings = ''
@@ -16,6 +17,14 @@
         variable-refresh-rate on-demand=true
     }
   '';
+  # The same monitor for Umbriel (modules/home/umbriel/config.nix), as its
+  # settings.output.
+  umbrielOutputSettings."DP-1" = {
+    scale = 2.0;
+    bit_depth = 10;
+    # Like Hyprland's vrr = 2: VRR only for fullscreen windows (games).
+    vrr = "fullscreen";
+  };
 
   # GPU PCI bus IDs. Only the hybrid profiles read these
   # (profiles/nvidia-laptop, profiles/amd-nvidia-hybrid); find yours with

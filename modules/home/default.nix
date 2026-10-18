@@ -9,6 +9,7 @@
     ./hyprland
     ./icon-theme.nix
     ./niri
+    ./umbriel
     ./qt.nix
     ./scripts
     ./ssh.nix
@@ -22,5 +23,6 @@
     ./zen-browser.nix
     ./terminals/wezterm.nix
     ./terminals/ghostty.nix
+    ./terminals/kitty.nix
   ];
 }

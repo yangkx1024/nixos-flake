@@ -6,12 +6,8 @@
 }: let
   cursor = config.home.pointerCursor;
 in {
-  # niri runs as niri.service, so it and everything it spawns take their
-  # environment from the systemd user manager, as do the apps noctalia
-  # launches as systemd units (launch_apps_as_systemd_services). environment.d
-  # is therefore the one place niri needs these; niri --session sets
-  # XDG_CURRENT_DESKTOP=niri itself.
-  systemd.user.sessionVariables = import ../session-env.nix {inherit vars cursor;};
+  # niri runs as niri.service and takes its environment from the systemd user
+  # manager (desktop.nix); niri --session sets XDG_CURRENT_DESKTOP=niri itself.
 
   # Home Manager's module rather than niri-flake's, which would bring back a
   # separately pinned nixpkgs. Config is plain KDL in extraConfig, merged from
