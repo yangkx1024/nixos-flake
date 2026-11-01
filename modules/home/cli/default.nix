@@ -4,6 +4,7 @@
     ./bash.nix
     ./zsh.nix
     ./bat.nix
+    ./direnv.nix
     ./btop.nix
     ./eza.nix
     ./fzf.nix

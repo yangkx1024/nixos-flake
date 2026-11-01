@@ -2,7 +2,7 @@
   gitUsername = "Kexuan Yang";
   gitEmail = "kexuan.yang@gmail.com";
 
-  browser = "zen-beta";
+  browser = "google-chrome-stable";
   terminal = "kitty";
   # Hyprland's view of the monitor; niriOutputSettings and
   # umbrielOutputSettings below are the same one for niri and Umbriel, so keep

@@ -55,7 +55,7 @@ in {
         Mod+Shift+C     { quit; }
         Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 
-        // Hyprspace's overview key
+        // Overview
         Mod+Shift+Tab repeat=false { toggle-overview; }
 
         // ============= COLUMNS =============

@@ -18,7 +18,9 @@
     };
     hyprland = {
       enable = true; # set this so desktop file is created
-      withUWSM = false;
+      # The module now passes this to the package override; only the default
+      # (true) build is in cache.nixos.org, false forces a local Hyprland build.
+      withUWSM = true;
     };
     dconf.enable = true;
     seahorse.enable = true;

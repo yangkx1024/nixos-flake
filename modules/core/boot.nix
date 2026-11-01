@@ -25,8 +25,9 @@
     };
     plymouth.enable = true;
     plymouth.extraConfig = "UseSimpledrm=1";
-    kernelParams = ["quiet"];
+    # Stage 1 is always systemd now (boot.initrd.verbose is gone); `quiet`
+    # already hides systemd status, the udev params silence udev in both stages.
+    kernelParams = ["quiet" "rd.udev.log_level=3" "udev.log_level=3"];
     consoleLogLevel = 0;
-    initrd.verbose = false;
   };
 }

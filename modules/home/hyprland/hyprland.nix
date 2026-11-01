@@ -3,7 +3,6 @@
   pkgs,
   config,
   lib,
-  inputs,
   ...
 }: let
   extraMonitorSettings = vars.extraMonitorSettings or "";
@@ -13,7 +12,6 @@ in {
     # build rather than nixpkgs' separate one
     (hyprshot.override {hyprland = config.wayland.windowManager.hyprland.finalPackage;})
     hyprshutdown
-    hyprland-qtutils # needed for banners and ANR messages
     xrdb # loads Xft.dpi into Xwayland, see exec-once.nix
   ];
 
@@ -26,12 +24,6 @@ in {
   wayland.windowManager.hyprland = {
     enable = true;
     package = pkgs.hyprland;
-    plugins = [
-      (pkgs.hyprlandPlugins.hyprspace.overrideAttrs {
-        src = inputs.hyprspace;
-        version = "0-unstable-${inputs.hyprspace.shortRev}";
-      })
-    ];
     # null: the NixOS module (programs.hyprland) owns the portal; a non-null
     # value makes home-manager enable a duplicate xdg.portal of its own.
     portalPackage = null;
@@ -102,10 +94,6 @@ in {
           enable_anr_dialog = true;
           anr_missed_pings = 15;
         };
-
-        # Hyprspace reserves panel space on its edge and re-arranges layers, so
-        # a top panel would push noctalia's top bar down; keep it at the bottom.
-        plugin.overview.onBottom = true;
 
         decoration = {
           rounding = 10;

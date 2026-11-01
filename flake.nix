@@ -17,13 +17,6 @@
       };
     };
 
-    # Source only: built by nixpkgs' hyprlandPlugins.hyprspace against
-    # pkgs.hyprland, so the plugin ABI always matches the running compositor.
-    hyprspace = {
-      url = "github:KZDKM/Hyprspace";
-      flake = false;
-    };
-
     # Main branch rather than nixpkgs' snapshot while Umbriel is young. Built
     # locally against this nixpkgs (no binary cache), as is its portal.
     umbriel = {
@@ -33,7 +26,7 @@
 
     nix-flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
 
-    openlogi.url = "github:yangkx1024/OpenLogi/nix-cachix";
+    openlogi.url = "github:yangkx1024/OpenLogi/nix-cachix?dir=packaging";
 
     alejandra = {
       url = "github:kamadorueda/alejandra";

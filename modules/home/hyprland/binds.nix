@@ -123,12 +123,6 @@ in {
 
       hl.bind(mainMod .. " + TAB", hl.dsp.exec_cmd("noctalia msg window-switcher"))
 
-      -- ============= HYPRSPACE =============
-      -- Toggle overview on all monitors
-      hl.bind(mainMod .. " + SHIFT + TAB", function()
-          hl.plugin.overview.toggle("all")
-      end, { description = "Toggle Hyprspace overview on all monitors" })
-
       -- ============= LAYOUTS =============
       hl.bind(mainMod .. " + ALT + L",      hl.dsp.exec_cmd("hyprland-change-layout toggle"))
       hl.bind(mainMod .. " + ALT + 1",      hl.dsp.exec_cmd("hyprland-change-layout dwindle"))

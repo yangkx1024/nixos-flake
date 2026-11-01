@@ -16,7 +16,7 @@
   # grim can't pick a window here).
   # Setting keybinds replaces every built-in bind. Umbriel's built-in
   # touchpad gestures and Mod+drag move/resize work without one.
-  noctalia = args: "spawn:noctalia msg ${args}";
+  noctalia = args: "spawn noctalia msg ${args}";
   shots = "$HOME/Pictures/Screenshots/Screenshot from $(date +'%Y-%m-%d %H-%M-%S').png";
   once = action: {
     inherit action;
@@ -67,7 +67,7 @@ in {
       "Mod+Shift+W" = noctalia "panel-toggle wallpaper";
       "Mod+Shift+X" = noctalia "panel-toggle session";
       "Mod+N" = noctalia "panel-toggle control-center";
-      "Mod+Shift+R" = "spawn:pkill -x noctalia; sleep 0.3; noctalia";
+      "Mod+Shift+R" = "spawn pkill -x noctalia; sleep 0.3; noctalia";
       # Noctalia's switcher, as on Hyprland; Umbriel has none of its own.
       "Mod+Tab" = noctalia "window-switcher";
       "Alt+Tab" = noctalia "window-switcher";
@@ -75,24 +75,24 @@ in {
       # ============= APPS =============
       # app2unit starts each app in its own scope under app.slice, as
       # noctalia's launcher does.
-      "Mod+Return" = "spawn:app2unit -- ${terminal}";
-      "Mod+B" = "spawn:app2unit -- ${browser}";
-      "Mod+T" = "spawn:app2unit -- thunar";
-      "Mod+Alt+M" = "spawn:pavucontrol";
+      "Mod+Return" = "spawn app2unit -- ${terminal}";
+      "Mod+B" = "spawn app2unit -- ${browser}";
+      "Mod+T" = "spawn app2unit -- thunar";
+      "Mod+Alt+M" = "spawn pavucontrol";
 
       # ============= SCREENSHOTS =============
-      "Mod+G" = "spawn:screenshootin";
-      "Mod+Ctrl+G" = ''spawn:grim "${shots}"'';
-      "Mod+Alt+G" = ''spawn:grim -g "$(slurp)" "${shots}"'';
-      "Mod+Alt+C" = "spawn:hyprpicker -a";
+      "Mod+G" = "spawn screenshootin";
+      "Mod+Ctrl+G" = ''spawn grim "${shots}"'';
+      "Mod+Alt+G" = ''spawn grim -g "$(slurp)" "${shots}"'';
+      "Mod+Alt+C" = "spawn hyprpicker -a";
 
       # ============= MACOS-STYLE EDIT KEYS =============
-      "Mod+C" = once "spawn:${lib.getExe editKey} c";
-      "Mod+V" = once "spawn:${lib.getExe editKey} v";
-      "Mod+X" = once "spawn:${lib.getExe editKey} x";
-      "Mod+A" = once "spawn:${lib.getExe editKey} a";
-      "Mod+Z" = once "spawn:${lib.getExe editKey} z";
-      "Mod+S" = once "spawn:${lib.getExe editKey} s";
+      "Mod+C" = once "spawn ${lib.getExe editKey} c";
+      "Mod+V" = once "spawn ${lib.getExe editKey} v";
+      "Mod+X" = once "spawn ${lib.getExe editKey} x";
+      "Mod+A" = once "spawn ${lib.getExe editKey} a";
+      "Mod+Z" = once "spawn ${lib.getExe editKey} z";
+      "Mod+S" = once "spawn ${lib.getExe editKey} s";
 
       # ============= WINDOWS =============
       "Mod+Q" = once "window-close";
@@ -103,7 +103,7 @@ in {
       "Mod+Shift+C" = "session-quit";
       "Mod+Escape" = (once "shortcuts-inhibit-toggle") // {allow_when_inhibited = true;};
 
-      # Hyprspace's overview key
+      # Overview
       "Mod+Shift+Tab" = once "overview-toggle";
 
       # ============= SCRATCHPAD =============
@@ -113,20 +113,20 @@ in {
 
       # ============= LAYOUTS =============
       # Per workspace, as Hyprland's hyprland-change-layout.
-      "Mod+Alt+L" = "workspace-set-layout:toggle";
-      "Mod+Alt+1" = "workspace-set-layout:dwindle";
-      "Mod+Alt+2" = "workspace-set-layout:master";
-      "Mod+Alt+3" = "workspace-set-layout:scrolling";
+      "Mod+Alt+L" = "workspace-set-layout toggle";
+      "Mod+Alt+1" = "workspace-set-layout dwindle";
+      "Mod+Alt+2" = "workspace-set-layout master";
+      "Mod+Alt+3" = "workspace-set-layout scrolling";
       # Refused outside dwindle, like Hyprland's layout messages.
       "Mod+O" = "layout-toggle-split";
       "Mod+Shift+M" = "window-swap-next";
 
       # ============= COLUMNS =============
       "Mod+R" = "window-cycle-primary-extent";
-      "Mod+Minus" = "window-modify-primary-extent:-0.1";
-      "Mod+Equal" = "window-modify-primary-extent:0.1";
-      "Mod+Shift+Minus" = "window-modify-secondary-extent:-0.1";
-      "Mod+Shift+Equal" = "window-modify-secondary-extent:0.1";
+      "Mod+Minus" = "window-modify-primary-extent -0.1";
+      "Mod+Equal" = "window-modify-primary-extent 0.1";
+      "Mod+Shift+Minus" = "window-modify-secondary-extent -0.1";
+      "Mod+Shift+Equal" = "window-modify-secondary-extent 0.1";
       "Mod+BracketLeft" = "window-consume-or-expel-left";
       "Mod+BracketRight" = "window-consume-or-expel-right";
       "Mod+W" = once "column-toggle-tabbed";
@@ -174,18 +174,18 @@ in {
       "Mod+Shift+WheelUp" = "window-focus-left";
 
       # ============= MEDIA & HARDWARE =============
-      "XF86AudioRaiseVolume" = locked "spawn:wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+";
-      "XF86AudioLowerVolume" = locked "spawn:wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
-      "XF86AudioMute" = locked "spawn:wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
-      "XF86AudioPlay" = locked "spawn:playerctl play-pause";
-      "XF86AudioPause" = locked "spawn:playerctl play-pause";
-      "XF86AudioNext" = locked "spawn:playerctl next";
-      "XF86AudioPrev" = locked "spawn:playerctl previous";
-      "XF86MonBrightnessDown" = locked "spawn:brightnessctl set 5%-";
-      "XF86MonBrightnessUp" = locked "spawn:brightnessctl set +5%";
+      "XF86AudioRaiseVolume" = locked "spawn wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+";
+      "XF86AudioLowerVolume" = locked "spawn wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
+      "XF86AudioMute" = locked "spawn wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+      "XF86AudioPlay" = locked "spawn playerctl play-pause";
+      "XF86AudioPause" = locked "spawn playerctl play-pause";
+      "XF86AudioNext" = locked "spawn playerctl next";
+      "XF86AudioPrev" = locked "spawn playerctl previous";
+      "XF86MonBrightnessDown" = locked "spawn brightnessctl set 5%-";
+      "XF86MonBrightnessUp" = locked "spawn brightnessctl set +5%";
     }
     // lib.mergeAttrsList (map (i: {
-      "Mod+${i}" = "workspace-switch:${i}";
-      "Mod+Shift+${i}" = "column-move-to-workspace:${i}";
+      "Mod+${i}" = "workspace-switch ${i}";
+      "Mod+Shift+${i}" = "column-move-to-workspace ${i}";
     }) (map toString (lib.range 1 9)));
 }
