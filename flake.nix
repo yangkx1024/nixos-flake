@@ -52,7 +52,7 @@
     # cache, so this builds from source; following our nixpkgs links it
     # against the same mesa/vulkan-loader/wayland as the rest of the desktop.
     herdr-gpui = {
-      url = "github:penso/herdr-gpui";
+      url = "github:sheprd-labs/sheprd";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
