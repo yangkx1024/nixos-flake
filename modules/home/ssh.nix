@@ -11,6 +11,9 @@
         # YubiKey-backed key; don't fall back to other keys.
         IdentityFile = "~/.ssh/id_ed25519_sk";
         IdentitiesOnly = "yes";
+        # Sign with the key file directly so ssh prints "Confirm user presence"
+        # in the terminal; via the (gcr) agent the touch request is silent.
+        IdentityAgent = "none";
       };
     };
   };

@@ -16,6 +16,10 @@
     services.sudo.u2f.enable = true;
   };
 
+  # Neither ssh-agent nor gpg-agent tell the terminal when the key is waiting
+  # for a touch; this user service sends a desktop notification instead.
+  programs.yubikey-touch-detector.enable = true;
+
   environment.systemPackages = with pkgs; [
     yubikey-manager # ykman CLI
     yubioath-flutter # Yubico Authenticator GUI (successor to yubikey-manager-qt)
