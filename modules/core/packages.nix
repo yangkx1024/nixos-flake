@@ -46,7 +46,7 @@
     ddcutil # Monitor Control Over DDC/CI
     ffmpeg # Terminal Video / Audio Editing
     file-roller # Archive Manager
-    gearlever # Manage / run Appimages
+    (gearlever.override {dwarfs = null;}) # Manage / run Appimages; all ours are squashfs
     icu # dep for gearlever
     killall # For Killing All Instances Of Programs
     libnotify # For Notifications
@@ -84,6 +84,5 @@
     codex
     claude-code
     herdr # Agent multiplexer for the terminal
-    herdr-gpui # Native GUI client for the herdr daemon
   ];
 }

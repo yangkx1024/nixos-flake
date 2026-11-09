@@ -44,7 +44,7 @@
     }
   '';
 
-  terminals = [''app-id=r#"^(com\.mitchellh\.ghostty|org\.wezfurlong\.wezterm|Alacritty|kitty|kitty-dropterm|dropterminal|so\.pen\.herdr-gpui)$"#''];
+  terminals = [''app-id=r#"^(com\.mitchellh\.ghostty|org\.wezfurlong\.wezterm|Alacritty|kitty|kitty-dropterm|dropterminal)$"#''];
   fileManagers = [''app-id=r#"^([Tt]hunar|org\.gnome\.Nautilus|[Pp]cmanfm-qt)$"#''];
   settings = [
     ''app-id=r#"^dev\.noctalia\.Noctalia$"#''

@@ -3,7 +3,7 @@
   gitEmail = "kexuan.yang@gmail.com";
 
   browser = "google-chrome-stable";
-  terminal = "kitty";
+  terminal = "ghostty";
   # Hyprland's view of the monitor; niriOutputSettings and
   # umbrielOutputSettings below are the same one for niri and Umbriel, so keep
   # the three in step.

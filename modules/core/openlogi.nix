@@ -6,6 +6,10 @@
     inputs.openlogi.nixosModules.default
   ];
 
+  # nixpkgs ships its own programs.openlogi module (0.6.25, no agent service)
+  # that collides with the flake's. Keep the flake's (0.9.x + launchAtLogin).
+  disabledModules = ["programs/openlogi.nix"];
+
   programs.openlogi = {
     enable = true;
     # The agent is a systemd user unit bound to graphical-session.target, which

@@ -39,7 +39,7 @@ _: {
 
       hl.window_rule({
         name = "Terminals",
-        match = { class = [[^(com.mitchellh.ghostty|org.wezfurlong.wezterm|Alacritty|kitty|kitty-dropterm|dropterminal|so.pen.herdr-gpui)$]] },
+        match = { class = [[^(com.mitchellh.ghostty|org.wezfurlong.wezterm|Alacritty|kitty|kitty-dropterm|dropterminal)$]] },
         tag = "+terminal",
       })
 

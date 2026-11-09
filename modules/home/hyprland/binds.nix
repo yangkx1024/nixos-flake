@@ -38,7 +38,6 @@ in {
         ["kitty"] = true,
         ["kitty-dropterm"] = true,
         ["dropterminal"] = true,
-        ["so.pen.herdr-gpui"] = true,
       }
 
       local terminalMods = {

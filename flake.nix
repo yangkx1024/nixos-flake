@@ -48,14 +48,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Native GPUI client for the herdr daemon. Upstream publishes no binary
-    # cache, so this builds from source; following our nixpkgs links it
-    # against the same mesa/vulkan-loader/wayland as the rest of the desktop.
-    herdr-gpui = {
-      url = "github:sheprd-labs/sheprd";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     usbeehive = {
       url = "github:yangkx1024/usbeehive/nix";
       inputs.nixpkgs.follows = "nixpkgs";

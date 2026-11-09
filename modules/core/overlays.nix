@@ -4,6 +4,5 @@
     inputs.claude-code.overlays.default
     inputs.codex-cli-nix.overlays.default
     inputs.msime.overlays.default
-    inputs.herdr-gpui.overlays.default
   ];
 }
