@@ -4,19 +4,9 @@
 
   browser = "google-chrome-stable";
   terminal = "ghostty";
-  # Hyprland's view of the monitor; niriOutputSettings and
-  # umbrielOutputSettings below are the same one for niri and Umbriel, so keep
-  # the three in step.
+  # Hyprland's view of the monitor; umbrielOutputSettings below is the same
+  # one for Umbriel, so keep the two in step.
   extraMonitorSettings = ''hl.monitor({ output = "DP-1", mode = "highres", position = "auto", scale = "2", bitdepth = 10 })'';
-  # The same monitor for niri (modules/home/niri/config.nix), as KDL.
-  niriOutputSettings = ''
-    output "DP-1" {
-        scale 2
-        // Like Hyprland's vrr = 2: VRR only while a window with the
-        // variable-refresh-rate rule (games) is on screen.
-        variable-refresh-rate on-demand=true
-    }
-  '';
   # The same monitor for Umbriel (modules/home/umbriel/config.nix), as its
   # settings.output.
   umbrielOutputSettings."DP-1" = {

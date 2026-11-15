@@ -65,7 +65,7 @@
         builtin = "Ayu";
 
         templates = {
-          builtin_ids = ["gtk3" "gtk4" "kcolorscheme" "qt" "wezterm" "hyprland" "niri" "umbriel" "btop" "ghostty" "kitty"];
+          builtin_ids = ["gtk3" "gtk4" "kcolorscheme" "qt" "wezterm" "hyprland" "umbriel" "btop" "ghostty" "kitty"];
           community_ids = ["bat" "fcitx5" "fzf" "herdr" "hyprtoolkit" "lazygit" "neovim" "zed"];
         };
       };

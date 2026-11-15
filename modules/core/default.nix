@@ -9,7 +9,6 @@
     ./network.nix
     ./nfs.nix
     ./nh.nix
-    ./niri.nix
     ./umbriel.nix
     ./nix-ld.nix
     ./openlogi.nix

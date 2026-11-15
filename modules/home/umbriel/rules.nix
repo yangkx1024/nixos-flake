@@ -1,12 +1,14 @@
 {lib, ...}: let
-  # Port of modules/home/niri/rules.nix. A rule's match keys are ANDed and a
+  # Port of the niri session's rules (removed 2026-11-15; see git history of
+  # modules/home/niri/rules.nix), themselves a port of
+  # modules/home/hyprland/windowrules.nix. A rule's match keys are ANDed and a
   # list under one key is ORed, so each entry below is one match table and
   # gets its own window_rule. Later rules override earlier ones. Regexes are
   # ECMAScript, matched anywhere in the string, hence the ^...$ anchors.
   # There is no exclude, so negative lookahead stands in for niri's exclude
   # lines.
   #
-  # Not ported, beyond what niri's file already lists:
+  # Not ported, beyond what the niri file already listed:
   # - Thunar and Chrome opening maximized: Umbriel ignores a restored maximize
   #   unless general.honor_restored_maximize is set.
   rule = match: body: body // {inherit match;};

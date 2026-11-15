@@ -10,7 +10,8 @@
     browser
     terminal
     ;
-  # Same keys as modules/home/niri/binds.nix, plus Hyprland's special
+  # Same keys as the removed niri session's binds (git history of
+  # modules/home/niri/binds.nix), plus Hyprland's special
   # workspace (as the default scratchpad), layout switcher and edit keys,
   # which niri lacks. Not ported: the window screenshot (no screenshot UI;
   # grim can't pick a window here).

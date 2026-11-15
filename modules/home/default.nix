@@ -8,7 +8,6 @@
     ./herdr.nix
     ./hyprland
     ./icon-theme.nix
-    ./niri
     ./umbriel
     ./qt.nix
     ./scripts
