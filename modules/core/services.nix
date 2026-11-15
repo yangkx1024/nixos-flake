@@ -98,4 +98,8 @@
       };
     };
   };
+
+  # keyd exits with status 15 (the signal number) when systemd stops it with
+  # SIGTERM, so every shutdown listed it as failed.
+  systemd.services.keyd.serviceConfig.SuccessExitStatus = "15";
 }

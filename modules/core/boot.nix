@@ -29,8 +29,10 @@
       mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
       magicOrExtension = ''\x7fELF....AI\x02'';
     };
-    plymouth.enable = true;
-    plymouth.extraConfig = "UseSimpledrm=1";
+    # bootvine (modules/core/bootvine.nix) draws the boot on tty12 instead;
+    # Plymouth would fight it for the console.
+    #plymouth.enable = true;
+    #plymouth.extraConfig = "UseSimpledrm=1";
     # Stage 1 is always systemd now (boot.initrd.verbose is gone); `quiet`
     # already hides systemd status, the udev params silence udev in both stages.
     kernelParams = ["quiet" "rd.udev.log_level=3" "udev.log_level=3"];

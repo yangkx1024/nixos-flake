@@ -52,6 +52,13 @@
       url = "github:yangkx1024/usbeehive/nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Live tree of systemd jobs on the boot console, in place of Plymouth.
+    # Built locally against this nixpkgs (its cachix builds use its own pin).
+    bootvine = {
+      url = "git+https://codeberg.org/wvhulle/bootvine";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
