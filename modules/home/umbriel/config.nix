@@ -33,7 +33,7 @@ in {
       # Like niri's focus-follows-mouse max-scroll-amount="0%": crossing a
       # partly visible column doesn't scroll the view to it.
       focus = {
-        follows_mouse = true;
+        follows_mouse = "sloppy";
         follows_mouse_max_scroll = 0.0;
       };
       cursor = {

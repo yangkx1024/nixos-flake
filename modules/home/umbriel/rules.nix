@@ -114,6 +114,11 @@ in {
 
         (rule {app_id = ''^org\.gnome\.Loupe$'';} (size 0.8 0.8))
 
+        # Noctalia's tray doesn't hand its items an activation token
+        # (noctalia-dev/noctalia#4459), so clicking catmail's tray icon would
+        # only mark the window urgent. Drop once that's fixed.
+        (rule {app_id = ''^net\.yangkx\.catmail$'';} {focus_on_activate = true;})
+
         # Floating windows sit over other windows, so blur what's actually
         # behind them, as Hyprland does, rather than the optimized pass's
         # wallpaper-only blur. Tiled windows never overlap and keep the cheap
