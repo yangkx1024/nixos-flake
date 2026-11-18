@@ -26,8 +26,8 @@
   xdg.configFile."fcitx5/conf/classicui.conf".text = ''
     # 竖排候选列表
     Vertical Candidate List=True
-    # 候选栏字体，与 gtk/qt 的 MiSans 10 保持一致
-    Font="MiSans 10"
+    # 候选栏字体，与 gtk/qt 的 Noto Sans 10 保持一致
+    Font="Noto Sans 10"
     # 主题由 noctalia 的 fcitx5 社区模板渲染到
     # ~/.local/share/fcitx5/themes/noctalia/。模板只渲染当前明暗模式的配色，
     # 所以不需要 DarkTheme（UseDarkTheme 默认关闭，本来也不会用到它）。

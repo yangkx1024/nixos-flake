@@ -36,7 +36,7 @@
     };
     settings = {
       shell = {
-        font_family = "MiSans";
+        font_family = "Noto Sans";
         avatar_path = "${config.xdg.configHome}/face.jpg";
         telemetry_enabled = true;
         clipboard_auto_paste = "off";

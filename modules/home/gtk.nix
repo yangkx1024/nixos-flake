@@ -25,7 +25,7 @@ in {
     enable = true;
 
     font = {
-      name = "MiSans";
+      name = "Noto Sans";
       size = 10;
     };
 

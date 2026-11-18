@@ -34,8 +34,8 @@
       })
     ];
     fontconfig.defaultFonts = {
-      serif = ["MiSans" "Noto Serif" "Noto Serif CJK SC"];
-      sansSerif = ["MiSans" "Noto Sans" "Noto Sans CJK SC"];
+      serif = ["Noto Serif" "Noto Serif CJK SC"];
+      sansSerif = ["Noto Sans" "Noto Sans CJK SC"];
       monospace = ["Maple Mono NF CN" "JetBrainsMono Nerd Font"];
       emoji = ["Noto Color Emoji"];
     };

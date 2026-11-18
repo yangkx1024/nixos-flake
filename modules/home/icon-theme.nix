@@ -55,11 +55,11 @@ in {
       # The two tools serialise fonts differently.
       qt5ct = ''
         fixed="Maple Mono NF CN,10,-1,5,50,0,0,0,0,0,Regular"
-        general="MiSans,10,-1,5,50,0,0,0,0,0"
+        general="Noto Sans,10,-1,5,50,0,0,0,0,0"
       '';
       qt6ct = ''
         fixed="Maple Mono NF CN,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular"
-        general="MiSans,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1"
+        general="Noto Sans,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1"
       '';
     };
 }
