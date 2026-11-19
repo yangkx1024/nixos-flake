@@ -36,7 +36,7 @@
         ''^io\.missioncenter\.MissionCenter$''
         "^(gnome-disks|wihotspot(-gui)?)$"
         ''^org\.gnome\.seahorse\.Application$''
-        ''^(file-roller|org\.gnome\.FileRoller)$''
+        ''^([Xx]archiver)$''
         "^(nm-applet|nm-connection-editor|blueman-manager)$"
         ''\.blueman-manager-wrapped''
         ''^(pavucontrol|org\.pulseaudio\.pavucontrol|com\.saivert\.pwvucontrol)$''

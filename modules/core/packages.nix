@@ -45,7 +45,7 @@
     cowsay # Great Fun Terminal Program
     ddcutil # Monitor Control Over DDC/CI
     ffmpeg # Terminal Video / Audio Editing
-    file-roller # Archive Manager
+    xarchiver # Archive Manager
     (gearlever.override {dwarfs = null;}) # Manage / run Appimages; all ours are squashfs
     icu # dep for gearlever
     killall # For Killing All Instances Of Programs
@@ -78,7 +78,7 @@
     efibootmgr
     nwg-look
     mission-center
-    papers
+    zathura
     #foliate
     remmina
     codex

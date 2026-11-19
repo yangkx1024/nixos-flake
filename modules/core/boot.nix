@@ -4,13 +4,7 @@
   ...
 }: {
   boot = {
-    # 7.3.4-zen1 panics at boot: NULL deref in process_one_work (duplicated
-    # `worker->current_at = worker->task->se.sum_exec_runtime` line in the zen
-    # workqueue patch), hit as soon as xHCI probes. Fixed upstream in
-    # zen-kernel d0c3b48 (https://github.com/zen-kernel/zen-kernel/issues/425);
-    # switch back once nixpkgs ships a 7.3 zen newer than 7.3.4-zen1.
-    #kernelPackages = pkgs.linuxPackages_zen;
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_zen;
     #kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
     kernelModules = ["v4l2loopback"];
     extraModulePackages = [config.boot.kernelPackages.v4l2loopback];
