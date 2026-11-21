@@ -21,20 +21,20 @@
     ShareInputState=All
   '';
 
-  # 候选栏外观。只列真正要改的四项，其余留空回落到 fcitx5 的内置默认
+  # 候选栏外观。只列真正要改的几项，其余留空回落到 fcitx5 的内置默认
   # （见 src/ui/classic/classicui.h）。
-  xdg.configFile."fcitx5/conf/classicui.conf".text = ''
-    # 竖排候选列表
-    Vertical Candidate List=True
-    # 候选栏字体，与 gtk/qt 的 Noto Sans 10 保持一致
-    Font="Noto Sans 10"
-    # 主题由 noctalia 的 fcitx5 社区模板渲染到
-    # ~/.local/share/fcitx5/themes/noctalia/。模板只渲染当前明暗模式的配色，
-    # 所以不需要 DarkTheme（UseDarkTheme 默认关闭，本来也不会用到它）。
-    # 模板的 apply 钩子发现这里已是 noctalia 就不会去写这个只读文件，
-    # 只通过 D-Bus 让 classicui 重载配色。
-    Theme=noctalia
-  '';
+  xdg.configFile."fcitx5/conf/classicui.conf" = {
+    force = true;
+    text = ''
+      # 竖排候选列表
+      Vertical Candidate List=True
+      # 候选栏字体，与 gtk/qt 的 Noto Sans 10 保持一致
+      Font="Noto Sans 10"
+      # 主题由水杉插件生成到 ~/.local/share/fcitx5/themes/msime/，明暗由它自己跟随
+      Theme=msime
+      DarkTheme=msime
+    '';
+  };
 
   # Rime user directory for fcitx5. The schemas and dictionaries themselves come
   # from the rime-ice data baked into fcitx5-rime (see modules/core/fcitx5.nix);
