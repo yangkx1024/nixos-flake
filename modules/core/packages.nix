@@ -81,6 +81,8 @@
     zathura
     #foliate
     remmina
+    scrcpy
+    android-tools
     codex
     claude-code
     herdr # Agent multiplexer for the terminal
