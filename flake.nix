@@ -43,6 +43,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    antigravity-nix = {
+      url = "github:jacopone/antigravity-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     msime = {
       url = "github:yangkx1024/msime/nix-cachix";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -85,6 +85,7 @@
     android-tools
     codex
     claude-code
+    google-antigravity-cli
     herdr # Agent multiplexer for the terminal
   ];
 }

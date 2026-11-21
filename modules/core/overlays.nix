@@ -3,6 +3,7 @@
     # Provide package overlay here
     inputs.claude-code.overlays.default
     inputs.codex-cli-nix.overlays.default
+    inputs.antigravity-nix.overlays.default
     inputs.msime.overlays.default
   ];
 }
