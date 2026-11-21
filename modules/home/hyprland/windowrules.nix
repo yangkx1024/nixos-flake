@@ -92,8 +92,8 @@ _: {
       })
 
       hl.window_rule({
-        name = "Xarchiver",
-        match = { class = [[^([Xx]archiver)$]] },
+        name = "FileRoller",
+        match = { class = [[^(file-roller|org.gnome.FileRoller)$]] },
         tag = "+settings",
       })
 
