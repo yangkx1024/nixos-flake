@@ -15,6 +15,7 @@
     ./packages.nix
     ./printing.nix
     ./greetd.nix
+    ./immurok.nix
     ./security.nix
     ./services.nix
     ./steam.nix
