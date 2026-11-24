@@ -24,6 +24,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    luciole = {
+      url = "github:noctalia-dev/luciole";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
 
     openlogi.url = "github:yangkx1024/OpenLogi/nix-cachix?dir=packaging";

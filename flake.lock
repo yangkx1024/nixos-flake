@@ -270,6 +270,26 @@
         "type": "github"
       }
     },
+    "luciole": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1795526200,
+        "narHash": "sha256-7algz62iWhluGputPqfg/lIgU+5fF1tZMB9k2jahktA=",
+        "owner": "noctalia-dev",
+        "repo": "luciole",
+        "rev": "ea29c1c65eeb8c99495ebfe4c55ea6eb0a61612b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "noctalia-dev",
+        "repo": "luciole",
+        "type": "github"
+      }
+    },
     "msime": {
       "inputs": {
         "crane": "crane_2",
@@ -371,6 +391,7 @@
         "claude-code": "claude-code",
         "codex-cli-nix": "codex-cli-nix",
         "home-manager": "home-manager",
+        "luciole": "luciole",
         "msime": "msime",
         "nix-flatpak": "nix-flatpak",
         "nixpkgs": "nixpkgs",

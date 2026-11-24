@@ -9,6 +9,7 @@
     ./herdr.nix
     ./hyprland
     ./icon-theme.nix
+    ./luciole.nix
     ./umbriel
     ./qt.nix
     ./scripts
