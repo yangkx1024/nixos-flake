@@ -5,6 +5,7 @@
 }: let
   # Rendered by noctalia's gtk3 template on every light/dark switch.
   gtk3Colors = "${config.xdg.configHome}/gtk-3.0/noctalia.css";
+  gtk3Reload = "${config.xdg.configHome}/gtk-3.0/colors.css";
 in {
   # middle-click paste. GTK apps (ghostty, chrome) read this from gsettings,
   # and the org.gnome.desktop.interface schema defaults it to false, which
@@ -19,7 +20,10 @@ in {
   # never touches settings.ini.
 
   # noctalia's gtk hook only switches to adw-gtk3/adw-gtk3-dark when installed.
-  home.packages = [pkgs.adw-gtk3];
+  home.packages = [
+    pkgs.adw-gtk3
+    (pkgs.callPackage ../../pkgs/gtk3-colorreload.nix {})
+  ];
 
   gtk = {
     enable = true;
@@ -44,19 +48,23 @@ in {
   # GTK3 reads the user gtk.css (and so noctalia.css) once per process
   # (settings_init_style in gtk/gtksettings.c), so a running app keeps the old
   # palette after a mode switch even though gtk-theme itself changes live.
-  # Apps pick it up when reopened; the file chooser portal lives for the whole
-  # session, so restart it whenever noctalia rewrites the colours. try-restart
-  # leaves it alone if it isn't running; D-Bus activation starts it fresh.
-  systemd.user.paths.gtk3-portal-noctalia-colors = {
+  # colorreload-gtk-module (kde-gtk-config, loaded through GTK_MODULES in
+  # session-env.nix: GTK3 on Wayland ignores gtk-modules from settings.ini)
+  # watches gtk-3.0/colors.css and loads it into every running GTK3 app above
+  # the user gtk.css. It only reacts to
+  # writes to colors.css itself, not to files it imports, so copy noctalia's
+  # palette there each time noctalia rewrites it. New processes still get the
+  # colours through gtk.css; the module does not read colors.css at startup.
+  systemd.user.paths.gtk3-noctalia-colors-reload = {
     Unit.Description = "Watch noctalia's GTK3 colours";
     Path.PathChanged = gtk3Colors;
     Install.WantedBy = ["default.target"];
   };
-  systemd.user.services.gtk3-portal-noctalia-colors = {
-    Unit.Description = "Restart the GTK file chooser portal after noctalia changes GTK3 colours";
+  systemd.user.services.gtk3-noctalia-colors-reload = {
+    Unit.Description = "Live-reload noctalia's GTK3 colours in running GTK3 apps";
     Service = {
       Type = "oneshot";
-      ExecStart = "${pkgs.systemd}/bin/systemctl --user try-restart xdg-desktop-portal-gtk.service";
+      ExecStart = "${pkgs.coreutils}/bin/cp ${gtk3Colors} ${gtk3Reload}";
     };
   };
 }

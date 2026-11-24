@@ -10,6 +10,7 @@
   NIXPKGS_ALLOW_UNFREE = "1";
   XDG_SESSION_TYPE = "wayland";
   GDK_BACKEND = "wayland,x11";
+  GTK_MODULES = "colorreload-gtk-module";
   CLUTTER_BACKEND = "wayland";
   QT_QPA_PLATFORM = "wayland;xcb";
   QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
