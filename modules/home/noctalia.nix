@@ -54,7 +54,7 @@
           open_near_click_control_center = true;
         };
         window_switcher = {
-          stype = "compact";
+          style = "compact";
           show_all_outputs = true;
         };
       };
@@ -109,18 +109,19 @@
         lock = {
           enabled = true;
           timeout = 600;
-          command = "noctalia:session lock";
+          action = "lock";
         };
         "screen-off" = {
           enabled = true;
-          timeout = 600;
-          command = "noctalia:dpms-off";
-          resume_command = "noctalia:dpms-on";
+          # Stagger slightly after lock so lock always triggers before DPMS off
+          # (two equal timeouts fire in non-deterministic order).
+          timeout = 605;
+          action = "screen_off";
         };
         suspend = {
           enabled = true;
           timeout = 1800;
-          action = "suspend";
+          action = "lock_and_suspend";
         };
       };
 
