@@ -17,6 +17,12 @@
         # Add other Flatpak IDs here, e.g., "org.mozilla.firefox"
       ];
 
+      # home-manager's fontconfig files are symlinks into the store.
+      overrides.global.Context.filesystems = [
+        "xdg-config/fontconfig:ro"
+        "/nix/store:ro"
+      ];
+
       # Update on a timer, not on activation: onActivation adds --or-update to
       # every run, and the unit re-runs on each switch, so rebuilds hit flathub.
       update = {

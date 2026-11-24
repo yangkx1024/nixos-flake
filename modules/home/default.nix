@@ -4,6 +4,7 @@
     ./desktop.nix
     ./fastfetch
     ./fcitx5.nix
+    ./fonts.nix
     ./gtk.nix
     ./herdr.nix
     ./hyprland
