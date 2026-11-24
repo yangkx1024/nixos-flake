@@ -33,7 +33,7 @@ _: {
 
       hl.window_rule({
         name = "Thunar",
-        match = { class = [[^([Tt]hunar|org.gnome.Nautilus|[Pp]cmanfm-qt)$]] },
+        match = { class = [[^([Tt]hunar|org.gnome.Nautilus|[Pp]cmanfm-qt|dev.noctalia.luciole)$]] },
         tag = "+file-manager",
       })
 

@@ -28,7 +28,7 @@
     matches;
 
   terminals = [{app_id = import ./terminals.nix;}];
-  fileManagers = [{app_id = ''^([Tt]hunar|org\.gnome\.Nautilus|[Pp]cmanfm-qt)$'';}];
+  fileManagers = [{app_id = ''^([Tt]hunar|org\.gnome\.Nautilus|[Pp]cmanfm-qt|dev\.noctalia\.luciole)$'';}];
   settings = [
     {
       app_id = [
