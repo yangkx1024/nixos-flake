@@ -33,7 +33,6 @@ in {
       -- which freezes the terminal until CTRL+Q).
       local terminalClasses = {
         ["com.mitchellh.ghostty"] = true,
-        ["org.wezfurlong.wezterm"] = true,
         ["Alacritty"] = true,
         ["kitty"] = true,
         ["kitty-dropterm"] = true,
