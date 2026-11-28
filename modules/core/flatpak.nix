@@ -35,6 +35,14 @@
     };
   };
 
+  # flatpak-portal reads backends only from XDG_DESKTOP_PORTAL_DIR (default: its
+  # own store path, which has none) and ignores portals.conf; both sessions
+  # route Access to gtk, so give it gtk's directory for the update dialog.
+  systemd.user.services.flatpak-portal = {
+    environment.XDG_DESKTOP_PORTAL_DIR = "${pkgs.xdg-desktop-portal-gtk}/share/xdg-desktop-portal/portals";
+    enableDefaultPath = false;
+  };
+
   # The timer is Persistent, so a missed run fires at boot, usually before the
   # network is up; the failure would then retry every 60s until it is.
   systemd.services.flatpak-managed-install-timer = {
